@@ -11,4 +11,5 @@ public class Items_ScriptableObject : ScriptableObject {
 
     public bool PickedUp;
 
+
 }
