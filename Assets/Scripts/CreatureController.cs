@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class CreatureController : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Transform movingTarget;
-    public float targetFocusTime = 5;
-    private float focusTimeLeft = 0;
 
+    [Tooltip("How long it takes for the creature to lose focus on an object/whistle")]
+    [SerializeField] private float targetFocusTime = 5;
+    private float focusTimeLeft = 0;
+    
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
