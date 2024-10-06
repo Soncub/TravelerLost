@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 113574766}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.6000001, y: 0, z: -1.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -262,8 +262,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2006269573}
   mouseSensitivity:
-    horizontal: 5
-    vertical: 5
+    horizontal: 80
+    vertical: 80
     invertVertical: 0
     invertHorizontal: 0
   cameraAngle:
@@ -435,7 +435,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &605560909
 MeshCollider:
@@ -549,8 +549,8 @@ Transform:
   m_GameObject: {fileID: 903525853}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.926, z: 6.94}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2006269573}
@@ -761,6 +761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1087492433}
   - component: {fileID: 1087492432}
+  - component: {fileID: 1087492434}
   m_Layer: 0
   m_Name: TestCreature
   m_TagString: Untagged
@@ -778,7 +779,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -334000983
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -787,7 +788,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!4 &1087492433
@@ -799,13 +800,26 @@ Transform:
   m_GameObject: {fileID: 1087492431}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.25, y: 2.5, z: 5}
+  m_LocalPosition: {x: -20, y: 2.5, z: -3.75}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 113574767}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1087492434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087492431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ad809468a93134fbe71f93fcd2cb06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetFocusTime: 5
 --- !u!1 &1218044724
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,10 +908,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2006269579}
+        m_TargetAssemblyTypeName: WhistleSystem, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f8d1ec64-77db-4b67-824b-fae7bfe3d6a4
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2006269579}
+        m_TargetAssemblyTypeName: WhistleSystem, Assembly-CSharp
+        m_MethodName: Whistle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 366983961}
+        m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+        m_MethodName: Whistle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bbb1081d-e458-4ce8-88cf-5b3a0472218a
     m_ActionName: Player/Whistle[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
@@ -937,7 +987,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1296009519
 BoxCollider:
@@ -1018,12 +1068,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296009518}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1.6800001}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.5400784, y: -0.0036617517, z: 2.642765}
   m_LocalScale: {x: 3, y: 2, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1772184478}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1326644281
 GameObject:
@@ -1191,7 +1241,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1359861717
 BoxCollider:
@@ -1272,12 +1322,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359861716}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.29433826, y: -0, z: -0, w: 0.9557013}
-  m_LocalPosition: {x: 0, y: 0.05, z: -0.86}
+  m_LocalRotation: {x: -0.2943383, y: -0, z: -0, w: 0.95570135}
+  m_LocalPosition: {x: 3.5400784, y: -0.95366174, z: 0.10276502}
   m_LocalScale: {x: 3, y: 2, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1772184478}
   m_LocalEulerAnglesHint: {x: -34.236, y: 0, z: 0}
 --- !u!1 &1772184477
 GameObject:
@@ -1288,12 +1338,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1772184478}
+  - component: {fileID: 1772184479}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1772184478
 Transform:
@@ -1310,8 +1361,41 @@ Transform:
   m_Children:
   - {fileID: 605560912}
   - {fileID: 1997418823}
+  - {fileID: 1296009522}
+  - {fileID: 1359861720}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1772184479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772184477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_CollectObjects: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 7e1a92471ac01a94d90cf08a39d39d84, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &1997418822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1413,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1997418823
 Transform:
@@ -1582,10 +1666,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whistleMarker: {fileID: 392914815}
-  whistleMoveSpeed: 1
+  whistleMoveSpeed: 400
   refCamera: {fileID: 366983963}
-  travelRange: 10
-  listenRange: 10
+  travelRange: 100
+  listenRange: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1595,8 +1679,6 @@ SceneRoots:
   - {fileID: 1772184478}
   - {fileID: 2006269573}
   - {fileID: 1218044726}
-  - {fileID: 1296009522}
   - {fileID: 1009643126}
-  - {fileID: 1359861720}
   - {fileID: 1326644287}
   - {fileID: 1087492433}

@@ -42,15 +42,15 @@ public class WhistleSystem : MonoBehaviour
 
     public void Whistle(InputAction.CallbackContext context)
     {
-        //When starting to be pressed, start whistling and show the marker at the default position
-        if (context.started)
+        //When pressed, start whistling and show the marker at the default position
+        if (!whistling && context.performed)
         {
             whistling = true;
             whistleMarker.transform.position = markerAnchorPoint;
             whistleMarker.SetActive(true);
         }
         //When unpressed, stop whistling and find the point to move the creature to
-        if (context.performed)
+        if (whistling && context.canceled)
         {
             whistling = false;
             whistleMarker.SetActive(false);

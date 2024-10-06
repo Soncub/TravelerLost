@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Transform target;
     private float distanceToPlayer;
     private Vector2 input;
+    private bool whistling;
 
     [SerializeField] private MouseSensitivity mouseSensitivity;
     [SerializeField] private CameraAngle cameraAngle;
@@ -24,11 +25,22 @@ public class CameraManager : MonoBehaviour
         input = context.ReadValue<Vector2>();
     }
 
+    public void Whistle(InputAction.CallbackContext context)
+    {
+        if (!whistling && context.performed)
+            whistling = true;
+        if (whistling && context.canceled)
+            whistling = false;
+    }
+
     public void Update()
     {
-        cameraRotation.Yaw += input.x * mouseSensitivity.horizontal * BoolToInt(mouseSensitivity.invertHorizontal) * Time.deltaTime;
-        cameraRotation.Pitch += input.y * mouseSensitivity.vertical * BoolToInt(mouseSensitivity.invertVertical) * Time.deltaTime;
-        cameraRotation.Pitch = Mathf.Clamp(cameraRotation.Pitch, cameraAngle.min, cameraAngle.max);
+        if (!whistling) 
+        {
+            cameraRotation.Yaw += input.x * mouseSensitivity.horizontal * BoolToInt(mouseSensitivity.invertHorizontal) * Time.deltaTime;
+            cameraRotation.Pitch += input.y * mouseSensitivity.vertical * BoolToInt(mouseSensitivity.invertVertical) * Time.deltaTime;
+            cameraRotation.Pitch = Mathf.Clamp(cameraRotation.Pitch, cameraAngle.min, cameraAngle.max);
+        }
     }
 
     private void LateUpdate()
