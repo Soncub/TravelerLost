@@ -37,7 +37,7 @@ public class WhistleSystem : MonoBehaviour
     {
         //When whistling, move the pointer based on input
         if (whistling)
-            whistleMarker.transform.position += (Vector3)input * Time.deltaTime;
+            whistleMarker.transform.position += Time.deltaTime * whistleMoveSpeed * (Vector3)input;
     }
 
     public void Whistle(InputAction.CallbackContext context)
@@ -55,8 +55,7 @@ public class WhistleSystem : MonoBehaviour
             whistling = false;
             whistleMarker.SetActive(false);
             //Do a raycast from the marker position, then attract the creature if it's in listen+travel range
-            RaycastHit hit;
-            if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out hit) &&
+            if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit) &&
                 Vector3.Distance(player.transform.position, creature.transform.position) < listenRange &&
                 Vector3.Distance(hit.point, creature.transform.position) < travelRange)
             {
