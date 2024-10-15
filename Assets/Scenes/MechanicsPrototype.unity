@@ -1268,6 +1268,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bbb1081d-e458-4ce8-88cf-5b3a0472218a
     m_ActionName: Player/Whistle[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 685da604-de44-4693-a6fa-621afe31892c
+    m_ActionName: Player/PickUp[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1473,6 +1477,23 @@ MonoBehaviour:
   pickUpDistance: 2
   forceMulti: 10
   enableGizmos: 1
+  pickUpAction:
+    m_Name: Pick Up
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b3616600-bffc-4507-bc55-87a841e2892c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 57a2224e-dad7-4a8a-8871-edefb67b0692
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pick Up
+      m_Flags: 0
+    m_Flags: 0
 --- !u!54 &1326644283
 Rigidbody:
   m_ObjectHideFlags: 0
