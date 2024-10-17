@@ -17,7 +17,7 @@ public class ItemInteraction : MonoBehaviour
     [Tooltip("Visual for Distance for picking up object")]
     [SerializeField] private bool enableGizmos;
 
-    private bool itemIsPicked;
+    public bool itemIsPicked;
     private Rigidbody rb;
 
     // Reference to the Input Action
@@ -34,14 +34,11 @@ public class ItemInteraction : MonoBehaviour
         pickUpAction.performed += PickUp;
     }
 
-    private void Update()
-    {
-  
-    }
+ 
 
     public void PickUp(InputAction.CallbackContext context)
     {
-        // Check if the action was performed (button pressed)
+
 
         // Calculate distance dynamically
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
@@ -53,7 +50,6 @@ public class ItemInteraction : MonoBehaviour
             this.transform.parent = pickUpPoint;
 
             itemIsPicked = true;
-            Debug.Log("Pickup button pressed.");
         }
         else if (itemIsPicked && context.performed)
         {
