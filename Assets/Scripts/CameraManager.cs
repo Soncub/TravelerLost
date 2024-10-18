@@ -50,6 +50,16 @@ public class CameraManager : MonoBehaviour
     }
 
     private static int BoolToInt(bool b) => b ? 1 : -1;
+
+    public void EnableCameraManager()
+    {
+        this.enabled = true;
+    }
+
+    public void DisableCameraManager()
+    {
+        this.enabled = false;
+    }
 }
 
 [System.Serializable]

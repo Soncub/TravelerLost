@@ -77,4 +77,14 @@ public class PlayerController : MonoBehaviour
     }
 
     private bool IsGrounded() => characterController.isGrounded;
+
+    public void EnablePlayerController()
+    {
+        this.enabled = true;
+    }
+
+    public void DisablePlayerController()
+    {
+        this.enabled = false;
+    }
 }

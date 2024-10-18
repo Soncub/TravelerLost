@@ -1903,6 +1903,7 @@ GameObject:
   - component: {fileID: 2006269575}
   - component: {fileID: 2006269574}
   - component: {fileID: 2006269579}
+  - component: {fileID: 2006269580}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2056,6 +2057,20 @@ MonoBehaviour:
   refCamera: {fileID: 366983963}
   travelRange: 100
   listenRange: 100
+--- !u!114 &2006269580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006269572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a5bb411f3e23a346ac15f274830accf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 2006269574}
+  cameraManager: {fileID: 366983961}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
