@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour
     {
         input = context.ReadValue<Vector2>();
         direction = new Vector3(input.x, 0.0f, input.y);
-        Debug.Log(input);
     }
 
     public void Jump(InputAction.CallbackContext context)

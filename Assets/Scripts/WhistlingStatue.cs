@@ -18,24 +18,26 @@ public class WhistlingStatue : MonoBehaviour
     private CreatureController creature;
     private bool interacting = false;
 
-    [Tooltip("Minimum rotation for whistling")]
+    [Tooltip("Maximum distance for the player to interact with the statue")]
+    [SerializeField] private float maxInteractDistance;
+    [Tooltip("Minimum rotation for whistling (0-360)")]
     [SerializeField] private float minWhistleRotation;
-    [Tooltip("Maximum rotation for whistling")]
+    [Tooltip("Maximum rotation for whistling (0-360)")]
     [SerializeField] private float maxWhistleRotation;
     [Tooltip("Maximum distance for the creature to hear the whistling and be attracted to the call position")]
     [SerializeField] private float maxWhistleDistance;
-    [Tooltip("Minimum rotation for jarring noise that causes the creature to lose focus")]
+    [Tooltip("Minimum rotation for jarring noise that causes the creature to lose focus (0-360)")]
     [SerializeField] private float minBadRotation;
-    [Tooltip("Maximum rotation for jarring noise that causes the creature to lose focus")]
+    [Tooltip("Maximum rotation for jarring noise that causes the creature to lose focus (0-360)")]
     [SerializeField] private float maxBadRotation;
     [Tooltip("Maximum distance for the creature to react to the jarring noise and lose focus")]
     [SerializeField] private float maxBadDistance;
     private float curRotation;
 
     [Tooltip("Input for interacting with the statue")]
-    [SerializeField] private InputAction interactAction;
+    [SerializeField] private InputActionReference interactAction;
     [Tooltip("Input for moving the statue")]
-    [SerializeField] private InputAction motionAction;
+    [SerializeField] private InputActionReference motionAction;
     private float input;
 
     void Start()
@@ -47,10 +49,12 @@ public class WhistlingStatue : MonoBehaviour
         updateTimer = updateTime;
 
         //Enable and subscribe to the actions
-        interactAction.Enable();
-        interactAction.performed += Interact;
-        motionAction.Enable();
-        motionAction.performed += Move;
+        interactAction.action.Enable();
+        interactAction.action.performed += Interact;
+        interactAction.action.canceled += Interact;
+        motionAction.action.Enable();
+        motionAction.action.performed += Move;
+        motionAction.action.canceled += Move;
     }
 
     private void Update()
@@ -58,16 +62,15 @@ public class WhistlingStatue : MonoBehaviour
         updateTimer -= Time.deltaTime;
         if (updateTimer < 0)
         {
+            //On a timer, either call or distract the creature if its in range based on rotation
             updateTimer += updateTime;
             if (
-                curRotation <= maxBadRotation &&
-                curRotation >= minBadRotation &&
+                CheckAngle(curRotation, minBadRotation, maxBadRotation) &&
                 Vector3.Distance(player.transform.position, creature.transform.position) <= maxBadDistance
                 )
                 creature.LoseFocus();
             else if (
-                curRotation <= maxWhistleRotation &&
-                curRotation >= minWhistleRotation &&
+                CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation) &&
                 Vector3.Distance(player.transform.position, creature.transform.position) <= maxWhistleDistance
                 )
                 creature.NewTargetDestination(callPosition.position);
@@ -81,11 +84,14 @@ public class WhistlingStatue : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        //When pressed, start interaction and disable player movement so inputs are used only for this
+        //When pressed and in range, start interaction and disable player movement so inputs are used only for this
         if (!interacting && context.performed)
         {
-            interacting = true;
-            player.DisablePlayerController();
+            if (Vector3.Distance(player.transform.position, transform.position) <= maxInteractDistance)
+            {
+                interacting = true;
+                player.DisablePlayerController();
+            }
         }
         //When unpressed, stop interaction and re-enable player movement
         if (interacting && context.canceled)
@@ -99,5 +105,10 @@ public class WhistlingStatue : MonoBehaviour
     {
         if (interacting)
             input = context.ReadValue<Vector2>().x;
+    }
+
+    static private bool CheckAngle(float check, float min, float max)
+    {
+        return min < max ? (check >= min) && (check <= max) : ! ((check < min) && (check > max));
     }
 }
