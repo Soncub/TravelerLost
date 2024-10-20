@@ -6,6 +6,8 @@ using UnityEngine.Windows;
 
 public class WhistleSystem : MonoBehaviour
 {
+    [Tooltip("Should whistling be on")]
+    [SerializeField] private bool whistlingEnabled = true;
     [Tooltip("UI object to move around for pointing where the whistle should fire")]
     [SerializeField] private GameObject whistleMarker;
     [Tooltip("How fast the whistle point should move")]
@@ -36,14 +38,14 @@ public class WhistleSystem : MonoBehaviour
     private void Update()
     {
         //When whistling, move the pointer based on input
-        if (whistling)
+        if (whistling && whistlingEnabled)
             whistleMarker.transform.position += Time.deltaTime * whistleMoveSpeed * (Vector3)input;
     }
 
     public void Whistle(InputAction.CallbackContext context)
     {
         //When pressed, start whistling and show the marker at the default position
-        if (!whistling && context.performed)
+        if (whistlingEnabled && !whistling && context.performed)
         {
             whistling = true;
             whistleMarker.transform.position = markerAnchorPoint;
@@ -67,5 +69,15 @@ public class WhistleSystem : MonoBehaviour
     public void Look(InputAction.CallbackContext context)
     {
         input = context.ReadValue<Vector2>();
+    }
+
+    public void EnableWhistling()
+    {
+        whistlingEnabled = true;
+    }
+
+    public void DisableWhistling() 
+    {  
+        whistlingEnabled = false; 
     }
 }

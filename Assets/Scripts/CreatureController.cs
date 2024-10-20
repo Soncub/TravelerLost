@@ -26,7 +26,7 @@ public class CreatureController : MonoBehaviour
             focusTimeLeft -= Time.deltaTime;
             //If focus is lost, stop moving towards a target destination
             if (focusTimeLeft < 0)
-                agent.SetDestination(transform.position);
+                LoseFocus();
             //If focus is not lost and using a moving target, update its destination
             else if (focusTimeLeft > 0 && movingTarget != null)
                 agent.SetDestination(movingTarget.position);
@@ -50,4 +50,8 @@ public class CreatureController : MonoBehaviour
         agent.SetDestination(movingTarget.position);
     }
 
+    public void LoseFocus()
+    {
+        agent.SetDestination(transform.position);
+    }
 }
