@@ -116,4 +116,13 @@ public class PauseMenuManager : MonoBehaviour
     {
         OpenMainMenu();
     }
+    public void BackToMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuScene");
+    }
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
 }
