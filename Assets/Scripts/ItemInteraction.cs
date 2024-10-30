@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class ItemInteraction : MonoBehaviour
 {
+    UnityEvent PickUpEvent;
+    UnityEvent DropEvent;
     private Transform pickUpPoint;
     private Transform player;
 
@@ -46,6 +49,7 @@ public class ItemInteraction : MonoBehaviour
             this.transform.parent = pickUpPoint;
 
             itemIsPicked = true;
+            PickUpEvent.Invoke();
         }
         else if (itemIsPicked && context.performed)
         {
@@ -53,7 +57,8 @@ public class ItemInteraction : MonoBehaviour
             this.transform.position = placePosition;
             this.transform.parent = null;
             rb.useGravity = true;
-            itemIsPicked = false;
+            itemIsPicked = false; 
+            DropEvent.Invoke();
         }
     }
 
