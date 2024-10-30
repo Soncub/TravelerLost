@@ -70,4 +70,15 @@ public class MenuManager : MonoBehaviour
     {
         ActivateCanvas("Main");
     }
+
+    public void LoadLevel1()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
+    }
+
+    public void Close()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
 }

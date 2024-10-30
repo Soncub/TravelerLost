@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8595802097683477971}
   - component: {fileID: 4907941182420185133}
   - component: {fileID: 2316993276465668449}
+  - component: {fileID: 8767361045172403995}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Item
@@ -149,6 +150,7 @@ MonoBehaviour:
   pickUpDistance: 2
   forceMulti: 10
   enableGizmos: 1
+  itemIsPicked: 0
   pickUpAction:
     m_Name: Pick Up
     m_Type: 0
@@ -166,3 +168,20 @@ MonoBehaviour:
       m_Action: Pick Up
       m_Flags: 0
     m_Flags: 0
+--- !u!114 &8767361045172403995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729353094801200202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de2d8c9835de744fb191cac4f53a8fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractDistance: 20
+  movingObject: 0
+  automaticallyAttract: 1
+  automaticAttractionTime: 10
+  destroyOnAttract: 1
