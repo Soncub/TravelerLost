@@ -8,6 +8,7 @@ public class CreatureController : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Transform movingTarget;
+    private CreatureInteractable interactable;
 
     [Tooltip("How long it takes for the creature to lose focus on an object/whistle")]
     [SerializeField] private float targetFocusTime = 5;
@@ -28,8 +29,16 @@ public class CreatureController : MonoBehaviour
             if (focusTimeLeft < 0)
                 LoseFocus();
             //If focus is not lost and using a moving target, update its destination
-            else if (focusTimeLeft > 0 && movingTarget != null)
-                agent.SetDestination(movingTarget.position);
+            else if (movingTarget != null)
+            {
+                if (interactable != null && Vector3.Distance(transform.position, movingTarget.position) <= interactable.interactionDistance)
+                {
+                    interactable.onInteract.Invoke();
+                    LoseFocus();
+                }
+                else
+                    agent.SetDestination(movingTarget.position);
+            }
         }
     }
 
@@ -48,6 +57,12 @@ public class CreatureController : MonoBehaviour
         movingTarget = transform;
         focusTimeLeft = targetFocusTime;
         agent.SetDestination(movingTarget.position);
+    }
+
+    public void NewInteractionTarget(CreatureInteractable interactable)
+    {
+        this.interactable = interactable;
+        NewMovingTarget(interactable.transform);
     }
 
     public void LoseFocus()
