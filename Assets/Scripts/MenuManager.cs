@@ -73,12 +73,14 @@ public class MenuManager : MonoBehaviour
 
     public void LoadLevel1()
     {
+        SaveAndLoad.instance.SaveGame();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
     }
 
     public void Close()
     {
         Debug.Log("Quit");
+        SaveAndLoad.instance.SaveGame();
         Application.Quit();
     }
 }
