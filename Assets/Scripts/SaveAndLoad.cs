@@ -13,12 +13,16 @@ public class SaveAndLoad : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            LoadGame();
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        LoadGame();
     }
 
     public void SaveGame()
