@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2687943481957480695}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -164,13 +164,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8326163520883512446}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.540078, y: 0.99633825, z: -0.037234962}
   m_LocalScale: {x: 2, y: 4, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7045946395918854816}
   - {fileID: 1194123426779987823}
+  - {fileID: 8749567614160711736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8928788793540732222
@@ -188,7 +189,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8326163520883512446}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -260,11 +261,81 @@ MonoBehaviour:
   updateTime: 1
   rotationSpeed: 100
   maxInteractDistance: 2
-  minWhistleRotation: 0
+  minWhistleRotation: 40
   maxWhistleRotation: 110
-  maxWhistleDistance: 8
+  maxWhistleDistance: 60
   minBadRotation: 330
   maxBadRotation: 30
   maxBadDistance: 4
   interactAction: {fileID: -3354451036608551624, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
   motionAction: {fileID: 981622163994799301, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
+--- !u!1001 &9144009417265698771
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8992204385404162644}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.006774465
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.006774465
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_Name
+      value: Monkey Statue_low
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+--- !u!4 &8749567614160711736 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+  m_PrefabInstance: {fileID: 9144009417265698771}
+  m_PrefabAsset: {fileID: 0}
