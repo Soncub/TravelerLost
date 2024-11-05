@@ -116,4 +116,14 @@ public class PauseMenuManager : MonoBehaviour
     {
         OpenMainMenu();
     }
+    public void BackToMenu()
+    {
+        SaveAndLoad.instance.SaveGame();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuScene");
+    }
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
 }
