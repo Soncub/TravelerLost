@@ -176,6 +176,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2554462210425055083}
   - component: {fileID: 1491810815156360215}
+  - component: {fileID: 7648681106413337150}
+  - component: {fileID: -7070616672142999719}
   m_Layer: 0
   m_Name: sm_tree04
   m_TagString: Untagged
@@ -193,7 +195,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7173992, z: -0, w: 0.6966623}
   m_LocalPosition: {x: 13.184507, y: -0.00000047683716, z: 7.788332}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3513703, y: 1.3513703, z: 1.3513703}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2484457138073473920}
@@ -221,3 +223,60 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6762839, y: 2.756477, z: 0.6992654}
   m_Center: {x: -0.009373859, y: 1.2965137, z: 0.0046144123}
+--- !u!205 &7648681106413337150
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2898230686705728977}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7435425144049134479}
+    - renderer: {fileID: 1895750210589316595}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7435425144049134479}
+    - renderer: {fileID: 1895750210589316595}
+  - screenRelativeHeight: 0.064639114
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7435425144049134479}
+    - renderer: {fileID: 1895750210589316595}
+  m_Enabled: 1
+--- !u!54 &-7070616672142999719
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2898230686705728977}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
