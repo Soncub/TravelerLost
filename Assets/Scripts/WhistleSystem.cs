@@ -18,6 +18,8 @@ public class WhistleSystem : MonoBehaviour
     [SerializeField] private float travelRange = 10;
     [Tooltip("The furthest the creature can be from the player to 'hear' it")]
     [SerializeField] private float listenRange = 10;
+    [Tooltip("How close the pointer has to be to an interactable to command the creature to interact with it")]
+    [SerializeField] private float interactableSnapRange = 10;
 
     private Vector3 markerAnchorPoint;
     private Vector2 input;
@@ -61,7 +63,20 @@ public class WhistleSystem : MonoBehaviour
                 Vector3.Distance(player.transform.position, creature.transform.position) < listenRange &&
                 Vector3.Distance(hit.point, creature.transform.position) < travelRange)
             {
-                creature.NewTargetDestination(hit.point);
+                bool flag = false;
+                RaycastHit[] interactionCheck = Physics.SphereCastAll(hit.point, interactableSnapRange, transform.forward);
+                foreach(RaycastHit check in interactionCheck)
+                {
+                    CreatureInteractable interactable = check.collider.gameObject.GetComponent<CreatureInteractable>();
+                    if (interactable != null)
+                    {
+                        creature.NewInteractionTarget(interactable);
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag)
+                    creature.NewTargetDestination(hit.point);
             }
         }
     }
