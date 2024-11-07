@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4907941182420185133}
   - component: {fileID: 2316993276465668449}
   - component: {fileID: 8767361045172403995}
+  - component: {fileID: 6418426817713718850}
   m_Layer: 0
   m_Name: InteractionFruit
   m_TagString: Item
@@ -147,8 +148,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c744a71ea57614ab37283b7451898b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DropEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8767361045172403995}
+        m_TargetAssemblyTypeName: CreatureAttractor, Assembly-CSharp
+        m_MethodName: AttractCreature
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   pickUpDistance: 2
-  forceMulti: 10
+  placeOffset: 1
   enableGizmos: 1
   itemIsPicked: 0
   pickUpAction:
@@ -182,6 +201,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attractDistance: 20
   movingObject: 0
-  automaticallyAttract: 1
+  automaticallyAttract: 0
   automaticAttractionTime: 10
-  destroyOnAttract: 1
+  destroyOnAttract: 0
+--- !u!114 &6418426817713718850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729353094801200202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395b4796c9ec1884fb9a5cb481e74ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 1
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6418426817713718850}
+        m_TargetAssemblyTypeName: CreatureInteractable, Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

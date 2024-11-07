@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class ItemInteraction : MonoBehaviour
 {
-    UnityEvent PickUpEvent;
-    UnityEvent DropEvent;
+    [SerializeField] UnityEvent PickUpEvent;
+    [SerializeField] UnityEvent DropEvent;
     private Transform pickUpPoint;
     private Transform player;
 

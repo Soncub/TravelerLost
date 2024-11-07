@@ -34,6 +34,7 @@ public class CreatureController : MonoBehaviour
                 if (interactable != null && Vector3.Distance(transform.position, movingTarget.position) <= interactable.interactionDistance)
                 {
                     interactable.onInteract.Invoke();
+                    interactable = null;
                     LoseFocus();
                 }
                 else
@@ -67,6 +68,7 @@ public class CreatureController : MonoBehaviour
 
     public void LoseFocus()
     {
+        movingTarget = null;
         agent.SetDestination(transform.position);
     }
 }
