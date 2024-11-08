@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
@@ -25,16 +26,33 @@ public class ItemInteraction : MonoBehaviour
 
     // Reference to the Input Action
     [SerializeField] private InputAction pickUpAction;
+    //Ui Variable
+    [SerializeField] private TextMeshProUGUI popUp;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         pickUpPoint = GameObject.Find("PickUpPoint").transform;
+        //UI Script
+        popUp.gameObject.SetActive(false);
 
         // Enable the Input Action and subscribe to it
         pickUpAction.Enable();
         pickUpAction.performed += PickUp;
+    }
+    //UI Script
+    private void Update()
+    {
+        float range = Vector3.Distance(player.position, transform.position);
+        if (range <= pickUpDistance)
+        {
+            PopUpOn("Press E to Pick Up Fruit");
+        }
+        else
+        {
+            PopUpOff();
+        }
     }
 
     public void PickUp(InputAction.CallbackContext context)
@@ -76,5 +94,16 @@ public class ItemInteraction : MonoBehaviour
         {
             Gizmos.DrawWireSphere(this.transform.position, pickUpDistance);
         }
+    }
+    //UI Script
+    public void PopUpOn(string notification)
+    {
+        popUp.gameObject.SetActive(true);
+        popUp.text = notification;
+    }
+    public void PopUpOff()
+    {
+        popUp.gameObject.SetActive(false);
+        popUp.text = null;
     }
 }

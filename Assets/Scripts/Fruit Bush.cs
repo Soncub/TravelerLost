@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,12 +30,16 @@ public class FruitBush : MonoBehaviour
     private bool canSpawn = true;
     private float cooldownTimer;
     private GameObject currentSpawnedItem;
+    //Ui Variable
+    [SerializeField] private TextMeshProUGUI popUp;
 
     private void Start()
     {
         itemInteraction = FindFirstObjectByType<ItemInteraction>();
         player = GameObject.Find("Player").transform;
         spawnPoint = transform.Find("SpawnPoint");
+        //UI Script
+        popUp.gameObject.SetActive(false);
 
         // Ensure spawn point exists
         if (spawnPoint == null)
@@ -56,6 +61,16 @@ public class FruitBush : MonoBehaviour
 
     private void Update()
     {
+        //UI Script
+        float range = Vector3.Distance(player.position, transform.position);
+        if (range <= pickUpDistance)
+        {
+            PopUpOn("Press E to Create Fruit");
+        }
+        else
+        {
+            PopUpOff();
+        }
         // Handle cooldown timer
         if (!canSpawn)
         {
@@ -160,5 +175,16 @@ public class FruitBush : MonoBehaviour
         {
             Gizmos.DrawWireSphere(this.transform.position, pickUpDistance);
         }
+    }
+    //UI Script
+    public void PopUpOn(string notification)
+    {
+        popUp.gameObject.SetActive(true);
+        popUp.text = notification;
+    }
+    public void PopUpOff()
+    {
+        popUp.gameObject.SetActive(false);
+        popUp.text = null;
     }
 }
