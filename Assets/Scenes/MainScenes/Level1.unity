@@ -5380,7 +5380,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f79cf616f490bb341b350144d1ce603b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1792017351}
   m_SourcePrefab: {fileID: 100100000, guid: f79cf616f490bb341b350144d1ce603b, type: 3}
 --- !u!1 &337060269
 GameObject:
@@ -12297,7 +12300,7 @@ Transform:
   m_GameObject: {fileID: 767383919}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 707.48, y: 20, z: -6.08}
+  m_LocalPosition: {x: 707.48, y: 21.5, z: -6.08}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29490,6 +29493,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f05dae1cad585c47996853f987987e4, type: 3}
   m_PrefabInstance: {fileID: 1388917445}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1792017348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f79cf616f490bb341b350144d1ce603b, type: 3}
+  m_PrefabInstance: {fileID: 335650794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &1792017351
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792017348}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: -203655887218126122, guid: 05168d46451c68549a55e3b28d6133d4, type: 3}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &1792127949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33039,7 +33062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.309002
+      value: 18.559002
       objectReference: {fileID: 0}
     - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33773,12 +33796,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a082dd088834142a145a5ff99af45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whistlingEnabled: 1
+  whistlingEnabled: 0
   whistleMarker: {fileID: 1826623686}
   whistleMoveSpeed: 400
   refCamera: {fileID: 41972629}
   travelRange: 100
   listenRange: 100
+  interactableSnapRange: 10
 --- !u!114 &2073785139
 MonoBehaviour:
   m_ObjectHideFlags: 0

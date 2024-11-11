@@ -62,6 +62,21 @@ public class WhistlingStatue : MonoBehaviour
         motionAction.action.Enable();
         motionAction.action.performed += Move;
         motionAction.action.canceled += Move;
+        
+        if (CheckAngle(curRotation, minBadRotation, maxBadRotation))
+        {
+            whistle.clip = badWhistle;
+            if (!whistle.isPlaying) 
+                whistle.Play();
+        }
+        else if (CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation))
+        {
+            whistle.clip = goodWhistle;
+            if(!whistle.isPlaying)
+                whistle.Play();
+        }
+        else if (whistle.isPlaying)
+            whistle.Stop();
     }
 
     private void Update()
