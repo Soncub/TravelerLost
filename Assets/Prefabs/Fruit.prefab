@@ -148,6 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c744a71ea57614ab37283b7451898b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DropEvent:
+    m_PersistentCalls:
+      m_Calls: []
   pickUpDistance: 2
   placeOffset: 1
   enableGizmos: 1
@@ -163,6 +169,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 57a2224e-dad7-4a8a-8871-edefb67b0692
       m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pick Up
+      m_Flags: 0
+    - m_Name: 
+      m_Id: cdcd6d9d-657e-4338-87a1-02f2f42842d3
+      m_Path: <Gamepad>/buttonSouth
       m_Interactions: 
       m_Processors: 
       m_Groups: 
