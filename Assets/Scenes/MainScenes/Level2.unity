@@ -230,7 +230,7 @@ Transform:
   m_GameObject: {fileID: 41972626}
   serializedVersion: 2
   m_LocalRotation: {x: 0.12278779, y: -0.6963643, z: 0.12278779, w: 0.6963643}
-  m_LocalPosition: {x: 493.4, y: 13.34, z: 3.4}
+  m_LocalPosition: {x: 502.3, y: 23.8, z: 3.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -264,7 +264,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.3398888, g: 0.32039872, b: 0.754717, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2171,7 +2171,7 @@ Transform:
   m_GameObject: {fileID: 557785665}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.045, z: -2.5360055}
+  m_LocalPosition: {x: 0, y: 0.045, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2526,10 +2526,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4131695718530805110, guid: dc7b8a434818a364b8a4ccb271e88072, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4261048115342931899, guid: dc7b8a434818a364b8a4ccb271e88072, type: 3}
       propertyPath: refCamera
       value: 
       objectReference: {fileID: 41972629}
+    - target: {fileID: 4261048115342931899, guid: dc7b8a434818a364b8a4ccb271e88072, type: 3}
+      propertyPath: whistleMarker
+      value: 
+      objectReference: {fileID: 1826623686}
     - target: {fileID: 5708466233431944850, guid: dc7b8a434818a364b8a4ccb271e88072, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2649,7 +2657,7 @@ Transform:
   m_GameObject: {fileID: 767383919}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 542.1, y: 1.68, z: -11.7}
+  m_LocalPosition: {x: 542.1, y: 1.68, z: -25.95}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5651,6 +5659,7 @@ GameObject:
   - component: {fileID: 1562288657}
   - component: {fileID: 1562288656}
   - component: {fileID: 1562288655}
+  - component: {fileID: 1562288658}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -5733,6 +5742,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1562288658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562288654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 94819d9dea2dc6747b2dc27d5ab1f9ee, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &1598611492
 GameObject:
   m_ObjectHideFlags: 0
