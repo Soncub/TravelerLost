@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class ItemInteraction : MonoBehaviour
 {
-    UnityEvent PickUpEvent;
-    UnityEvent DropEvent;
+    [SerializeField] UnityEvent PickUpEvent;
+    [SerializeField] UnityEvent DropEvent;
     private Transform pickUpPoint;
     private Transform player;
 
@@ -57,8 +57,22 @@ public class ItemInteraction : MonoBehaviour
             this.transform.position = placePosition;
             this.transform.parent = null;
             rb.useGravity = true;
-            itemIsPicked = false; 
+            itemIsPicked = false;
             DropEvent.Invoke();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Divot"))
+        {
+            // Access the ItemDivot script on the colliding GameObject
+            ItemDivot divot = collision.gameObject.GetComponent<ItemDivot>();
+            if (divot != null)
+            {
+                // Call PlaceItem method, passing in this GameObject and a reference to this ItemInteraction
+                divot.PlaceItem(gameObject, this);
+            }
         }
     }
 
