@@ -17,7 +17,7 @@ public class CreatureAttractor : MonoBehaviour
     [SerializeField] private float automaticAttractionTime = 0;
     private float automaticAttractionTimer = 0;
 
-    [Tooltip("Self destruct after a successful attraction (do not use with moving objects)")]
+    [Tooltip("Self destruct after a successful attraction (do not use with moving or interactable objects)")]
     [SerializeField] private bool destroyOnAttract = false;
 
     private void Start()
@@ -44,7 +44,10 @@ public class CreatureAttractor : MonoBehaviour
     public void AttractCreature()
     {
         //Use the proper creature attraction method
-        if (movingObject)
+        CreatureInteractable interaction = gameObject.GetComponent<CreatureInteractable>();
+        if (interaction != null)
+            creature.NewInteractionTarget(interaction);
+        else if (movingObject)
             creature.NewMovingTarget(transform);
         else
         {

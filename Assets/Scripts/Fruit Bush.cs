@@ -29,9 +29,14 @@ public class FruitBush : MonoBehaviour
     private bool canSpawn = true;
     private float cooldownTimer;
     private GameObject currentSpawnedItem;
+    private GameObject spawnedItem;
+
+    private Rigidbody rb;
 
     private void Start()
     {
+        spawnedItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+        rb = spawnedItem.GetComponent<Rigidbody>();
         itemInteraction = FindFirstObjectByType<ItemInteraction>();
         player = GameObject.Find("Player").transform;
         spawnPoint = transform.Find("SpawnPoint");
@@ -92,10 +97,7 @@ public class FruitBush : MonoBehaviour
         {
             if (itemPrefab != null)
             {
-                GameObject spawnedItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
 
-                // Disable the Rigidbody to prevent it from falling
-                Rigidbody rb = spawnedItem.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
                     rb.isKinematic = true;
@@ -161,4 +163,5 @@ public class FruitBush : MonoBehaviour
             Gizmos.DrawWireSphere(this.transform.position, pickUpDistance);
         }
     }
+
 }
