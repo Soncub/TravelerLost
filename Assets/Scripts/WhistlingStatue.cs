@@ -41,7 +41,7 @@ public class WhistlingStatue : MonoBehaviour
     [SerializeField] private InputActionReference motionAction;
     private float input;
     //UI Variable
-    [SerializeField] private TextMeshProUGUI popUp;
+    [SerializeField] public TextMeshPro popUp;
 
     void Start()
     {

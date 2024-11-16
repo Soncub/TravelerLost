@@ -19,6 +19,21 @@ public class PopUpUI : MonoBehaviour
 
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Player")
+        {
+            popUp.gameObject.SetActive(true);
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            popUp.gameObject.SetActive(false);
+        }
+    }
+    /*
     public void PopUpOn(string notification)
     {
         popUp.gameObject.SetActive(true);
@@ -30,4 +45,5 @@ public class PopUpUI : MonoBehaviour
         popUp.gameObject.SetActive(false);
         popUp.text = null;
     }
+    */
 }

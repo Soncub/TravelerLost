@@ -27,7 +27,7 @@ public class ItemInteraction : MonoBehaviour
     // Reference to the Input Action
     [SerializeField] private InputAction pickUpAction;
     //Ui Variable
-    [SerializeField] private TextMeshProUGUI popUp;
+    [SerializeField] public TextMeshPro popUp;
 
     private void Start()
     {

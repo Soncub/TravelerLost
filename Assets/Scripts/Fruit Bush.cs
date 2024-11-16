@@ -31,7 +31,7 @@ public class FruitBush : MonoBehaviour
     private float cooldownTimer;
     private GameObject currentSpawnedItem;
     //Ui Variable
-    [SerializeField] private TextMeshProUGUI popUp;
+    [SerializeField] public TextMeshPro popUp;
 
     private void Start()
     {
