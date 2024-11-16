@@ -13,6 +13,8 @@ public class ItemDivot : MonoBehaviour
     [SerializeField] public bool isKey;
 
     public UnityEvent PlaceItemEvent;
+    public UnityEvent ReleaseItemEvent; // New event for item removal
+
     private bool itemIsPlaced = false;
     public bool ItemIsPlaced => itemIsPlaced;
     private GameObject placedItem;
@@ -59,6 +61,7 @@ public class ItemDivot : MonoBehaviour
             itemIsPlaced = false;
             placedItem = null;
             Debug.Log("Item picked up from divot.");
+            ReleaseItemEvent.Invoke(); // Trigger event when item is released
         }
     }
 
