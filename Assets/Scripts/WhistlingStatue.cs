@@ -41,10 +41,12 @@ public class WhistlingStatue : MonoBehaviour
     [SerializeField] private InputActionReference motionAction;
     private float input;
     //UI Variable
-    [SerializeField] public TextMeshPro popUp;
+    public TextMeshProUGUI popUp;
 
     void Start()
     {
+        //UI Assign
+        popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         //Set Variable Defaults
         player = FindFirstObjectByType<PlayerController>();
         creature = FindFirstObjectByType<CreatureController>();

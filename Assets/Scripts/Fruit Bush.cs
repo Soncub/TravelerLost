@@ -31,10 +31,12 @@ public class FruitBush : MonoBehaviour
     private float cooldownTimer;
     private GameObject currentSpawnedItem;
     //Ui Variable
-    [SerializeField] public TextMeshPro popUp;
+    public TextMeshProUGUI popUp;
 
     private void Start()
     {
+        //UI Assign
+        popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         itemInteraction = FindFirstObjectByType<ItemInteraction>();
         player = GameObject.Find("Player").transform;
         spawnPoint = transform.Find("SpawnPoint");

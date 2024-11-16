@@ -27,10 +27,12 @@ public class ItemInteraction : MonoBehaviour
     // Reference to the Input Action
     [SerializeField] private InputAction pickUpAction;
     //Ui Variable
-    [SerializeField] public TextMeshPro popUp;
+    public TextMeshProUGUI popUp;
 
     private void Start()
     {
+        //UI Assign
+        popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         pickUpPoint = GameObject.Find("PickUpPoint").transform;
