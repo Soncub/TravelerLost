@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class LevelEnd : MonoBehaviour
@@ -9,6 +10,8 @@ public class LevelEnd : MonoBehaviour
     [SerializeField] float waitTime = 5;
     [Tooltip("Events to invoke when the player and creature have been in here for the wait time (pop ups, changing scenes, cutscenes, etc)")]
     [SerializeField] UnityEvent finishEvent;
+    [Tooltip("An image covering the screen. It will fade to black while the timer is counting down.")]
+    [SerializeField] Image fade;
     float waitTimer = 0;
     bool creature, player;
 
@@ -19,6 +22,7 @@ public class LevelEnd : MonoBehaviour
             waitTimer -= Time.deltaTime;
             if (waitTimer <= 0 && creature && player)
             {
+                fade.color = new(0, 0, 0, waitTimer / waitTime);
                 finishEvent.Invoke();
             }
         }
