@@ -43,6 +43,12 @@ public class WhistlingStatue : MonoBehaviour
     //UI Variable
     public TextMeshProUGUI popUp;
 
+    private AudioSource whistle;
+    [Tooltip("Whistling Noise")]
+    [SerializeField] private AudioClip goodWhistle;
+    [Tooltip("Bad Noise")]
+    [SerializeField] private AudioClip badWhistle;
+
     void Start()
     {
         //UI Assign
@@ -50,6 +56,7 @@ public class WhistlingStatue : MonoBehaviour
         //Set Variable Defaults
         player = FindFirstObjectByType<PlayerController>();
         creature = FindFirstObjectByType<CreatureController>();
+        whistle = GetComponent<AudioSource>();
         curRotation = transform.localRotation.eulerAngles.y;
         updateTimer = updateTime;
         //UI Script
@@ -62,6 +69,21 @@ public class WhistlingStatue : MonoBehaviour
         motionAction.action.Enable();
         motionAction.action.performed += Move;
         motionAction.action.canceled += Move;
+        
+        if (CheckAngle(curRotation, minBadRotation, maxBadRotation))
+        {
+            whistle.clip = badWhistle;
+            if (!whistle.isPlaying) 
+                whistle.Play();
+        }
+        else if (CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation))
+        {
+            whistle.clip = goodWhistle;
+            if(!whistle.isPlaying)
+                whistle.Play();
+        }
+        else if (whistle.isPlaying)
+            whistle.Stop();
     }
 
     private void Update()
@@ -96,6 +118,20 @@ public class WhistlingStatue : MonoBehaviour
         {
             transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime * input, Space.World);
             curRotation = transform.localRotation.eulerAngles.y;
+            if (CheckAngle(curRotation, minBadRotation, maxBadRotation))
+            {
+                whistle.clip = badWhistle;
+                if (!whistle.isPlaying) 
+                    whistle.Play();
+            }
+            else if (CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation))
+            {
+                whistle.clip = goodWhistle;
+                if(!whistle.isPlaying)
+                    whistle.Play();
+            }
+            else if (whistle.isPlaying)
+                whistle.Stop();
         }
     }
 
