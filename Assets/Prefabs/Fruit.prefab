@@ -386,7 +386,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 2
 --- !u!114 &2316993276465668449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +404,19 @@ MonoBehaviour:
       m_Calls: []
   DropEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8767361045172403995}
+        m_TargetAssemblyTypeName: CreatureAttractor, Assembly-CSharp
+        m_MethodName: AttractCreature
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   pickUpDistance: 2
   placeOffset: 1
   enableGizmos: 1
@@ -449,7 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attractDistance: 20
   movingObject: 0
-  automaticallyAttract: 1
+  automaticallyAttract: 0
   automaticAttractionTime: 10
   destroyOnAttract: 0
 --- !u!1001 &6277302104541932004
@@ -466,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 46e626250ebffb24c881a292056c4271, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 46e626250ebffb24c881a292056c4271, type: 3}
       propertyPath: m_LocalPosition.z
@@ -511,6 +523,10 @@ PrefabInstance:
     - target: {fileID: -5477749408508380018, guid: 46e626250ebffb24c881a292056c4271, type: 3}
       propertyPath: m_LocalScale.z
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -5477749408508380018, guid: 46e626250ebffb24c881a292056c4271, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.443
       objectReference: {fileID: 0}
     - target: {fileID: -5477749408508380018, guid: 46e626250ebffb24c881a292056c4271, type: 3}
       propertyPath: m_ConstrainProportionsScale
