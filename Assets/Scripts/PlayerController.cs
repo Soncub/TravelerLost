@@ -33,10 +33,6 @@ public class PlayerController : MonoBehaviour
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
-        if (Input.GetKey("r"))
-        {
-            SceneManager.LoadScene("PrototypeSelection");
-        }
     }
 
     private void ApplyGravity()

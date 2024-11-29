@@ -65,6 +65,7 @@ public class ItemInteraction : MonoBehaviour
         {
             rb.useGravity = false;
             rb.velocity = Vector3.zero; // Stop object movement when picked up
+            rb.detectCollisions = false;
             this.transform.position = pickUpPoint.position;
             this.transform.parent = pickUpPoint;
 
@@ -77,6 +78,7 @@ public class ItemInteraction : MonoBehaviour
             this.transform.position = placePosition;
             this.transform.parent = null;
             rb.useGravity = true;
+            rb.detectCollisions |= true;
             itemIsPicked = false;
             DropEvent.Invoke();
         }
