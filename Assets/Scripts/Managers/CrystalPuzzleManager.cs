@@ -12,24 +12,22 @@ public class CrystalPuzzleManager : MonoBehaviour
 
     private void Start()
     {
-        // Subscribe each divot's PlaceItem method to check if the puzzle is solved whenever an item is placed
+        // Subscribe each divot's PlaceItem and ReleaseItem events to check if the puzzle is solved
         foreach (ItemDivot divot in itemDivots)
         {
-            if (divot.isKey)
-            {
-                // Optionally you can check initial status in case items are already placed
-                divot.PlaceItemEvent.AddListener(CheckPuzzleSolved);
-            }
+            divot.PlaceItemEvent.AddListener(CheckPuzzleSolved);
+            divot.ReleaseItemEvent.AddListener(CheckPuzzleSolved); // Add listener for item removal
         }
     }
 
     private void CheckPuzzleSolved()
     {
-        // Check if all key divots have items placed
         bool allCorrectItemsPlaced = true;
+
         foreach (ItemDivot divot in itemDivots)
         {
-            if (divot.isKey && !divot.ItemIsPlaced)
+            // If a key divot is missing an item, or a non-key divot has an item, the puzzle is not solved
+            if ((divot.isKey && !divot.ItemIsPlaced) || (!divot.isKey && divot.ItemIsPlaced))
             {
                 allCorrectItemsPlaced = false;
                 break;

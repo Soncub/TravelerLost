@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -39,6 +40,8 @@ public class WhistlingStatue : MonoBehaviour
     [Tooltip("Input for moving the statue")]
     [SerializeField] private InputActionReference motionAction;
     private float input;
+    //UI Variable
+    public TextMeshProUGUI popUp;
 
     private AudioSource whistle;
     [Tooltip("Whistling Noise")]
@@ -48,12 +51,16 @@ public class WhistlingStatue : MonoBehaviour
 
     void Start()
     {
+        //UI Assign
+        popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         //Set Variable Defaults
         player = FindFirstObjectByType<PlayerController>();
         creature = FindFirstObjectByType<CreatureController>();
         whistle = GetComponent<AudioSource>();
         curRotation = transform.localRotation.eulerAngles.y;
         updateTimer = updateTime;
+        //UI Script
+        popUp.gameObject.SetActive(false);
 
         //Enable and subscribe to the actions
         interactAction.action.Enable();
@@ -62,10 +69,35 @@ public class WhistlingStatue : MonoBehaviour
         motionAction.action.Enable();
         motionAction.action.performed += Move;
         motionAction.action.canceled += Move;
+        
+        if (CheckAngle(curRotation, minBadRotation, maxBadRotation))
+        {
+            whistle.clip = badWhistle;
+            if (!whistle.isPlaying) 
+                whistle.Play();
+        }
+        else if (CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation))
+        {
+            whistle.clip = goodWhistle;
+            if(!whistle.isPlaying)
+                whistle.Play();
+        }
+        else if (whistle.isPlaying)
+            whistle.Stop();
     }
 
     private void Update()
     {
+        //UI Variable
+        float range = Vector3.Distance(player.transform.position, transform.position);
+        if (range <= maxInteractDistance)
+        {
+            PopUpOn("Press Left Shift to Interact with Statue");
+        }
+        else
+        {
+            PopUpOff();
+        }
         updateTimer -= Time.deltaTime;
         if (updateTimer < 0)
         {
@@ -131,5 +163,16 @@ public class WhistlingStatue : MonoBehaviour
     static private bool CheckAngle(float check, float min, float max)
     {
         return min < max ? (check >= min) && (check <= max) : ! ((check < min) && (check > max));
+    }
+    //UI Script
+    public void PopUpOn(string notification)
+    {
+        popUp.gameObject.SetActive(true);
+        popUp.text = notification;
+    }
+    public void PopUpOff()
+    {
+        popUp.gameObject.SetActive(false);
+        popUp.text = null;
     }
 }
