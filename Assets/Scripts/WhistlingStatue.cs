@@ -27,12 +27,16 @@ public class WhistlingStatue : MonoBehaviour
     [SerializeField] private float maxWhistleRotation;
     [Tooltip("Maximum distance for the creature to hear the whistling and be attracted to the call position")]
     [SerializeField] private float maxWhistleDistance;
+    [Tooltip("Particles to toggle on when whistling")]
+    [SerializeField] private GameObject whistleParticles;
     [Tooltip("Minimum rotation for jarring noise that causes the creature to lose focus (0-360)")]
     [SerializeField] private float minBadRotation;
     [Tooltip("Maximum rotation for jarring noise that causes the creature to lose focus (0-360)")]
     [SerializeField] private float maxBadRotation;
     [Tooltip("Maximum distance for the creature to react to the jarring noise and lose focus")]
     [SerializeField] private float maxBadDistance;
+    [Tooltip("Particles to toggle on when making the jarring noise")]
+    [SerializeField] private GameObject badParticles;
     private float curRotation;
 
     [Tooltip("Input for interacting with the statue")]
@@ -57,11 +61,8 @@ public class WhistlingStatue : MonoBehaviour
         player = FindFirstObjectByType<PlayerController>();
         creature = FindFirstObjectByType<CreatureController>();
         whistle = GetComponent<AudioSource>();
-        curRotation = transform.localRotation.eulerAngles.y;
-        updateTimer = updateTime;
         //UI Script
         popUp.gameObject.SetActive(false);
-
         //Enable and subscribe to the actions
         interactAction.action.Enable();
         interactAction.action.performed += Interact;
@@ -69,21 +70,31 @@ public class WhistlingStatue : MonoBehaviour
         motionAction.action.Enable();
         motionAction.action.performed += Move;
         motionAction.action.canceled += Move;
-        
+        //Angle Checking for audio and particles
+        curRotation = transform.localRotation.eulerAngles.y;
+        updateTimer = updateTime;
         if (CheckAngle(curRotation, minBadRotation, maxBadRotation))
         {
             whistle.clip = badWhistle;
-            if (!whistle.isPlaying) 
+            if (!whistle.isPlaying)
                 whistle.Play();
+            whistleParticles.SetActive(false);
+            badParticles.SetActive(true);
         }
         else if (CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation))
         {
             whistle.clip = goodWhistle;
-            if(!whistle.isPlaying)
+            if (!whistle.isPlaying)
                 whistle.Play();
+            whistleParticles.SetActive(true);
+            badParticles.SetActive(false);
         }
         else if (whistle.isPlaying)
+        {
             whistle.Stop();
+            whistleParticles.SetActive(false);
+            badParticles.SetActive(false);
+        }
     }
 
     private void Update()
@@ -92,7 +103,10 @@ public class WhistlingStatue : MonoBehaviour
         float range = Vector3.Distance(player.transform.position, transform.position);
         if (range <= maxInteractDistance)
         {
-            PopUpOn("Press Left Shift to Interact with Statue");
+            if(!interacting)
+                PopUpOn("Press Left Shift to Interact with Statue");
+            else
+                PopUpOn("Move Left or Right to Rotate the Statue");
         }
         else
         {
@@ -116,22 +130,31 @@ public class WhistlingStatue : MonoBehaviour
         }
         if (interacting)
         {
+            //Angle Checking for audio and particles
             transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime * input, Space.World);
             curRotation = transform.localRotation.eulerAngles.y;
             if (CheckAngle(curRotation, minBadRotation, maxBadRotation))
             {
                 whistle.clip = badWhistle;
-                if (!whistle.isPlaying) 
+                if (!whistle.isPlaying)
                     whistle.Play();
+                whistleParticles.SetActive(false);
+                badParticles.SetActive(true);
             }
             else if (CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation))
             {
                 whistle.clip = goodWhistle;
-                if(!whistle.isPlaying)
+                if (!whistle.isPlaying)
                     whistle.Play();
+                whistleParticles.SetActive(true);
+                badParticles.SetActive(false);
             }
             else if (whistle.isPlaying)
+            {
                 whistle.Stop();
+                whistleParticles.SetActive(false);
+                badParticles.SetActive(false);
+            }
         }
     }
 
