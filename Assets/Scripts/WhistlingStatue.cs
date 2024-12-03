@@ -119,12 +119,12 @@ public class WhistlingStatue : MonoBehaviour
             updateTimer += updateTime;
             if (
                 CheckAngle(curRotation, minBadRotation, maxBadRotation) &&
-                Vector3.Distance(player.transform.position, creature.transform.position) <= maxBadDistance
+                Vector3.Distance(transform.position, creature.transform.position) <= maxBadDistance
                 )
                 creature.LoseFocus();
             else if (
                 CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation) &&
-                Vector3.Distance(player.transform.position, creature.transform.position) <= maxWhistleDistance
+                Vector3.Distance(transform.position, creature.transform.position) <= maxWhistleDistance
                 )
                 creature.NewTargetDestination(callPosition.position);
         }
