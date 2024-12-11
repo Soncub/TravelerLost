@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 4907941182420185133}
   - component: {fileID: 2316993276465668449}
   - component: {fileID: 8767361045172403995}
+  - component: {fileID: 8096004538882596743}
   - component: {fileID: -5224614846270555441}
   m_Layer: 0
   m_Name: Fruit
@@ -405,19 +406,7 @@ MonoBehaviour:
       m_Calls: []
   DropEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8767361045172403995}
-        m_TargetAssemblyTypeName: CreatureAttractor, Assembly-CSharp
-        m_MethodName: AttractCreature
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   pickUpDistance: 3
   placeOffset: 1
   enableGizmos: 1
@@ -465,6 +454,38 @@ MonoBehaviour:
   automaticallyAttract: 0
   automaticAttractionTime: 10
   destroyOnAttract: 0
+--- !u!114 &8096004538882596743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729353094801200202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e80c1d27ad6e054b81fb46e753daef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offerDistance: 15
+  messageUI: {fileID: 0}
+  offerAction:
+    m_Name: Offer
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cfca7698-c1ad-4440-ac8f-2169f5340278
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 174bda19-8e38-4c29-9dbe-58bfef6bbd05
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Offer
+      m_Flags: 0
+    m_Flags: 0
+  player: {fileID: 7809708578373855689, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
 --- !u!114 &-5224614846270555441
 MonoBehaviour:
   m_ObjectHideFlags: 0
