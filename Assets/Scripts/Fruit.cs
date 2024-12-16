@@ -5,12 +5,20 @@ using TMPro;
 
 public class Fruit : MonoBehaviour
 {
+    [Tooltip("Distance for offering the fruit (will change gizmo size to match)")]
     [SerializeField] private float offerDistance = 5.0f; // Distance to check if the creature is in range
+
     [SerializeField] private TextMeshProUGUI messageUI;  // UI to display messages
-    [SerializeField] private InputAction offerAction;    // Input action to offer the fruit
+    [Tooltip("KeyBind for offering the fruit to the creature")]
+    [SerializeField] private InputAction offerAction;    
+
     [SerializeField] private Transform player;          // Reference to the player
+    [Tooltip("Visual of how far you can be to offer the fruit (green circle)")]
+    [SerializeField] private bool enableGizmos;
+
     private CreatureController creature;                // Reference to the creature
     private bool isOffering = false;                    // Is the fruit currently being offered
+    private ItemInteraction itemInteraction;            // Reference to ItemInteraction for pickup status
 
     private void Start()
     {
@@ -19,6 +27,8 @@ public class Fruit : MonoBehaviour
 
         offerAction.Enable();
         offerAction.performed += OfferFruit;
+
+        itemInteraction = GetComponent<ItemInteraction>();
 
         if (messageUI != null)
             messageUI.gameObject.SetActive(false);
@@ -32,17 +42,13 @@ public class Fruit : MonoBehaviour
 
     private void OfferFruit(InputAction.CallbackContext context)
     {
-        if (context.performed && !isOffering)
+        if (context.performed && !isOffering && itemInteraction != null && itemInteraction.itemIsPicked)
         {
             float distanceToCreature = Vector3.Distance(player.position, creature.transform.position);
 
             if (distanceToCreature <= offerDistance)
             {
                 StartCoroutine(OfferFruitCoroutine());
-            }
-            else
-            {
-                ShowMessage("The creature can't see you from afar.");
             }
         }
     }
@@ -73,7 +79,7 @@ public class Fruit : MonoBehaviour
 
         // Creature eats the fruit
         ShowMessage("The creature happily eats the fruit.");
-        Destroy(gameObject); // Destroy the fruit after it's eaten
+        Destroy(gameObject); // Destroy the currently held fruit only
 
         // Re-enable player movement
         if (playerMovement != null)
@@ -81,7 +87,6 @@ public class Fruit : MonoBehaviour
 
         isOffering = false;
     }
-
 
     private void ShowMessage(string message)
     {
@@ -100,6 +105,15 @@ public class Fruit : MonoBehaviour
         {
             messageUI.gameObject.SetActive(false);
             messageUI.text = string.Empty;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        if (enableGizmos)
+        {
+            Gizmos.DrawWireSphere(transform.position, offerDistance);
         }
     }
 }
