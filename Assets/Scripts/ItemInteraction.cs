@@ -49,7 +49,14 @@ public class ItemInteraction : MonoBehaviour
         float range = Vector3.Distance(player.position, transform.position);
         if (range <= pickUpDistance)
         {
-            PopUpOn("Press E to Pick Up Fruit");
+            if (gameObject.tag == "Crystal")
+            {
+                PopUpOn("Press E to Pick Up Crystal");
+            }
+            else if (gameObject.tag == "Item")
+            {
+                PopUpOn("Press E to Pick Up Fruit");
+            }
         }
         else
         {
