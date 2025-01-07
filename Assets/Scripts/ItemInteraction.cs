@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
 public class ItemInteraction : MonoBehaviour
 {
-    UnityEvent PickUpEvent;
-    UnityEvent DropEvent;
+    [SerializeField] UnityEvent PickUpEvent;
+    [SerializeField] UnityEvent DropEvent;
     private Transform pickUpPoint;
     private Transform player;
 
@@ -25,16 +26,42 @@ public class ItemInteraction : MonoBehaviour
 
     // Reference to the Input Action
     [SerializeField] private InputAction pickUpAction;
+    //Ui Variable
+    public TextMeshProUGUI popUp;
 
     private void Start()
     {
+        //UI Assign
+        popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         pickUpPoint = GameObject.Find("PickUpPoint").transform;
+        //UI Script
+        popUp.gameObject.SetActive(false);
 
         // Enable the Input Action and subscribe to it
         pickUpAction.Enable();
         pickUpAction.performed += PickUp;
+    }
+    //UI Script
+    private void Update()
+    {
+        float range = Vector3.Distance(player.position, transform.position);
+        if (range <= pickUpDistance)
+        {
+            if (gameObject.tag == "Crystal")
+            {
+                PopUpOn("Press E to Pick Up Crystal");
+            }
+            else if (gameObject.tag == "Item")
+            {
+                PopUpOn("Press E to Pick Up Fruit");
+            }
+        }
+        else
+        {
+            PopUpOff();
+        }
     }
 
     public void PickUp(InputAction.CallbackContext context)
@@ -45,6 +72,7 @@ public class ItemInteraction : MonoBehaviour
         {
             rb.useGravity = false;
             rb.velocity = Vector3.zero; // Stop object movement when picked up
+            rb.detectCollisions = false;
             this.transform.position = pickUpPoint.position;
             this.transform.parent = pickUpPoint;
 
@@ -57,8 +85,23 @@ public class ItemInteraction : MonoBehaviour
             this.transform.position = placePosition;
             this.transform.parent = null;
             rb.useGravity = true;
-            itemIsPicked = false; 
+            rb.detectCollisions |= true;
+            itemIsPicked = false;
             DropEvent.Invoke();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Divot"))
+        {
+            // Access the ItemDivot script on the colliding GameObject
+            ItemDivot divot = collision.gameObject.GetComponent<ItemDivot>();
+            if (divot != null)
+            {
+                // Call PlaceItem method, passing in this GameObject and a reference to this ItemInteraction
+                divot.PlaceItem(gameObject, this);
+            }
         }
     }
 
@@ -76,5 +119,16 @@ public class ItemInteraction : MonoBehaviour
         {
             Gizmos.DrawWireSphere(this.transform.position, pickUpDistance);
         }
+    }
+    //UI Script
+    public void PopUpOn(string notification)
+    {
+        popUp.gameObject.SetActive(true);
+        popUp.text = notification;
+    }
+    public void PopUpOff()
+    {
+        popUp.gameObject.SetActive(false);
+        popUp.text = null;
     }
 }
