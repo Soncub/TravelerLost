@@ -85,7 +85,7 @@ public class FruitBush : MonoBehaviour
         float range = Vector3.Distance(player.transform.position, transform.position);
         if (range <= pickUpDistance)
         {
-            PopUpOn("Press Left Shift to Interact with Statue");
+            PopUpOn("Press E to Get a Fruit");
         }
         else
         {

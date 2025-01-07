@@ -49,7 +49,14 @@ public class ItemInteraction : MonoBehaviour
         float range = Vector3.Distance(player.position, transform.position);
         if (range <= pickUpDistance)
         {
-            PopUpOn("Press E to Pick Up Fruit");
+            if (gameObject.tag == "Crystal")
+            {
+                PopUpOn("Press E to Pick Up Crystal");
+            }
+            else if (gameObject.tag == "Item")
+            {
+                PopUpOn("Press E to Pick Up Fruit");
+            }
         }
         else
         {
@@ -65,6 +72,7 @@ public class ItemInteraction : MonoBehaviour
         {
             rb.useGravity = false;
             rb.velocity = Vector3.zero; // Stop object movement when picked up
+            rb.detectCollisions = false;
             this.transform.position = pickUpPoint.position;
             this.transform.parent = pickUpPoint;
 
@@ -77,6 +85,7 @@ public class ItemInteraction : MonoBehaviour
             this.transform.position = placePosition;
             this.transform.parent = null;
             rb.useGravity = true;
+            rb.detectCollisions |= true;
             itemIsPicked = false;
             DropEvent.Invoke();
         }

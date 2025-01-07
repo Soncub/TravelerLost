@@ -24,12 +24,12 @@ public class ItemDivot : MonoBehaviour
     private bool itemIsPlaced = false;
     public bool ItemIsPlaced => itemIsPlaced;
     private GameObject placedItem;
-    private bool locked;
 
     private void Start()
     {
         //Set the default crystal material as the off material
-        creatureCrystalOffMat = creatureCrystalRenderer.material;
+        if(creatureCrystalRenderer != null)
+            creatureCrystalOffMat = creatureCrystalRenderer.material;
     }
 
     private void Update()
@@ -42,7 +42,7 @@ public class ItemDivot : MonoBehaviour
 
     public void PlaceItem(GameObject item, ItemInteraction itemInteraction)
     {
-        if (!itemIsPlaced)
+        if (CanPlaceItem())
         {
             placedItem = item;
             Rigidbody itemRigidbody = item.GetComponent<Rigidbody>();
@@ -53,7 +53,8 @@ public class ItemDivot : MonoBehaviour
             {
                 itemRigidbody.isKinematic = true; // Set to kinematic when placed
             }
-            creatureCrystalRenderer.material = creatureCrystalOnMat; //Set the creature crystal material to on
+            if (creatureCrystalRenderer != null)
+                creatureCrystalRenderer.material = creatureCrystalOnMat; //Set the creature crystal material to on
             itemIsPlaced = true;
             Debug.Log("Item placed in divot.");
             PlaceItemEvent.Invoke(); // Trigger event when item is placed
@@ -70,7 +71,8 @@ public class ItemDivot : MonoBehaviour
             {
                 itemRigidbody.isKinematic = false; // Set back to non-kinematic when released
             }
-            creatureCrystalRenderer.material = creatureCrystalOffMat; //Set the creature crystal material to off
+            if (creatureCrystalRenderer != null)
+                creatureCrystalRenderer.material = creatureCrystalOffMat; //Set the creature crystal material to off
             itemIsPlaced = false;
             placedItem = null;
             Debug.Log("Item picked up from divot.");
@@ -80,11 +82,11 @@ public class ItemDivot : MonoBehaviour
 
     public bool CanPlaceItem()
     {
-        return !itemIsPlaced && !locked;
+        return !itemIsPlaced && canBePlaced;
     }
 
     public void Unlock()
     {
-        locked = false;
+        canBePlaced = true;
     }
 }
