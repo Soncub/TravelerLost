@@ -44,7 +44,8 @@ public class WhistlingStatue : MonoBehaviour
     [Tooltip("Input for moving the statue")]
     [SerializeField] private InputActionReference motionAction;
     private float input;
-    //UI Variable
+
+    [Tooltip("Pop up text")]
     public TextMeshProUGUI popUp;
 
     private AudioSource whistle;
