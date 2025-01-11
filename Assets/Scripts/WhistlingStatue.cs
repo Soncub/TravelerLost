@@ -46,6 +46,7 @@ public class WhistlingStatue : MonoBehaviour
     private float input;
     //UI Variable
     public TextMeshProUGUI popUp;
+    public PauseMenuManager pause;
 
     private AudioSource whistle;
     [Tooltip("Whistling Noise")]
@@ -63,6 +64,7 @@ public class WhistlingStatue : MonoBehaviour
         whistle = GetComponent<AudioSource>();
         //UI Script
         popUp.gameObject.SetActive(false);
+        pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
         //Enable and subscribe to the actions
         interactAction.action.Enable();
         interactAction.action.performed += Interact;
@@ -104,9 +106,22 @@ public class WhistlingStatue : MonoBehaviour
         if (range <= maxInteractDistance)
         {
             if(!interacting)
+            {
                 PopUpOn("Press Left Shift to Interact with Statue");
+                if (pause.isPaused == true)
+                {
+                    PopUpOff();
+                }
+            }
             else
+            {
                 PopUpOn("Move Left or Right to Rotate the Statue");
+                if (pause.isPaused == true)
+                {
+                    PopUpOff();
+                }
+            }
+
         }
         else
         {
