@@ -66,19 +66,18 @@ public class Fruit : MonoBehaviour
         ShowMessage("Offering the fruit...");
 
         // Calculate the position in front of the player
-        Vector3 frontOfPlayer = player.position + player.forward * 1.5f; // Adjust the distance as needed
+        Vector3 frontOfPlayer = player.position + player.forward * 2f; // Adjust the distance as needed
 
         // Command the creature to approach the position in front of the player
         creature.NewTargetDestination(frontOfPlayer);
 
         // Wait for the creature to reach the calculated position
-        while (Vector3.Distance(frontOfPlayer, creature.transform.position) > 0.5f) // Tolerance distance
+        while (Vector3.Distance(frontOfPlayer, creature.transform.position) > 3f) // Tolerance distance
         {
             yield return null;
         }
 
         // Creature eats the fruit
-        ShowMessage("The creature happily eats the fruit.");
         Destroy(gameObject); // Destroy the currently held fruit only
 
         // Re-enable player movement

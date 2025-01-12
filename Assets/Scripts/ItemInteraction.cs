@@ -28,6 +28,7 @@ public class ItemInteraction : MonoBehaviour
     [SerializeField] private InputAction pickUpAction;
     //Ui Variable
     public TextMeshProUGUI popUp;
+    public PauseMenuManager pause;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class ItemInteraction : MonoBehaviour
         pickUpPoint = GameObject.Find("PickUpPoint").transform;
         //UI Script
         popUp.gameObject.SetActive(false);
+        pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
 
         // Enable the Input Action and subscribe to it
         pickUpAction.Enable();
@@ -52,10 +54,18 @@ public class ItemInteraction : MonoBehaviour
             if (gameObject.tag == "Crystal")
             {
                 PopUpOn("Press E to Pick Up Crystal");
+                if (pause.isPaused == true)
+                {
+                    PopUpOff();
+                }
             }
             else if (gameObject.tag == "Item")
             {
                 PopUpOn("Press E to Pick Up Fruit");
+                if (pause.isPaused == true)
+                {
+                    PopUpOff();
+                }
             }
         }
         else
