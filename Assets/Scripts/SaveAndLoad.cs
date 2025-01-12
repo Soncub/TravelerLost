@@ -30,6 +30,7 @@ public class SaveAndLoad : MonoBehaviour
         saveData = AudioManager.instance.SaveVolume(saveData);
         saveData = CameraManager.instance.SaveCamera(saveData);
         saveData = AudioSettings.instance.SaveSound(saveData);
+        saveData = BrightnessManager.instance.SaveBrightness(saveData);
         SaveSystem.Save(saveData);
         Debug.Log("saved");
     }
@@ -44,6 +45,7 @@ public class SaveAndLoad : MonoBehaviour
         AudioManager.instance.LoadVolume(saveData);
         CameraManager.instance.LoadCamera(saveData);
         AudioSettings.instance.LoadSound(saveData);
+        BrightnessManager.instance.LoadBrightness(saveData);
         Debug.Log("volume loaded");
     }
 }
