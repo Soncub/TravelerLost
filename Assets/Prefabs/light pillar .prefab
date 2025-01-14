@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4531983040143731700}
   - component: {fileID: 2960642462727409830}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,9 +107,8 @@ GameObject:
   - component: {fileID: 5672012152298099386}
   - component: {fileID: 673188417141875080}
   - component: {fileID: 13468284368626536}
-  - component: {fileID: 7300073113065277073}
   - component: {fileID: 6453435351673931655}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 'light pillar '
   m_TagString: Divot
   m_Icon: {fileID: 0}
@@ -227,27 +226,6 @@ MonoBehaviour:
   ReleaseItemEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7300073113065277073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4500146685988474856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a93ae719b175a489e30ee087511379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  interactAction: {fileID: -3354451036608551624, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
-  motionAction: {fileID: 981622163994799301, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
-  maxInteractDistance: 6
-  raycastDistance: 50
-  pillarLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  popUp: {fileID: 0}
 --- !u!114 &6453435351673931655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,9 +238,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968a4bd9bafb5cd408d68f416a76b6bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasCrystal: 0
-  isLit: 0
-  litEffect: {fileID: 1386866786739275067}
+  itemDivot: {fileID: 13468284368626536}
+  pillarObject: {fileID: 1386866786739275067}
+  raycastDistance: 10
+  pillarLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  isFirst: 0
 --- !u!1 &6645420660443063277
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2710160637220008145}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: crystal slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

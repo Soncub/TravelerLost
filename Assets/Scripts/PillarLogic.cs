@@ -8,7 +8,18 @@ public class PillarLogic : MonoBehaviour
     [SerializeField] private ItemDivot itemDivot;
 
     [Tooltip("GameObject to enable when the item is placed in the divot")]
-    [SerializeField] private GameObject SpotLight;
+    [SerializeField] private GameObject pillarObject;
+
+    [Tooltip("Distance for the raycast to check for other pillars")]
+    [SerializeField] private float raycastDistance = 10f;
+
+    [Tooltip("LayerMask for detecting other pillars")]
+    [SerializeField] private LayerMask pillarLayerMask;
+
+    [Tooltip("Is this the first pillar in the chain?")]
+    [SerializeField] private bool isFirst = false;
+
+    private bool isLit = false;
 
     private void Start()
     {
@@ -18,7 +29,7 @@ public class PillarLogic : MonoBehaviour
             return;
         }
 
-        if (SpotLight == null)
+        if (pillarObject == null)
         {
             Debug.LogError("PillarObject reference is not set in PillarLogic.");
             return;
@@ -29,7 +40,7 @@ public class PillarLogic : MonoBehaviour
         itemDivot.ReleaseItemEvent.AddListener(OnItemReleased);
 
         // Ensure the pillar object starts disabled
-        SpotLight.SetActive(false);
+        pillarObject.SetActive(false);
     }
 
     private void OnDestroy()
@@ -42,15 +53,76 @@ public class PillarLogic : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // Continuously check for connected pillars if this pillar is lit
+        if (isLit || isFirst)
+        {
+            CheckForConnectedPillar();
+        }
+    }
+
     private void OnItemPlaced()
     {
-        // Enable the pillar object when an item is placed
-        SpotLight.SetActive(true);
+        if (isFirst)
+        {
+            // The first pillar automatically lights up when an item is placed
+            LightUpPillar();
+        }
+        else
+        {
+            // Check for connection to a lit pillar
+            CheckForConnectedPillar();
+        }
     }
 
     private void OnItemReleased()
     {
         // Disable the pillar object when an item is removed
-        SpotLight.SetActive(false);
+        pillarObject.SetActive(false);
+        isLit = false;
+    }
+
+    private void CheckForConnectedPillar()
+    {
+        // Cast a ray forward from the pillar's position
+        Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+
+
+        // Debugging: Show the ray in the scene for 1 second
+        Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.green);
+
+        // Perform the raycast
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, raycastDistance, pillarLayerMask))
+        {
+            // Check if the hit object has a PillarLogic component
+            PillarLogic otherPillar = hit.collider.GetComponent<PillarLogic>();
+            if (otherPillar != null && otherPillar.isLit)
+            {
+                // Light up this pillar if it's connected to a lit pillar
+                LightUpPillar();
+            }
+        }
+    }
+
+    public void LightUpPillar()
+    {
+        if (!isLit)
+        {
+            isLit = true;
+            pillarObject.SetActive(true);
+            Debug.Log($"{name} is now lit up.");
+        }
+    }
+
+    // Gizmo to show the raycast in the scene view
+    private void OnDrawGizmos()
+    {
+        // Set Gizmo color
+        Gizmos.color = Color.green;
+
+        // Draw a ray representing the raycast in the scene view
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * raycastDistance);
     }
 }
