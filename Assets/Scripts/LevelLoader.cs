@@ -9,8 +9,10 @@ public class LevelLoader : MonoBehaviour
     public GameObject loadingScreen;
     public Slider slider;
     public Text progressText;
+    public LevelEnd levelEnd;
     public void LoadLevel (int sceneIndex)
     {
+        levelEnd.fade.color = new(0, 0, 0, 0);
         SaveAndLoad.instance.SaveGame();
         Time.timeScale = 1f;
         StartCoroutine(LoadAsynchronously(sceneIndex));

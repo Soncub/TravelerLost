@@ -17,6 +17,7 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject backControlsButton;
     AudioBank audioBank;
     public bool isPaused;
+    [SerializeField] LevelEnd levelEnd;
 
     private void Awake()
     {
@@ -31,15 +32,18 @@ public class PauseMenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.instance.menuOpenCloseInput)
+        if(levelEnd.fadeTimer == 0)
         {
-            if(!isPaused)
+            if (InputManager.instance.menuOpenCloseInput)
             {
-                Pause();
-            }
-            else
-            {
-                Unpause();
+                if (!isPaused)
+                {
+                    Pause();
+                }
+                else
+                {
+                    Unpause();
+                }
             }
         }
     }

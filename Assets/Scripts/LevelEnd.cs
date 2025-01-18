@@ -11,18 +11,28 @@ public class LevelEnd : MonoBehaviour
     [Tooltip("Events to invoke when the player and creature have been in here for the wait time (pop ups, changing scenes, cutscenes, etc)")]
     [SerializeField] UnityEvent finishEvent;
     [Tooltip("An image covering the screen. It will fade to black while the timer is counting down.")]
-    [SerializeField] Image fade;
-    float waitTimer = 0;
-    bool creature, player;
+    public Image fade;
+    public GameObject fadeImage;
+    [SerializeField] float waitTimer = 0;
+    [SerializeField] bool creature, player;
+    public float fadeTimer = 0;
+    public Collider zone;
 
     private void Update()
     {
+        /*if (!creature || !player)
+        {
+            fadeImage.SetActive(false);
+            fadeTimer = 0;
+        }*/
         if (waitTimer > 0)
         {
             waitTimer -= Time.deltaTime;
+            fadeTimer += Time.deltaTime;
+            fadeImage.SetActive(true);
+            fade.color = new(0, 0, 0, fadeTimer / waitTime);
             if (waitTimer <= 0 && creature && player)
             {
-                fade.color = new(0, 0, 0, waitTimer / waitTime);
                 finishEvent.Invoke();
             }
         }
@@ -30,11 +40,11 @@ public class LevelEnd : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<CreatureController>() != null) 
+        if (other.CompareTag("Creature")) 
         { 
             creature = true;
         }
-        else if (other.gameObject.GetComponent<PlayerController>() != null) 
+        if (other.gameObject.GetComponent<PlayerController>() != null) 
         {
             player = true;
         }
@@ -44,15 +54,27 @@ public class LevelEnd : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<CreatureController>() != null)
+        if (other.CompareTag("Creature"))
         {
             creature = false;
             waitTimer = 0;
+            fade.color = new(0, 0, 0, 0);
+            fadeTimer = 0;
+            fadeImage.SetActive(false);
+
         }
-        else if (other.gameObject.GetComponent<PlayerController>() != null)
+        if (other.gameObject.GetComponent<PlayerController>() != null)
         {
             player = false;
             waitTimer = 0;
+            fade.color = new(0, 0, 0, 0);
+            fadeTimer = 0;
+            fadeImage.SetActive(false);
         }
+    }
+
+    public void ActivateLevelEnd()
+    {
+        zone.enabled = true;
     }
 }
