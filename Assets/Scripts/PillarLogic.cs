@@ -21,6 +21,9 @@ public class PillarLogic : MonoBehaviour
 
     private bool isLit = false;
 
+    // Track pillars that are currently being hit by this pillar's raycast
+    private HashSet<PillarLogic> hitPillars = new HashSet<PillarLogic>();
+
     private void Start()
     {
         if (itemDivot == null)
@@ -55,10 +58,10 @@ public class PillarLogic : MonoBehaviour
 
     private void Update()
     {
-        // Continuously check for connected pillars if this pillar is lit
-        if (isLit || isFirst)
+        // If this pillar is lit, cast a ray to check for other pillars
+        if (isLit)
         {
-            CheckForConnectedPillar();
+            CastRayToManagePillars();
         }
     }
 
@@ -69,25 +72,18 @@ public class PillarLogic : MonoBehaviour
             // The first pillar automatically lights up when an item is placed
             LightUpPillar();
         }
-        else
-        {
-            // Check for connection to a lit pillar
-            CheckForConnectedPillar();
-        }
     }
 
     private void OnItemReleased()
     {
-        // Disable the pillar object when an item is removed
-        pillarObject.SetActive(false);
-        isLit = false;
+        // Disable the pillar object and stop all interactions
+        UnlightPillar();
     }
 
-    private void CheckForConnectedPillar()
+    private void CastRayToManagePillars()
     {
-        // Cast a ray forward from the pillar's position
+        // Cast a ray forward from the lit pillar's position
         Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-
 
         // Debugging: Show the ray in the scene for 1 second
         Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.green);
@@ -98,10 +94,26 @@ public class PillarLogic : MonoBehaviour
         {
             // Check if the hit object has a PillarLogic component
             PillarLogic otherPillar = hit.collider.GetComponent<PillarLogic>();
-            if (otherPillar != null && otherPillar.isLit)
+            if (otherPillar != null && otherPillar.itemDivot.ItemIsPlaced)
             {
-                // Light up this pillar if it's connected to a lit pillar
-                LightUpPillar();
+                // If not already tracked, light up the other pillar
+                if (!hitPillars.Contains(otherPillar))
+                {
+                    otherPillar.LightUpPillar();
+                    hitPillars.Add(otherPillar);
+                }
+            }
+        }
+
+        // Unlight pillars no longer hit by the raycast
+        HashSet<PillarLogic> toRemove = new HashSet<PillarLogic>(hitPillars);
+        foreach (var pillar in toRemove)
+        {
+            // Check if the raycast is no longer hitting this pillar
+            if (!Physics.Raycast(ray, out hit, raycastDistance, pillarLayerMask) || hit.collider.GetComponent<PillarLogic>() != pillar)
+            {
+                pillar.UnlightPillar();
+                hitPillars.Remove(pillar);
             }
         }
     }
@@ -116,11 +128,29 @@ public class PillarLogic : MonoBehaviour
         }
     }
 
+    public void UnlightPillar()
+    {
+        if (isLit)
+        {
+            isLit = false;
+            pillarObject.SetActive(false);
+            Debug.Log($"{name} is now unlit.");
+        }
+    }
+
     // Gizmo to show the raycast in the scene view
     private void OnDrawGizmos()
     {
-        // Set Gizmo color
-        Gizmos.color = Color.green;
+        if (isLit)
+        {
+            // Set Gizmo color for lit pillar
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            // Set Gizmo color for unlit pillar
+            Gizmos.color = Color.red;
+        }
 
         // Draw a ray representing the raycast in the scene view
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * raycastDistance);
