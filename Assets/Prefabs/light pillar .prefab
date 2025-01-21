@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 673188417141875080}
   - component: {fileID: 13468284368626536}
   - component: {fileID: 6453435351673931655}
+  - component: {fileID: 8117010517314482007}
   m_Layer: 9
   m_Name: 'light pillar '
   m_TagString: Divot
@@ -233,7 +234,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4500146685988474856}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 968a4bd9bafb5cd408d68f416a76b6bf, type: 3}
   m_Name: 
@@ -244,7 +245,30 @@ MonoBehaviour:
   pillarLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  isFirst: 0
+  isFirst: 1
+--- !u!114 &8117010517314482007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500146685988474856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a93ae719b175a489e30ee087511379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDivot: {fileID: 13468284368626536}
+  pillarObject: {fileID: 1386866786739275067}
+  pillarRaycastDistance: 10
+  pillarLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  isFirst: 1
+  rotationSpeed: 100
+  interactAction: {fileID: 8836790702391652979, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
+  motionAction: {fileID: 981622163994799301, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
+  maxInteractDistance: 6
 --- !u!1 &6645420660443063277
 GameObject:
   m_ObjectHideFlags: 0

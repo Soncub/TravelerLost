@@ -48,7 +48,6 @@ public class PillarLogic : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Unsubscribe from events to prevent memory leaks
         if (itemDivot != null)
         {
             itemDivot.PlaceItemEvent.RemoveListener(OnItemPlaced);
@@ -85,10 +84,8 @@ public class PillarLogic : MonoBehaviour
         // Cast a ray forward from the lit pillar's position
         Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
 
-        // Debugging: Show the ray in the scene for 1 second
         Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.green);
 
-        // Perform the raycast
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, raycastDistance, pillarLayerMask))
         {
@@ -138,21 +135,17 @@ public class PillarLogic : MonoBehaviour
         }
     }
 
-    // Gizmo to show the raycast in the scene view
     private void OnDrawGizmos()
     {
         if (isLit)
         {
-            // Set Gizmo color for lit pillar
             Gizmos.color = Color.green;
         }
         else
         {
-            // Set Gizmo color for unlit pillar
             Gizmos.color = Color.red;
         }
 
-        // Draw a ray representing the raycast in the scene view
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * raycastDistance);
     }
 }
