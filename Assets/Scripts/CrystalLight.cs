@@ -44,6 +44,12 @@ public class CrystalLogic : MonoBehaviour
 
     private void Start()
     {
+        interactAction.action.Enable();
+        interactAction.action.performed += Interact;
+        interactAction.action.canceled += Interact;
+        motionAction.action.Enable();
+        motionAction.action.performed += Move;
+        motionAction.action.canceled += Move;
         // Initialize Player Controller
         player = FindFirstObjectByType<PlayerController>();
 
