@@ -33,13 +33,13 @@ public class ItemInteraction : MonoBehaviour
     private void Start()
     {
         //UI Assign
-        popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
+        //popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         pickUpPoint = GameObject.Find("PickUpPoint").transform;
         //UI Script
         popUp.gameObject.SetActive(false);
-        pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
+        //pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
 
         // Enable the Input Action and subscribe to it
         pickUpAction.Enable();
@@ -48,6 +48,7 @@ public class ItemInteraction : MonoBehaviour
     //UI Script
     private void Update()
     {
+        /*
         float range = Vector3.Distance(player.position, transform.position);
         if (range <= pickUpDistance)
         {
@@ -72,6 +73,7 @@ public class ItemInteraction : MonoBehaviour
         {
             PopUpOff();
         }
+        */
     }
 
     public void PickUp(InputAction.CallbackContext context)

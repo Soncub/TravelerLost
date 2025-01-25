@@ -44,11 +44,13 @@ public class WhistlingStatue : MonoBehaviour
     [Tooltip("Input for moving the statue")]
     [SerializeField] private InputActionReference motionAction;
     private float input;
-    //UI Variable
+
+    [Tooltip("Pop up text")]
     public TextMeshProUGUI popUp;
     public PauseMenuManager pause;
 
     private AudioSource whistle;
+    public AudioSource swivel;
     [Tooltip("Whistling Noise")]
     [SerializeField] private AudioClip goodWhistle;
     [Tooltip("Bad Noise")]
@@ -180,6 +182,7 @@ public class WhistlingStatue : MonoBehaviour
         {
             if (Vector3.Distance(player.transform.position, transform.position) <= maxInteractDistance)
             {
+                swivel.Play();
                 interacting = true;
                 player.DisablePlayerController();
             }
@@ -187,6 +190,7 @@ public class WhistlingStatue : MonoBehaviour
         //When unpressed, stop interaction and re-enable player movement
         if (interacting && context.canceled)
         {
+            swivel.Stop();
             interacting = false;
             player.EnablePlayerController();
         }
