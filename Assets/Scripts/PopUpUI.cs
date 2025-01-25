@@ -8,12 +8,10 @@ using UnityEngine.UI;
 public class PopUpUI : MonoBehaviour
 {
     public TextMeshProUGUI popUp;
-    public PauseMenuManager pause;
     // Start is called before the first frame update
     public void Start()
     {
         popUp.gameObject.SetActive(false);
-        pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
     }
 
     public void Update()
@@ -23,12 +21,9 @@ public class PopUpUI : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (pause.isPaused == false)
-        { 
-            if (other.transform.tag == "Player")
-            {
-                popUp.gameObject.SetActive(true);
-            }
+        if(other.transform.tag == "Player")
+        {
+            popUp.gameObject.SetActive(true);
         }
     }
     public void OnTriggerExit(Collider other)

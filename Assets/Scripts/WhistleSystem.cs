@@ -27,7 +27,6 @@ public class WhistleSystem : MonoBehaviour
 
     private CreatureController creature;
     private PlayerController player;
-    public AudioSource whistleSound;
 
     private void Start()
     {
@@ -57,7 +56,6 @@ public class WhistleSystem : MonoBehaviour
         //When unpressed, stop whistling and find the point to move the creature to
         if (whistling && context.canceled)
         {
-            whistleSound.Play();
             whistling = false;
             whistleMarker.SetActive(false);
             //Do a raycast from the marker position, then attract the creature if it's in listen+travel range

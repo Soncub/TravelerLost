@@ -131,7 +131,6 @@ public class PauseMenuManager : MonoBehaviour
     }
     public void BackToMenu()
     {
-        CloseAllMenus();
         audioBank.PlaySFX(audioBank.selectSound);
         Time.timeScale = 1f;
         SaveAndLoad.instance.SaveGame();
