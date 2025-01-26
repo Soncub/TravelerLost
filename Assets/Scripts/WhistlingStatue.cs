@@ -49,7 +49,8 @@ public class WhistlingStatue : MonoBehaviour
     public TextMeshProUGUI popUp;
     public PauseMenuManager pause;
 
-    private AudioSource whistle;
+    public AudioSource happyWhistle;
+    public AudioSource sadWhistle;
     public AudioSource swivel;
     [Tooltip("Whistling Noise")]
     [SerializeField] private AudioClip goodWhistle;
@@ -58,12 +59,14 @@ public class WhistlingStatue : MonoBehaviour
 
     void Start()
     {
+        happyWhistle.Play();
+        sadWhistle.Play();
         //UI Assign
         popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         //Set Variable Defaults
         player = FindFirstObjectByType<PlayerController>();
         creature = FindFirstObjectByType<CreatureController>();
-        whistle = GetComponent<AudioSource>();
+        //whistle = GetComponent<AudioSource>();
         //UI Script
         popUp.gameObject.SetActive(false);
         pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
@@ -79,23 +82,22 @@ public class WhistlingStatue : MonoBehaviour
         updateTimer = updateTime;
         if (CheckAngle(curRotation, minBadRotation, maxBadRotation))
         {
-            whistle.clip = badWhistle;
-            if (!whistle.isPlaying)
-                whistle.Play();
+            sadWhistle.volume = 1f;
+            happyWhistle.volume = 0.001f;
             whistleParticles.SetActive(false);
             badParticles.SetActive(true);
         }
         else if (CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation))
         {
-            whistle.clip = goodWhistle;
-            if (!whistle.isPlaying)
-                whistle.Play();
+            sadWhistle.volume = 0.001f;
+            happyWhistle.volume = 1f;
             whistleParticles.SetActive(true);
             badParticles.SetActive(false);
         }
-        else if (whistle.isPlaying)
+        else
         {
-            whistle.Stop();
+            sadWhistle.volume = 0.001f;
+            happyWhistle.volume = 0.001f;
             whistleParticles.SetActive(false);
             badParticles.SetActive(false);
         }
@@ -152,23 +154,22 @@ public class WhistlingStatue : MonoBehaviour
             curRotation = transform.localRotation.eulerAngles.y;
             if (CheckAngle(curRotation, minBadRotation, maxBadRotation))
             {
-                whistle.clip = badWhistle;
-                if (!whistle.isPlaying)
-                    whistle.Play();
+                sadWhistle.volume = 1f;
+                happyWhistle.volume = 0.001f;
                 whistleParticles.SetActive(false);
                 badParticles.SetActive(true);
             }
             else if (CheckAngle(curRotation, minWhistleRotation, maxWhistleRotation))
             {
-                whistle.clip = goodWhistle;
-                if (!whistle.isPlaying)
-                    whistle.Play();
+                sadWhistle.volume = 0.001f;
+                happyWhistle.volume = 1f;
                 whistleParticles.SetActive(true);
                 badParticles.SetActive(false);
             }
-            else if (whistle.isPlaying)
+            else
             {
-                whistle.Stop();
+                sadWhistle.volume = 0.001f;
+                happyWhistle.volume = 0.001f;
                 whistleParticles.SetActive(false);
                 badParticles.SetActive(false);
             }
