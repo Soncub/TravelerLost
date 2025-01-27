@@ -58,10 +58,16 @@ public class WhistlingStatue : MonoBehaviour
     [Tooltip("Bad Noise")]
     [SerializeField] private AudioClip badWhistle;
 
+    public void Awake()
+    {
+        happyWhistle.time = musicSource.time;
+    }
+
     void Start()
     {
         happyWhistle.Play();
         sadWhistle.Play();
+        InvokeRepeating("AdjustTiming", 0f, 1f);
         //UI Assign
         popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         //Set Variable Defaults
@@ -175,38 +181,6 @@ public class WhistlingStatue : MonoBehaviour
                 badParticles.SetActive(false);
             }
         }
-        if (musicSource.time < 16.410)
-        {
-            happyWhistle.time = musicSource.time;
-        }
-        else if (musicSource.time < 32.820)
-        {
-            happyWhistle.time = musicSource.time - 16.410f;
-        }
-        else if (musicSource.time < 49.230)
-        {
-            happyWhistle.time = musicSource.time - 32.820f;
-        }
-        else if (musicSource.time < 65.640)
-        {
-            happyWhistle.time = musicSource.time - 49.230f;
-        }
-        else if (musicSource.time < 82.050)
-        {
-            happyWhistle.time = musicSource.time - 65.640f;
-        }
-        else if (musicSource.time < 98.460)
-        {
-            happyWhistle.time = musicSource.time - 82.050f;
-        }
-        else if (musicSource.time < 114.870)
-        {
-            happyWhistle.time = musicSource.time - 98.460f;
-        }
-        else if (musicSource.time < 131.280)
-        {
-            happyWhistle.time = musicSource.time - 114.870f;
-        }
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -250,5 +224,43 @@ public class WhistlingStatue : MonoBehaviour
     {
         popUp.gameObject.SetActive(false);
         popUp.text = null;
+    }
+    public void AdjustTiming()
+    {
+         if (happyWhistle.time != musicSource.time)
+         {
+            if (musicSource.time < 16.410)
+            {
+                happyWhistle.time = musicSource.time;
+            }
+            else if (musicSource.time < 32.820)
+            {
+                happyWhistle.time = musicSource.time - 16.410f;
+            }
+            else if (musicSource.time < 49.230)
+            {
+                happyWhistle.time = musicSource.time - 32.820f;
+            }
+            else if (musicSource.time < 65.640)
+            {
+                happyWhistle.time = musicSource.time - 49.230f;
+            }
+            else if (musicSource.time < 82.050)
+            {
+                happyWhistle.time = musicSource.time - 65.640f;
+            }
+            else if (musicSource.time < 98.460)
+            {
+                happyWhistle.time = musicSource.time - 82.050f;
+            }
+            else if (musicSource.time < 114.870)
+            {
+                happyWhistle.time = musicSource.time - 98.460f;
+            }
+            else if (musicSource.time < 131.280)
+            {
+                happyWhistle.time = musicSource.time - 114.870f;
+            }
+         }
     }
 }
