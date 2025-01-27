@@ -32,6 +32,7 @@ public class FruitBush : MonoBehaviour
     private GameObject currentSpawnedItem;
     //UI Variable
     public TextMeshProUGUI popUp;
+    public PauseMenuManager pause;
 
     private void Start()
     {
@@ -39,6 +40,7 @@ public class FruitBush : MonoBehaviour
         popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         //UI Script
         popUp.gameObject.SetActive(false);
+        pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
         // Ensure the SpawnPoint exists
         spawnPoint = transform.Find("SpawnPoint");
         if (spawnPoint == null)
@@ -86,6 +88,10 @@ public class FruitBush : MonoBehaviour
         if (range <= pickUpDistance)
         {
             PopUpOn("Press E to Get a Fruit");
+            if (pause.isPaused == true)
+            {
+                PopUpOff();
+            }
         }
         else
         {

@@ -28,16 +28,18 @@ public class ItemInteraction : MonoBehaviour
     [SerializeField] private InputAction pickUpAction;
     //Ui Variable
     public TextMeshProUGUI popUp;
+    public PauseMenuManager pause;
 
     private void Start()
     {
         //UI Assign
-        popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
+        //popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         pickUpPoint = GameObject.Find("PickUpPoint").transform;
         //UI Script
         popUp.gameObject.SetActive(false);
+        //pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
 
         // Enable the Input Action and subscribe to it
         pickUpAction.Enable();
@@ -46,22 +48,32 @@ public class ItemInteraction : MonoBehaviour
     //UI Script
     private void Update()
     {
+        /*
         float range = Vector3.Distance(player.position, transform.position);
         if (range <= pickUpDistance)
         {
             if (gameObject.tag == "Crystal")
             {
                 PopUpOn("Press E to Pick Up Crystal");
+                if (pause.isPaused == true)
+                {
+                    PopUpOff();
+                }
             }
             else if (gameObject.tag == "Item")
             {
                 PopUpOn("Press E to Pick Up Fruit");
+                if (pause.isPaused == true)
+                {
+                    PopUpOff();
+                }
             }
         }
         else
         {
             PopUpOff();
         }
+        */
     }
 
     public void PickUp(InputAction.CallbackContext context)

@@ -15,8 +15,14 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject resumeButton;
     [SerializeField] private GameObject backSettingsButton;
     [SerializeField] private GameObject backControlsButton;
+    AudioBank audioBank;
+    public bool isPaused;
+    [SerializeField] LevelEnd levelEnd;
 
-    private bool isPaused;
+    private void Awake()
+    {
+        audioBank = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioBank>();
+    }
     private void Start()
     {
         pauseMenuCanavs.SetActive(false);
@@ -26,15 +32,18 @@ public class PauseMenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.instance.menuOpenCloseInput)
+        if(levelEnd.fadeTimer == 0)
         {
-            if(!isPaused)
+            if (InputManager.instance.menuOpenCloseInput)
             {
-                Pause();
-            }
-            else
-            {
-                Unpause();
+                if (!isPaused)
+                {
+                    Pause();
+                }
+                else
+                {
+                    Unpause();
+                }
             }
         }
     }
@@ -63,6 +72,7 @@ public class PauseMenuManager : MonoBehaviour
 
     private void OpenMainMenu()
     {
+        audioBank.PlaySFX(audioBank.selectSound);
         pauseMenuCanavs.SetActive(true);
         settingsMenuCanavs.SetActive(false);
         controlsMenuCanavs.SetActive(false);
@@ -72,6 +82,7 @@ public class PauseMenuManager : MonoBehaviour
 
     private void OpenSettings()
     {
+        audioBank.PlaySFX(audioBank.selectSound);
         settingsMenuCanavs.SetActive(true);
         pauseMenuCanavs.SetActive(false);
         controlsMenuCanavs.SetActive(false);
@@ -81,6 +92,7 @@ public class PauseMenuManager : MonoBehaviour
 
     private void OpenControls()
     {
+        audioBank.PlaySFX(audioBank.selectSound);
         controlsMenuCanavs.SetActive(true);
         settingsMenuCanavs.SetActive(false);
         pauseMenuCanavs.SetActive(false);
@@ -90,6 +102,7 @@ public class PauseMenuManager : MonoBehaviour
 
     private void CloseAllMenus()
     {
+        audioBank.PlaySFX(audioBank.selectSound);
         pauseMenuCanavs.SetActive(false);
         settingsMenuCanavs.SetActive(false);
         controlsMenuCanavs.SetActive(false);
@@ -118,12 +131,15 @@ public class PauseMenuManager : MonoBehaviour
     }
     public void BackToMenu()
     {
+        CloseAllMenus();
+        audioBank.PlaySFX(audioBank.selectSound);
         Time.timeScale = 1f;
         SaveAndLoad.instance.SaveGame();
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuScene");
     }
     public void QuitGame()
     {
+        audioBank.PlaySFX(audioBank.selectSound);
         Time.timeScale = 1f;
         Debug.Log("Quit");
         Application.Quit();

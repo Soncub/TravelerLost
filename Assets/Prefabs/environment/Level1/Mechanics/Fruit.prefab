@@ -407,7 +407,7 @@ MonoBehaviour:
   DropEvent:
     m_PersistentCalls:
       m_Calls: []
-  pickUpDistance: 3
+  pickUpDistance: 5
   placeOffset: 1
   enableGizmos: 1
   itemIsPicked: 0
@@ -437,6 +437,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   popUp: {fileID: 4780619964799007440}
+  pause: {fileID: 0}
 --- !u!114 &8767361045172403995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e80c1d27ad6e054b81fb46e753daef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offerDistance: 15
+  offerDistance: 80
   messageUI: {fileID: 0}
   offerAction:
     m_Name: Offer
@@ -486,6 +487,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   player: {fileID: 7809708578373855689, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
+  enableGizmos: 1
 --- !u!114 &-5224614846270555441
 MonoBehaviour:
   m_ObjectHideFlags: 0
