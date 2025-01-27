@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CrystalLogic : MonoBehaviour
+public class CrystalStatue : ChargeSource
 {
-    // --- Pillar Logic Fields ---
+    // --- Charging and Light Logic Fields ---
     [Tooltip("Reference to the ItemDivot this logic is tied to")]
     [SerializeField] private ItemDivot itemDivot;
-
-    [Tooltip("GameObject to enable when the item is placed in the divot")]
-    [SerializeField] private GameObject pillarObject;
 
     [Tooltip("Distance for the raycast to check for other pillars")]
     [SerializeField] private float pillarRaycastDistance = 10f;
@@ -18,28 +15,27 @@ public class CrystalLogic : MonoBehaviour
     [Tooltip("LayerMask for detecting other pillars")]
     [SerializeField] private LayerMask pillarLayerMask;
 
-    [Tooltip("Is this the first pillar in the chain?")]
+    [Tooltip("Is this the first pillar in the chain and should light up without a source?")]
     [SerializeField] private bool isFirst = false;
 
-    private bool isLit = false;
-    private HashSet<CrystalLogic> hitPillars = new HashSet<CrystalLogic>();
+    private HashSet<ChargeSource> hitPillars = new HashSet<ChargeSource>();
 
-    // --- Crystal Light Fields ---
+    // --- Rotation and Input Fields ---
     private PlayerController player;
 
-    [Tooltip("How fast the crystal light rotates when moved by the player during interaction")]
+    [Tooltip("How fast the crystal statue rotates when moved by the player during interaction")]
     [SerializeField] private float rotationSpeed;
 
-    [Tooltip("Input for interacting with the crystal light")]
+    [Tooltip("Input for interacting with the crystal statue")]
     [SerializeField] private InputActionReference interactAction;
 
-    [Tooltip("Input for moving the crystal light")]
+    [Tooltip("Input for moving the crystal statue")]
     [SerializeField] private InputActionReference motionAction;
 
     private float input;
     private bool interacting = false;
 
-    [Tooltip("Maximum distance for the player to interact with the crystal light")]
+    [Tooltip("Maximum distance for the player to interact with the crystal statue")]
     [SerializeField] private float maxInteractDistance;
 
     private void Start()
@@ -56,20 +52,21 @@ public class CrystalLogic : MonoBehaviour
         // Pillar Logic Setup
         if (itemDivot == null)
         {
-            Debug.LogError("ItemDivot reference is not set in PillarAndCrystalLogic.");
+            Debug.LogError("ItemDivot reference is not set in CrystalStatue.");
             return;
         }
 
-        if (pillarObject == null)
+        if (beamObject == null)
         {
-            Debug.LogError("PillarObject reference is not set in PillarAndCrystalLogic.");
+            Debug.LogError("PillarObject reference is not set in CrystalStatue.");
             return;
         }
 
         itemDivot.PlaceItemEvent.AddListener(OnItemPlaced);
         itemDivot.ReleaseItemEvent.AddListener(OnItemReleased);
 
-        pillarObject.SetActive(false);
+        beamObject.SetActive(false);
+        darkObject.SetActive(true);
 
         // Input Actions
         if (interactAction != null) interactAction.action.performed += Interact;
@@ -109,14 +106,14 @@ public class CrystalLogic : MonoBehaviour
     private void OnItemPlaced()
     {
         if (isFirst)
-        {
-            LightUpPillar();
-        }
+            Charge();
+        else
+            CastRayToManagePillars();
     }
 
     private void OnItemReleased()
     {
-        UnlightPillar();
+        Uncharge();
     }
 
     private void CastRayToManagePillars()
@@ -127,45 +124,25 @@ public class CrystalLogic : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, pillarRaycastDistance, pillarLayerMask))
         {
-            CrystalLogic otherPillar = hit.collider.GetComponent<CrystalLogic>();
+            CrystalStatue otherPillar = hit.collider.GetComponent<CrystalStatue>();
             if (otherPillar != null && otherPillar.itemDivot.ItemIsPlaced)
             {
                 if (!hitPillars.Contains(otherPillar))
                 {
-                    otherPillar.LightUpPillar();
+                    otherPillar.Charge();
                     hitPillars.Add(otherPillar);
                 }
             }
         }
 
-        HashSet<CrystalLogic> toRemove = new HashSet<CrystalLogic>(hitPillars);
+        HashSet<ChargeSource> toRemove = new HashSet<ChargeSource>(hitPillars);
         foreach (var pillar in toRemove)
         {
-            if (!Physics.Raycast(ray, out hit, pillarRaycastDistance, pillarLayerMask) || hit.collider.GetComponent<CrystalLogic>() != pillar)
+            if (!Physics.Raycast(ray, out hit, pillarRaycastDistance, pillarLayerMask) || hit.collider.GetComponent<CrystalStatue>() != pillar)
             {
-                pillar.UnlightPillar();
+                pillar.Uncharge();
                 hitPillars.Remove(pillar);
             }
-        }
-    }
-
-    public void LightUpPillar()
-    {
-        if (!isLit)
-        {
-            isLit = true;
-            pillarObject.SetActive(true);
-            Debug.Log($"{name} is now lit up.");
-        }
-    }
-
-    public void UnlightPillar()
-    {
-        if (isLit)
-        {
-            isLit = false;
-            pillarObject.SetActive(false);
-            Debug.Log($"{name} is now unlit.");
         }
     }
 
