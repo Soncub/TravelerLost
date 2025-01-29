@@ -118,7 +118,7 @@ public class WhistlingStatue : MonoBehaviour
         {
             if(!interacting)
             {
-                PopUpOn("Press Left Shift to Interact with Statue");
+                PopUpOn("Press Q to Interact with Statue");
                 if (pause.isPaused == true)
                 {
                     PopUpOff();
