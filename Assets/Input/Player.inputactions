@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Offer Action",
+                    "type": "Button",
+                    "id": "47db78ed-21c8-4af0-a842-c4db4907fb58",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -281,6 +290,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fdec17a9-d740-4e0f-ae0d-44852385a626",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4cf53bf1-ef47-416a-9d8d-43406da8dfd2",
                     "path": "<Keyboard>/p",
                     "interactions": "",
@@ -314,8 +334,8 @@
                 },
                 {
                     "name": "",
-                    "id": "89aadedf-0545-4273-b37b-b5df54b7a30f",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "47f66dbd-ecb8-4e4b-9ab0-7663e824c254",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -325,12 +345,23 @@
                 },
                 {
                     "name": "",
-                    "id": "47f66dbd-ecb8-4e4b-9ab0-7663e824c254",
-                    "path": "<Gamepad>/buttonWest",
+                    "id": "f53603f5-c2b3-4088-b2d9-1a7bf140d794",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6844a1f-75a1-4507-ab78-5e568efe51b2",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Offer Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

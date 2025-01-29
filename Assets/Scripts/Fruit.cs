@@ -10,7 +10,7 @@ public class Fruit : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI messageUI;  // UI to display messages
     [Tooltip("KeyBind for offering the fruit to the creature")]
-    [SerializeField] private InputAction offerAction;    
+    [SerializeField] private InputActionReference offerAction;    
 
     [SerializeField] private Transform player;          // Reference to the player
     [Tooltip("Visual of how far you can be to offer the fruit (green circle)")]
@@ -25,8 +25,8 @@ public class Fruit : MonoBehaviour
         creature = FindObjectOfType<CreatureController>();
         player = GameObject.Find("Player").transform;
 
-        offerAction.Enable();
-        offerAction.performed += OfferFruit;
+        offerAction.action.Enable();
+        offerAction.action.performed += OfferFruit;
 
         itemInteraction = GetComponent<ItemInteraction>();
 
@@ -36,8 +36,8 @@ public class Fruit : MonoBehaviour
 
     private void OnDestroy()
     {
-        offerAction.Disable();
-        offerAction.performed -= OfferFruit;
+        offerAction.action.Disable();
+        offerAction.action.performed -= OfferFruit;
     }
 
     private void OfferFruit(InputAction.CallbackContext context)

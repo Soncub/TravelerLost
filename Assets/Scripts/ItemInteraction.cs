@@ -25,7 +25,7 @@ public class ItemInteraction : MonoBehaviour
     private Rigidbody rb;
 
     // Reference to the Input Action
-    [SerializeField] private InputAction pickUpAction;
+    [SerializeField] private InputActionReference pickUpAction;
     //Ui Variable
     public TextMeshProUGUI popUp;
     public PauseMenuManager pause;
@@ -42,8 +42,8 @@ public class ItemInteraction : MonoBehaviour
         //pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
 
         // Enable the Input Action and subscribe to it
-        pickUpAction.Enable();
-        pickUpAction.performed += PickUp;
+        pickUpAction.action.Enable();
+        pickUpAction.action.performed += PickUp;
     }
     //UI Script
     private void Update()
@@ -120,8 +120,8 @@ public class ItemInteraction : MonoBehaviour
     private void OnDestroy()
     {
         // Disable the Input Action and unsubscribe to prevent memory leaks
-        pickUpAction.Disable();
-        pickUpAction.performed -= PickUp;
+        pickUpAction.action.Disable();
+        pickUpAction.action.performed -= PickUp;
     }
 
     private void OnDrawGizmos()

@@ -411,31 +411,7 @@ MonoBehaviour:
   placeOffset: 1
   enableGizmos: 1
   itemIsPicked: 0
-  pickUpAction:
-    m_Name: Pick Up
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b3616600-bffc-4507-bc55-87a841e2892c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 57a2224e-dad7-4a8a-8871-edefb67b0692
-      m_Path: <Keyboard>/e
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Pick Up
-      m_Flags: 0
-    - m_Name: 
-      m_Id: cdcd6d9d-657e-4338-87a1-02f2f42842d3
-      m_Path: <Gamepad>/buttonSouth
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Pick Up
-      m_Flags: 0
-    m_Flags: 0
+  pickUpAction: {fileID: 6781468535072096557, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
   popUp: {fileID: 4780619964799007440}
   pause: {fileID: 0}
 --- !u!114 &8767361045172403995
@@ -468,24 +444,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offerDistance: 80
-  messageUI: {fileID: 0}
-  offerAction:
-    m_Name: Offer
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: cfca7698-c1ad-4440-ac8f-2169f5340278
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 174bda19-8e38-4c29-9dbe-58bfef6bbd05
-      m_Path: <Keyboard>/r
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Offer
-      m_Flags: 0
-    m_Flags: 0
+  messageUI: {fileID: 4780619964799007440}
+  offerAction: {fileID: 8836790702391652979, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
   player: {fileID: 7809708578373855689, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
   enableGizmos: 1
 --- !u!114 &-5224614846270555441
