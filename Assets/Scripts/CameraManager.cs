@@ -28,6 +28,7 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
+        transform.position = target.transform.position - new Vector3(0, 0, 15f);
         distanceToPlayer = Vector3.Distance(transform.position, target.position);
         if (instance == null)
         {
