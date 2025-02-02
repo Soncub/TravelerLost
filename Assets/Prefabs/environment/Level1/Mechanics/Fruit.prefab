@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 8767361045172403995}
   - component: {fileID: 8096004538882596743}
   - component: {fileID: -5224614846270555441}
+  - component: {fileID: 5609270261165647618}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Item
@@ -411,31 +412,9 @@ MonoBehaviour:
   placeOffset: 1
   enableGizmos: 1
   itemIsPicked: 0
-  pickUpAction:
-    m_Name: Pick Up
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b3616600-bffc-4507-bc55-87a841e2892c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 57a2224e-dad7-4a8a-8871-edefb67b0692
-      m_Path: <Keyboard>/e
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Pick Up
-      m_Flags: 0
-    - m_Name: 
-      m_Id: cdcd6d9d-657e-4338-87a1-02f2f42842d3
-      m_Path: <Gamepad>/buttonSouth
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Pick Up
-      m_Flags: 0
-    m_Flags: 0
+  pickUpAction: {fileID: 6781468535072096557, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
+  canvas: {fileID: 0}
+  childObject: {fileID: 0}
   popUp: {fileID: 4780619964799007440}
   pause: {fileID: 0}
 --- !u!114 &8767361045172403995
@@ -468,32 +447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offerDistance: 80
-  messageUI: {fileID: 0}
-  offerAction:
-    m_Name: Offer
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: cfca7698-c1ad-4440-ac8f-2169f5340278
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 174bda19-8e38-4c29-9dbe-58bfef6bbd05
-      m_Path: <Keyboard>/r
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Offer
-      m_Flags: 0
-    - m_Name: 
-      m_Id: e559039e-780b-4290-94f6-cef1e02d215f
-      m_Path: <Gamepad>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Offer
-      m_Flags: 0
-    m_Flags: 0
+  messageUI: {fileID: 4780619964799007440}
+  offerAction: {fileID: 8836790702391652979, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
   player: {fileID: 7809708578373855689, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
   enableGizmos: 0
 --- !u!114 &-5224614846270555441
@@ -524,6 +479,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!135 &5609270261165647618
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729353094801200202}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6277302104541932004
 PrefabInstance:
   m_ObjectHideFlags: 0
