@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3162834174050439329}
   - component: {fileID: 9104350573014330816}
   - component: {fileID: 8784750514121312392}
+  - component: {fileID: 373873389411765662}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Crystal
@@ -130,31 +131,9 @@ MonoBehaviour:
   placeOffset: 1
   enableGizmos: 1
   itemIsPicked: 0
-  pickUpAction:
-    m_Name: Pick Up
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f7248d70-c7d5-4954-a6fb-1d7753a1371b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 6658b862-b512-467d-8079-66946a3d0a03
-      m_Path: <Keyboard>/e
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Pick Up
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 4fa09c05-9990-42c3-b567-656fee2041d0
-      m_Path: <Gamepad>/buttonSouth
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Pick Up
-      m_Flags: 0
-    m_Flags: 0
+  pickUpAction: {fileID: 0}
+  canvas: {fileID: 0}
+  childObject: {fileID: 0}
   popUp: {fileID: 897808902748307935}
   pause: {fileID: 0}
 --- !u!54 &8784750514121312392
@@ -184,6 +163,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!135 &373873389411765662
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509556503644227458}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4430146452158933627
 GameObject:
   m_ObjectHideFlags: 0
