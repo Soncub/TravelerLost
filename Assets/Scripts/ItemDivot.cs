@@ -24,6 +24,7 @@ public class ItemDivot : MonoBehaviour
     private bool itemIsPlaced = false;
     public bool ItemIsPlaced => itemIsPlaced;
     private GameObject placedItem;
+    public AudioSource divotNoise;
 
     private void Start()
     {
@@ -44,6 +45,7 @@ public class ItemDivot : MonoBehaviour
     {
         if (CanPlaceItem())
         {
+            divotNoise.Play();
             placedItem = item;
             Rigidbody itemRigidbody = item.GetComponent<Rigidbody>();
             item.transform.position = dropLocation.position;
