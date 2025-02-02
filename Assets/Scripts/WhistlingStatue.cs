@@ -46,6 +46,8 @@ public class WhistlingStatue : MonoBehaviour
     private float input;
 
     [Tooltip("Pop up text")]
+    public GameObject canvas;
+    public Transform childObject;
     public TextMeshProUGUI popUp;
     public PauseMenuManager pause;
 
@@ -69,7 +71,9 @@ public class WhistlingStatue : MonoBehaviour
         sadWhistle.Play();
         InvokeRepeating("AdjustTiming", 0f, 1f);
         //UI Assign
-        popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
+        canvas = GameObject.Find("MessageCanvas");
+        childObject = canvas.transform.Find("StatueMessage");
+        popUp = childObject.GetComponent<TextMeshProUGUI>();
         //Set Variable Defaults
         player = FindFirstObjectByType<PlayerController>();
         creature = FindFirstObjectByType<CreatureController>();
@@ -113,7 +117,7 @@ public class WhistlingStatue : MonoBehaviour
     private void Update()
     {
         //UI Variable
-        float range = Vector3.Distance(player.transform.position, transform.position);
+        /*float range = Vector3.Distance(player.transform.position, transform.position);
         if (range <= maxInteractDistance)
         {
             if(!interacting)
@@ -137,7 +141,7 @@ public class WhistlingStatue : MonoBehaviour
         else
         {
             PopUpOff();
-        }
+        }*/
         updateTimer -= Time.deltaTime;
         if (updateTimer < 0)
         {
@@ -224,6 +228,20 @@ public class WhistlingStatue : MonoBehaviour
     {
         popUp.gameObject.SetActive(false);
         popUp.text = null;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            popUp.gameObject.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            popUp.gameObject.SetActive(false);
+        }
     }
     public void AdjustTiming()
     {
