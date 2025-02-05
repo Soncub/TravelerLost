@@ -31,13 +31,17 @@ public class FruitBush : MonoBehaviour
     private float cooldownTimer;
     private GameObject currentSpawnedItem;
     //UI Variable
+    public GameObject canvas;
+    public Transform childObject;
     public TextMeshProUGUI popUp;
     public PauseMenuManager pause;
 
     private void Start()
     {
         //UI Assign
-        popUp = transform.Find("Canvas/Message").GetComponent<TextMeshProUGUI>();
+        canvas = GameObject.Find("MessageCanvas");
+        childObject = canvas.transform.Find("BushMessage");
+        popUp = childObject.GetComponent<TextMeshProUGUI>();
         //UI Script
         popUp.gameObject.SetActive(false);
         pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
@@ -84,7 +88,7 @@ public class FruitBush : MonoBehaviour
     private void Update()
     {
         //UI Variable
-        float range = Vector3.Distance(player.transform.position, transform.position);
+        /*float range = Vector3.Distance(player.transform.position, transform.position);
         if (range <= pickUpDistance)
         {
             PopUpOn("Press E to Get a Fruit");
@@ -96,7 +100,7 @@ public class FruitBush : MonoBehaviour
         else
         {
             PopUpOff();
-        }
+        }*/
         // Handle cooldown timer
         if (!canSpawn)
         {
@@ -212,5 +216,19 @@ public class FruitBush : MonoBehaviour
     {
         popUp.gameObject.SetActive(false);
         popUp.text = null;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            popUp.gameObject.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            popUp.gameObject.SetActive(false);
+        }
     }
 }
