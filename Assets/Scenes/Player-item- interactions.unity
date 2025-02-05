@@ -182,6 +182,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c744a71ea57614ab37283b7451898b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DropEvent:
+    m_PersistentCalls:
+      m_Calls: []
   pickUpDistance: 2
   placeOffset: 1
   enableGizmos: 1
@@ -297,22 +303,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2316993276465668449, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
-      propertyPath: pickUpAction.m_SingletonActionBindings.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2316993276465668449, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
-      propertyPath: pickUpAction.m_SingletonActionBindings.Array.data[1].m_Id
-      value: 6a6fe0e0-c1ac-4513-ac30-1e16cc09f367
-      objectReference: {fileID: 0}
-    - target: {fileID: 2316993276465668449, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
-      propertyPath: pickUpAction.m_SingletonActionBindings.Array.data[1].m_Path
-      value: <Gamepad>/buttonSouth
-      objectReference: {fileID: 0}
-    - target: {fileID: 2316993276465668449, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
-      propertyPath: pickUpAction.m_SingletonActionBindings.Array.data[1].m_Action
-      value: Pick Up
-      objectReference: {fileID: 0}
     - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.64
@@ -533,6 +523,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c744a71ea57614ab37283b7451898b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DropEvent:
+    m_PersistentCalls:
+      m_Calls: []
   pickUpDistance: 2
   placeOffset: 1
   enableGizmos: 1
@@ -734,6 +730,9 @@ MonoBehaviour:
   canBePlaced: 0
   isKey: 0
   PlaceItemEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ReleaseItemEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &358024364
@@ -2209,6 +2208,9 @@ MonoBehaviour:
   PlaceItemEvent:
     m_PersistentCalls:
       m_Calls: []
+  ReleaseItemEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1554319828
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2296,6 +2298,63 @@ Transform:
   - {fileID: 301755449}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1730825457
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.9944305
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.110816
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636124906937572059, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729353094801200202, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
+      propertyPath: m_Name
+      value: Fruit (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
 --- !u!1 &1772184477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,6 +2485,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c744a71ea57614ab37283b7451898b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DropEvent:
+    m_PersistentCalls:
+      m_Calls: []
   pickUpDistance: 2
   placeOffset: 1
   enableGizmos: 1
@@ -2859,6 +2924,7 @@ MonoBehaviour:
   refCamera: {fileID: 366983963}
   travelRange: 100
   listenRange: 100
+  interactableSnapRange: 10
 --- !u!1 &2110211964
 GameObject:
   m_ObjectHideFlags: 0
@@ -2895,6 +2961,9 @@ MonoBehaviour:
   canBePlaced: 0
   isKey: 1
   PlaceItemEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ReleaseItemEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &2110211966
@@ -2996,6 +3065,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fruit bush
       objectReference: {fileID: 0}
+    - target: {fileID: 3990796584908595780, guid: ee286230f29402c42a0a265d35eaa1e2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 3729353094801200202, guid: eea7a6f26cb11a247a12fa799c992746, type: 3}
     - target: {fileID: 7586863862823796546, guid: ee286230f29402c42a0a265d35eaa1e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.93
@@ -3062,3 +3135,4 @@ SceneRoots:
   - {fileID: 198982334}
   - {fileID: 1860136325}
   - {fileID: 8427006}
+  - {fileID: 1730825457}

@@ -2,13 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    public static CameraManager instance;
     private float distanceToPlayer;
     private Vector2 input;
     private bool whistling;
+    public Slider horizontalSensitivitySlider;
+    public Slider verticalSensitivitySlider;
+    public Toggle invertHorizontalToggle;
+    public Toggle invertVerticalToggle;
+
+    private float horizontalSensitivityValue = 75;
+    private float verticalSensitivityValue = 75;
+    private bool invertHorizontalValue = false;
+    private bool invertVerticalValue = false;
 
     [SerializeField] private MouseSensitivity mouseSensitivity;
     [SerializeField] private CameraAngle cameraAngle;
@@ -17,7 +28,16 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
+        transform.position = target.transform.position - new Vector3(0, 0, 15f);
         distanceToPlayer = Vector3.Distance(transform.position, target.position);
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Look(InputAction.CallbackContext context)
@@ -59,6 +79,53 @@ public class CameraManager : MonoBehaviour
     public void DisableCameraManager()
     {
         this.enabled = false;
+    }
+    public void LoadCamera(SaveData data)
+    {
+        horizontalSensitivityValue = data.horizontalSensitivity;
+        verticalSensitivityValue = data.verticalSensitivity;
+        invertHorizontalValue = data.invertHorizontal;
+        invertVerticalValue = data.invertVertical;
+
+        mouseSensitivity.horizontal = horizontalSensitivityValue;
+        horizontalSensitivitySlider.value = horizontalSensitivityValue;
+
+        mouseSensitivity.vertical = verticalSensitivityValue;
+        verticalSensitivitySlider.value = verticalSensitivityValue;
+
+        mouseSensitivity.invertHorizontal = invertHorizontalValue;
+        invertHorizontalToggle.isOn = invertHorizontalValue;
+
+        mouseSensitivity.invertVertical = invertVerticalValue;
+        invertVerticalToggle.isOn = invertVerticalValue;
+    }
+    public void SetHorizontalSensitivity()
+    {
+        horizontalSensitivityValue = horizontalSensitivitySlider.value;
+        mouseSensitivity.horizontal = horizontalSensitivityValue;
+    }
+    public void SetVerticalSensitivity()
+    {
+        verticalSensitivityValue = verticalSensitivitySlider.value;
+        mouseSensitivity.vertical = verticalSensitivityValue;
+    }
+    public void SetInvertHorizontal()
+    {
+        invertHorizontalValue = invertHorizontalToggle.isOn;
+        mouseSensitivity.invertHorizontal = invertHorizontalValue;
+    }
+    public void SetInvertVertical()
+    {
+        invertVerticalValue = invertVerticalToggle.isOn;
+        mouseSensitivity.invertVertical = invertVerticalValue;
+    }
+    public SaveData SaveCamera(SaveData data)
+    {
+        data.horizontalSensitivity = horizontalSensitivityValue;
+        data.verticalSensitivity = verticalSensitivityValue;
+        data.invertHorizontal = invertHorizontalValue;
+        data.invertVertical = invertVerticalValue;
+        return data;
     }
 }
 

@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private float velocity;
 
     [SerializeField] private float jumpPower;
+    public AudioSource playerSounds;
 
     private void Awake()
     {
@@ -33,10 +34,6 @@ public class PlayerController : MonoBehaviour
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
-        if (Input.GetKey("r"))
-        {
-            SceneManager.LoadScene("PrototypeSelection");
-        }
     }
 
     private void ApplyGravity()
@@ -70,9 +67,14 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+        if (IsGrounded())
+        {
+            playerSounds.Play();
+        }
         if (!context.started) return;
         if (!IsGrounded()) return;
         velocity += jumpPower;
+
     }
 
     private bool IsGrounded() => characterController.isGrounded;

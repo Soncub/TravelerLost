@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
@@ -24,17 +25,59 @@ public class ItemInteraction : MonoBehaviour
     private Rigidbody rb;
 
     // Reference to the Input Action
-    [SerializeField] private InputAction pickUpAction;
+    [SerializeField] private InputActionReference pickUpAction;
+    //Ui Variable
+    public GameObject canvas;
+    public Transform childObject;
+    public TextMeshProUGUI popUp;
+    public PauseMenuManager pause;
 
     private void Start()
     {
+        //UI Assign
+        canvas = GameObject.Find("MessageCanvas");
+        childObject = canvas.transform.Find("ItemMessage");
+        popUp = childObject.GetComponent<TextMeshProUGUI>();
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         pickUpPoint = GameObject.Find("PickUpPoint").transform;
+        //UI Script
+        popUp.gameObject.SetActive(false);
+        //pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
 
         // Enable the Input Action and subscribe to it
-        pickUpAction.Enable();
-        pickUpAction.performed += PickUp;
+        pickUpAction.action.Enable();
+        pickUpAction.action.performed += PickUp;
+    }
+    //UI Script
+    private void Update()
+    {
+        /*
+        float range = Vector3.Distance(player.position, transform.position);
+        if (range <= pickUpDistance)
+        {
+            if (gameObject.tag == "Crystal")
+            {
+                PopUpOn("Press E to Pick Up Crystal");
+                if (pause.isPaused == true)
+                {
+                    PopUpOff();
+                }
+            }
+            else if (gameObject.tag == "Item")
+            {
+                PopUpOn("Press E to Pick Up Fruit");
+                if (pause.isPaused == true)
+                {
+                    PopUpOff();
+                }
+            }
+        }
+        else
+        {
+            PopUpOff();
+        }
+        */
     }
 
     public void PickUp(InputAction.CallbackContext context)
@@ -45,6 +88,7 @@ public class ItemInteraction : MonoBehaviour
         {
             rb.useGravity = false;
             rb.velocity = Vector3.zero; // Stop object movement when picked up
+            rb.detectCollisions = false;
             this.transform.position = pickUpPoint.position;
             this.transform.parent = pickUpPoint;
 
@@ -57,6 +101,7 @@ public class ItemInteraction : MonoBehaviour
             this.transform.position = placePosition;
             this.transform.parent = null;
             rb.useGravity = true;
+            rb.detectCollisions |= true;
             itemIsPicked = false;
             DropEvent.Invoke();
         }
@@ -79,8 +124,8 @@ public class ItemInteraction : MonoBehaviour
     private void OnDestroy()
     {
         // Disable the Input Action and unsubscribe to prevent memory leaks
-        pickUpAction.Disable();
-        pickUpAction.performed -= PickUp;
+        pickUpAction.action.Disable();
+        pickUpAction.action.performed -= PickUp;
     }
 
     private void OnDrawGizmos()
@@ -89,6 +134,31 @@ public class ItemInteraction : MonoBehaviour
         if (enableGizmos)
         {
             Gizmos.DrawWireSphere(this.transform.position, pickUpDistance);
+        }
+    }
+    //UI Script
+    public void PopUpOn(string notification)
+    {
+        popUp.gameObject.SetActive(true);
+        popUp.text = notification;
+    }
+    public void PopUpOff()
+    {
+        popUp.gameObject.SetActive(false);
+        popUp.text = null;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            popUp.gameObject.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            popUp.gameObject.SetActive(false);
         }
     }
 }

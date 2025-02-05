@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,38 +30,77 @@ public class FruitBush : MonoBehaviour
     private bool canSpawn = true;
     private float cooldownTimer;
     private GameObject currentSpawnedItem;
-    private GameObject spawnedItem;
-
-    private Rigidbody rb;
+    //UI Variable
+    public GameObject canvas;
+    public Transform childObject;
+    public TextMeshProUGUI popUp;
+    public PauseMenuManager pause;
 
     private void Start()
     {
-        spawnedItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
-        rb = spawnedItem.GetComponent<Rigidbody>();
-        itemInteraction = FindFirstObjectByType<ItemInteraction>();
-        player = GameObject.Find("Player").transform;
+        //UI Assign
+        canvas = GameObject.Find("MessageCanvas");
+        childObject = canvas.transform.Find("BushMessage");
+        popUp = childObject.GetComponent<TextMeshProUGUI>();
+        //UI Script
+        popUp.gameObject.SetActive(false);
+        pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
+        // Ensure the SpawnPoint exists
         spawnPoint = transform.Find("SpawnPoint");
-
-        // Ensure spawn point exists
         if (spawnPoint == null)
         {
             Debug.LogError("SpawnPoint child object not found.", this);
             return;
         }
 
-        // Enable the Input Action and subscribe to it
-        pickUpAction.Enable();
-        pickUpAction.performed += SpawnItem;
+        // Ensure the Player exists
+        GameObject playerObject = GameObject.Find("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
+        else
+        {
+            Debug.LogError("Player GameObject not found.", this);
+            return;
+        }
 
+        // Ensure ItemInteraction is found
+        itemInteraction = FindFirstObjectByType<ItemInteraction>();
         if (itemInteraction == null)
         {
             Debug.LogError("ItemInteraction component is missing from this GameObject.", this);
             return;
         }
+
+        // Ensure itemPrefab is assigned
+        if (itemPrefab == null)
+        {
+            Debug.LogError("Item prefab is not assigned.", this);
+            return;
+        }
+
+        // Enable the Input Action and subscribe to it
+        pickUpAction.Enable();
+        pickUpAction.performed += SpawnItem;
     }
 
     private void Update()
     {
+        //UI Variable
+        /*float range = Vector3.Distance(player.transform.position, transform.position);
+        if (range <= pickUpDistance)
+        {
+            PopUpOn("Press E to Get a Fruit");
+            if (pause.isPaused == true)
+            {
+                PopUpOff();
+            }
+        }
+        else
+        {
+            PopUpOff();
+        }*/
         // Handle cooldown timer
         if (!canSpawn)
         {
@@ -97,17 +137,20 @@ public class FruitBush : MonoBehaviour
         {
             if (itemPrefab != null)
             {
+                // Create a new item each time SpawnItem is called
+                GameObject newSpawnedItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+                Rigidbody rb = newSpawnedItem.GetComponent<Rigidbody>();
 
                 if (rb != null)
                 {
-                    rb.isKinematic = true;
+                    rb.isKinematic = true; // Disable physics during growth
                 }
 
-                StartCoroutine(GrowItem(spawnedItem));
+                StartCoroutine(GrowItem(newSpawnedItem));
                 Debug.Log("Item spawned at spawn point.");
 
                 // Track the currently spawned item
-                currentSpawnedItem = spawnedItem;
+                currentSpawnedItem = newSpawnedItem;
 
                 // Start cooldown
                 canSpawn = false;
@@ -163,5 +206,29 @@ public class FruitBush : MonoBehaviour
             Gizmos.DrawWireSphere(this.transform.position, pickUpDistance);
         }
     }
-
+    //UI Script
+    public void PopUpOn(string notification)
+    {
+        popUp.gameObject.SetActive(true);
+        popUp.text = notification;
+    }
+    public void PopUpOff()
+    {
+        popUp.gameObject.SetActive(false);
+        popUp.text = null;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            popUp.gameObject.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            popUp.gameObject.SetActive(false);
+        }
+    }
 }
