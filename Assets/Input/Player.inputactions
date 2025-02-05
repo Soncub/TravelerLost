@@ -58,6 +58,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "e5610df3-b55e-4857-9dbd-595545a12332",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Offer Action",
+                    "type": "Button",
+                    "id": "47db78ed-21c8-4af0-a842-c4db4907fb58",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -196,7 +214,7 @@
                 {
                     "name": "",
                     "id": "f680ae4f-4b21-44e3-b3ae-3b9ba88115b1",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -229,7 +247,7 @@
                 {
                     "name": "",
                     "id": "ac1f51fe-3bd4-492f-9fda-bee33c8f2140",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -272,6 +290,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fdec17a9-d740-4e0f-ae0d-44852385a626",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4cf53bf1-ef47-416a-9d8d-43406da8dfd2",
                     "path": "<Keyboard>/p",
                     "interactions": "",
@@ -289,6 +318,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "MenuOpenClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1838c177-da0f-417c-a4bb-d393794e7d82",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47f66dbd-ecb8-4e4b-9ab0-7663e824c254",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f53603f5-c2b3-4088-b2d9-1a7bf140d794",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6844a1f-75a1-4507-ab78-5e568efe51b2",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Offer Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
