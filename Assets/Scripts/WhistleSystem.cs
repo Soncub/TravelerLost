@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
@@ -51,6 +53,22 @@ public class WhistleSystem : MonoBehaviour
             {
                 threeDWhistleMarker.SetActive(true);
                 threeDWhistleMarker.transform.position = hit.point;
+
+                bool works = true;
+
+                if (Vector3.Distance(player.transform.position, creature.transform.position) >= listenRange)
+                {
+                    works = false;
+                }
+                if (Vector3.Distance(hit.point, creature.transform.position) >= travelRange)
+                {
+                    works = false;
+                }
+                MeshRenderer color = threeDWhistleMarker.GetComponent<MeshRenderer>();
+                if (color !=null)
+                {
+                    color.material.color = works ? Color.gray : Color.red;
+                }
             }
         }
     }
@@ -90,8 +108,16 @@ public class WhistleSystem : MonoBehaviour
                     }
                 }
                 if(!flag)
-                    creature.NewTargetDestination(hit.point);
-                    threeDWhistleMarker.transform.position = hit.point;
+                {
+                    NavMeshHit navHit;
+                    Vector3 destination = hit.point;
+                    if (NavMesh.SamplePosition(hit.point, out navHit, travelRange, NavMesh.AllAreas))
+                    {
+                        destination = navHit.position;
+                    }
+                    creature.NewTargetDestination(destination);
+                    threeDWhistleMarker.transform.position = destination;
+                }
             }
         }
     }
