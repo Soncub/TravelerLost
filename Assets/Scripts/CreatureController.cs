@@ -41,18 +41,20 @@ public class CreatureController : MonoBehaviour
                     interactable.onInteract.Invoke();
                     interactable = null;
                     LoseFocus();
-                    //If currently afraid, calm down if close enough to the flee position
-                    if (afraid && agent.remainingDistance <= fleeRange)
-                    {
-                        LoseFocus();
-                    }
+                  
                 }
                 else
                     agent.SetDestination(movingTarget.position);
             }
         }
-    }
 
+                    //If currently afraid, calm down if close enough to the flee position
+                    if (afraid && agent.remainingDistance <= fleeRange)
+                    {
+                        LoseFocus();
+                    }
+    }
+ 
     public void NewTargetDestination(Vector3 position)
     {
         //When the creature is afraid, it cannot get a new destination
