@@ -10,7 +10,7 @@ public class ChargeSource : MonoBehaviour
     [SerializeField] public GameObject darkObject;
     [HideInInspector] public bool isLit = false;
 
-    public void Charge()
+    public virtual void Charge()
     {
         if (!isLit)
         {
@@ -22,7 +22,7 @@ public class ChargeSource : MonoBehaviour
         }
     }
 
-    public void Uncharge()
+    public virtual void Uncharge()
     {
         if (isLit)
         {
