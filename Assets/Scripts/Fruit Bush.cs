@@ -35,6 +35,8 @@ public class FruitBush : MonoBehaviour
     public Transform childObject;
     public TextMeshProUGUI popUp;
     public PauseMenuManager pause;
+    [SerializeField] private PlayerInput playerInput;
+    private string controlScheme;
 
     private void Start()
     {
@@ -83,6 +85,7 @@ public class FruitBush : MonoBehaviour
         // Enable the Input Action and subscribe to it
         pickUpAction.Enable();
         pickUpAction.performed += SpawnItem;
+        playerInput.onControlsChanged += (input) => UpdateControlScheme();
     }
 
     private void Update()
@@ -221,6 +224,7 @@ public class FruitBush : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
+            UpdateControlScheme();
             popUp.gameObject.SetActive(true);
         }
     }
@@ -229,6 +233,18 @@ public class FruitBush : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
             popUp.gameObject.SetActive(false);
+        }
+    }
+    private void UpdateControlScheme()
+    {
+        controlScheme = playerInput.currentControlScheme;
+        if (controlScheme == "Keyboard and Mouse")
+        {
+            popUp.text = "Press E to get a fruit";
+        }
+        else if (controlScheme == "Gamepad")
+        {
+            popUp.text = "Press X to get a fruit";
         }
     }
 }
