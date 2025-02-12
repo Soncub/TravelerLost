@@ -33,9 +33,11 @@ public class WhistleSystem : MonoBehaviour
     public AudioClip[] soundEffects;
     public AudioSource whistleSound;
     private int currentIndex = 0;
+    public LayerMask layer;
 
     private void Start()
     {
+        layer = LayerMask.GetMask("Terrain");
         //Set the default position to be where the point starts
         markerAnchorPoint = whistleMarker.transform.position;
         //Find the player and creature
@@ -49,10 +51,15 @@ public class WhistleSystem : MonoBehaviour
         if (whistling && whistlingEnabled)
         {
             whistleMarker.transform.position += Time.deltaTime * whistleMoveSpeed * (Vector3)input;
-            if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit))
+            if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit, Mathf.Infinity,layer))
             {
                 threeDWhistleMarker.SetActive(true);
-                threeDWhistleMarker.transform.position = hit.point;
+                NavMeshHit navHit;
+                if (NavMesh.SamplePosition(hit.point, out navHit, travelRange, NavMesh.AllAreas))
+                {
+                    //threeDWhistleMarker.transform.position = hit.point;
+                }
+                threeDWhistleMarker.transform.position = navHit.position;
 
                 bool works = true;
 
@@ -91,7 +98,7 @@ public class WhistleSystem : MonoBehaviour
             whistleMarker.SetActive(false);
             threeDWhistleMarker.SetActive(false);
             //Do a raycast from the marker position, then attract the creature if it's in listen+travel range
-            if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit) &&
+            if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit, Mathf.Infinity, layer) &&
                 Vector3.Distance(player.transform.position, creature.transform.position) < listenRange &&
                 Vector3.Distance(hit.point, creature.transform.position) < travelRange)
             {
@@ -111,7 +118,7 @@ public class WhistleSystem : MonoBehaviour
                 {
                     NavMeshHit navHit;
                     Vector3 destination = hit.point;
-                    if (NavMesh.SamplePosition(hit.point, out navHit, travelRange, NavMesh.AllAreas))
+                    if (NavMesh.SamplePosition(hit.point, out navHit, travelRange, layer))
                     {
                         destination = navHit.position;
                     }
