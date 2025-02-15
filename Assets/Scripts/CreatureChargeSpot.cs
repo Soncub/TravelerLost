@@ -41,7 +41,7 @@ public class CreatureChargeSpot : ChargeSource
         }
     }
 
-    public new void Charge()
+    public override void Charge()
     {
         if (!isLit)
         {
@@ -59,7 +59,7 @@ public class CreatureChargeSpot : ChargeSource
         }
     }
 
-    public new void Uncharge()
+    public override void Uncharge()
     {
         if (isLit)
         {
@@ -99,7 +99,7 @@ public class CreatureChargeSpot : ChargeSource
         if (other.CompareTag("Creature"))
         {
             creatureInPos = true;
-            if (!isLit)
+            if (isLit)
             {
                 beamObject.SetActive(false);
                 if (darkObject != null)
