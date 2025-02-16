@@ -33,7 +33,12 @@ public class WhistleSystem : MonoBehaviour
     public AudioClip[] soundEffects;
     public AudioSource whistleSound;
     private int currentIndex = 0;
-    public LayerMask layer;
+    private LayerMask layer;
+    [SerializeField] private PlayerInput playerInput;
+    private string controlScheme;
+    private float controllerMultiplier = 5;
+    private float controllerWhistle;
+    private float pcWhistle;
 
     private void Start()
     {
@@ -43,6 +48,9 @@ public class WhistleSystem : MonoBehaviour
         //Find the player and creature
         creature = FindFirstObjectByType<CreatureController>();
         player = FindFirstObjectByType<PlayerController>();
+        playerInput.onControlsChanged += (input) => controlScheme = playerInput.currentControlScheme;
+        controllerWhistle = whistleMoveSpeed * controllerMultiplier;
+        pcWhistle = whistleMoveSpeed;
     }
 
     private void Update()
@@ -74,9 +82,19 @@ public class WhistleSystem : MonoBehaviour
                 MeshRenderer color = threeDWhistleMarker.GetComponent<MeshRenderer>();
                 if (color !=null)
                 {
-                    color.material.color = works ? Color.gray : Color.red;
+                    color.material.EnableKeyword("_EMISSION");
+                    color.material.SetColor("_EmissionColor", works ? Color.gray : Color.red);
                 }
             }
+        }
+        controlScheme = playerInput.currentControlScheme;
+        if (controlScheme == "Gamepad")
+        {
+            whistleMoveSpeed = controllerWhistle;
+        }
+        else if (controlScheme == "Keyboard and Mouse")
+        {
+            whistleMoveSpeed = pcWhistle;
         }
     }
 
