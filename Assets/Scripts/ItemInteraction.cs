@@ -31,6 +31,8 @@ public class ItemInteraction : MonoBehaviour
     public Transform childObject;
     public TextMeshProUGUI popUp;
     public PauseMenuManager pause;
+    [SerializeField] private PlayerInput playerInput;
+    private string controlScheme;
 
     private void Start()
     {
@@ -48,6 +50,8 @@ public class ItemInteraction : MonoBehaviour
         // Enable the Input Action and subscribe to it
         pickUpAction.action.Enable();
         pickUpAction.action.performed += PickUp;
+        playerInput = GameObject.Find("PlayerInput").GetComponent<PlayerInput>();
+        playerInput.onControlsChanged += (input) => UpdateControlScheme();
     }
     //UI Script
     private void Update()
@@ -151,6 +155,7 @@ public class ItemInteraction : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
+            UpdateControlScheme();
             popUp.gameObject.SetActive(true);
         }
     }
@@ -159,6 +164,18 @@ public class ItemInteraction : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
             popUp.gameObject.SetActive(false);
+        }
+    }
+    private void UpdateControlScheme()
+    {
+        controlScheme = playerInput.currentControlScheme;
+        if (controlScheme == "Keyboard and Mouse")
+        {
+            popUp.text = "Press E to pick up the item";
+        }
+        else if (controlScheme == "Gamepad")
+        {
+            popUp.text = "Press X to pick up the item";
         }
     }
 }
