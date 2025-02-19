@@ -118,13 +118,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whistlingEnabled: 1
   whistleMarker: {fileID: 0}
+  threeDWhistleMarker: {fileID: 0}
   whistleMoveSpeed: 400
   refCamera: {fileID: 0}
   travelRange: 100
   listenRange: 100
   interactableSnapRange: 10
-  soundEffects: []
+  soundEffects:
+  - {fileID: 8300000, guid: db7b51325d344cc48898bf27414fddda, type: 3}
+  - {fileID: 8300000, guid: 9cfb439bf7c35744284be6473acf1fef, type: 3}
+  - {fileID: 8300000, guid: 81ddcb961bb18c24d82011b4c7f4d448, type: 3}
   whistleSound: {fileID: 915262828456225669}
+  playerInput: {fileID: 0}
 --- !u!95 &7402301484050105799
 Animator:
   serializedVersion: 5
@@ -252,7 +257,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3433404952824202344, guid: aeb31209f44338146ac007d4242a6a0d, type: 2}
-  m_audioClip: {fileID: 8300000, guid: db7b51325d344cc48898bf27414fddda, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
