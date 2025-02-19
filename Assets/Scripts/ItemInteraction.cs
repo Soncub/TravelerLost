@@ -175,7 +175,7 @@ public class ItemInteraction : MonoBehaviour
         }
         else if (controlScheme == "Gamepad")
         {
-            popUp.text = "Press X to pick up the item";
+            popUp.text = "Press A to pick up the item";
         }
     }
 }

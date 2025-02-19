@@ -244,7 +244,7 @@ public class FruitBush : MonoBehaviour
         }
         else if (controlScheme == "Gamepad")
         {
-            popUp.text = "Press X to get a fruit";
+            popUp.text = "Press A to get a fruit";
         }
     }
 }
