@@ -1606,7 +1606,7 @@ Transform:
   m_GameObject: {fileID: 110115686}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -340.21, y: -10.39181, z: -94}
+  m_LocalPosition: {x: 0.2400122, y: -9.66, z: -123.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1615,7 +1615,7 @@ Transform:
   - {fileID: 773092001}
   - {fileID: 1151529794}
   - {fileID: 1142907096}
-  m_Father: {fileID: 351214770}
+  m_Father: {fileID: 742131469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &118819816
 GameObject:
@@ -4328,7 +4328,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1691676045}
-  - {fileID: 110115690}
   - {fileID: 889231211}
   - {fileID: 1579576090}
   - {fileID: 1459665137}
@@ -7252,6 +7251,7 @@ Transform:
   - {fileID: 1005780792}
   - {fileID: 47973528}
   - {fileID: 670021776}
+  - {fileID: 110115690}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &753501563
@@ -7367,6 +7367,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 110115690}
     m_Modifications:
+    - target: {fileID: 3869570542246817792, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8907757473011522176, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
     - target: {fileID: 4267698527423380923, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
       propertyPath: m_Name
       value: slot1 (2)
@@ -10055,7 +10059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492064292924943094, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 330.5
+      value: 314
       objectReference: {fileID: 0}
     - target: {fileID: 492064292924943094, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10063,7 +10067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492064292924943094, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -192.7
+      value: -201.5
       objectReference: {fileID: 0}
     - target: {fileID: 492064292924943094, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10105,6 +10109,10 @@ PrefabInstance:
       propertyPath: darkObject
       value: 
       objectReference: {fileID: 1883989293}
+    - target: {fileID: 2332991513350872129, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
+      propertyPath: nextSource
+      value: 
+      objectReference: {fileID: 1142907097}
     - target: {fileID: 2332991513350872129, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
       propertyPath: crystalMesh
       value: 
@@ -10640,6 +10648,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 110115690}
     m_Modifications:
+    - target: {fileID: 3869570542246817792, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8907757473011522176, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
     - target: {fileID: 4267698527423380923, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
       propertyPath: m_Name
       value: slot1 (4)
@@ -10706,6 +10718,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5247847940373307532, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
   m_PrefabInstance: {fileID: 1142907095}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1142907097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5643125732165636796, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
+  m_PrefabInstance: {fileID: 1142907095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a93ae719b175a489e30ee087511379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1151280480
 GameObject:
   m_ObjectHideFlags: 0
@@ -10750,6 +10773,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 110115690}
     m_Modifications:
+    - target: {fileID: 3869570542246817792, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8907757473011522176, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
     - target: {fileID: 4267698527423380923, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
       propertyPath: m_Name
       value: slot1 (3)
@@ -13196,17 +13223,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 492064292924943094, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
   m_PrefabInstance: {fileID: 1384926418}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1384926420 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2332991513350872129, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
-  m_PrefabInstance: {fileID: 1384926418}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8d318e4e64e8fc408b3150d53dcd194, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &1384926422 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2836766562474344559, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
@@ -15929,6 +15945,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 110115690}
     m_Modifications:
+    - target: {fileID: 3869570542246817792, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8907757473011522176, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
     - target: {fileID: 4267698527423380923, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
       propertyPath: m_Name
       value: slot1 (1)
@@ -16447,10 +16467,6 @@ PrefabInstance:
       propertyPath: darkObject
       value: 
       objectReference: {fileID: 1397450908}
-    - target: {fileID: 2332991513350872129, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
-      propertyPath: nextSource
-      value: 
-      objectReference: {fileID: 1384926420}
     - target: {fileID: 2332991513350872129, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
       propertyPath: crystalMesh
       value: 
@@ -19827,6 +19843,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 110115690}
     m_Modifications:
+    - target: {fileID: 3869570542246817792, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8907757473011522176, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
     - target: {fileID: 4267698527423380923, guid: 9b34908e05e121a4eabb030b75a814eb, type: 3}
       propertyPath: m_Name
       value: slot1
