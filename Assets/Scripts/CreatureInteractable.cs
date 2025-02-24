@@ -14,4 +14,9 @@ public class CreatureInteractable : MonoBehaviour
     {
         Destroy(gameObject, delay);
     }
+
+    public virtual void Interact()
+    {
+        onInteract.Invoke();
+    }
 }
