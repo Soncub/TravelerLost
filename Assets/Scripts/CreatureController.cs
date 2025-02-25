@@ -11,6 +11,9 @@ public class CreatureController : MonoBehaviour
     private Transform movingTarget;
     private CreatureInteractable interactable;
 
+    [Tooltip("Flee position distance")]
+    [SerializeField] private float fleeRange = 3;
+
     [Tooltip("How long it takes for the creature to lose focus on an object/whistle")]
     [SerializeField] private float targetFocusTime = 5;
     private float focusTimeLeft = 0;
@@ -35,16 +38,23 @@ public class CreatureController : MonoBehaviour
             {
                 if (interactable != null && Vector3.Distance(transform.position, movingTarget.position) <= interactable.interactionDistance)
                 {
-                    interactable.onInteract.Invoke();
+                    interactable.Interact();
                     interactable = null;
                     LoseFocus();
+
                 }
                 else
                     agent.SetDestination(movingTarget.position);
             }
         }
-    }
 
+        //If currently afraid, calm down if close enough to the flee position
+        if (afraid && agent.remainingDistance <= fleeRange)
+        {
+            LoseFocus();
+        }
+    }
+ 
     public void NewTargetDestination(Vector3 position)
     {
         //When the creature is afraid, it cannot get a new destination

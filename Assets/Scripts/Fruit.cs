@@ -20,10 +20,16 @@ public class Fruit : MonoBehaviour
     private bool isOffering = false;                    // Is the fruit currently being offered
     private ItemInteraction itemInteraction;            // Reference to ItemInteraction for pickup status
 
+    public CharacterController characterController;
+    public PlayerController playerMovement;
+    public float dissapearTimer;
+    private float time;
+
     private void Start()
     {
         creature = FindObjectOfType<CreatureController>();
         player = GameObject.Find("Player").transform;
+        characterController = player.GetComponent<CharacterController>();
 
         offerAction.action.Enable();
         offerAction.action.performed += OfferFruit;
@@ -32,6 +38,19 @@ public class Fruit : MonoBehaviour
 
         if (messageUI != null)
             messageUI.gameObject.SetActive(false);
+
+        playerMovement = player.GetComponent<PlayerController>();
+    }
+    public void Update()
+    {
+        if (time > 0)
+        {
+            time -= Time.deltaTime;
+            if (time < 0)
+            {
+                playerMovement.EnablePlayerController();
+            }
+        }
     }
 
     private void OnDestroy()
@@ -42,7 +61,7 @@ public class Fruit : MonoBehaviour
 
     private void OfferFruit(InputAction.CallbackContext context)
     {
-        if (context.performed && !isOffering && itemInteraction != null && itemInteraction.itemIsPicked)
+        if (context.performed && !isOffering && itemInteraction != null && itemInteraction.itemIsPicked && IsGrounded())
         {
             float distanceToCreature = Vector3.Distance(player.position, creature.transform.position);
 
@@ -58,9 +77,11 @@ public class Fruit : MonoBehaviour
         isOffering = true;
 
         // Disable player movement
-        PlayerController playerMovement = player.GetComponent<PlayerController>();
         if (playerMovement != null)
+        {
             playerMovement.DisablePlayerController();
+            time = dissapearTimer;
+        }
 
         // Show offering animation or state (optional)
         ShowMessage("Offering the fruit...");
@@ -82,7 +103,10 @@ public class Fruit : MonoBehaviour
 
         // Re-enable player movement
         if (playerMovement != null)
+        {
             playerMovement.EnablePlayerController();
+            time = 0;
+        }
 
         isOffering = false;
     }
@@ -115,4 +139,5 @@ public class Fruit : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, offerDistance);
         }
     }
+    private bool IsGrounded() => characterController.isGrounded;
 }

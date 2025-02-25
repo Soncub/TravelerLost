@@ -170,4 +170,41 @@ public class CrystalStatue : ChargeSource
         if (interacting)
             input = context.ReadValue<Vector2>().x;
     }
+
+    public override void Charge()
+    {
+        if (!isLit)
+        {
+            isLit = true;
+            beamObject.SetActive(true);
+            if(darkObject != null)
+                darkObject.SetActive(false);
+            Debug.Log($"{name} is now lit up.");
+        }
+    }
+
+    public override void Uncharge()
+    {
+        if (isLit)
+        {
+            isLit = false;
+            beamObject.SetActive(false);
+            if (darkObject != null)
+                darkObject.SetActive(true);
+            Debug.Log($"{name} is now unlit.");
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        if (isLit)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * pillarRaycastDistance);
+    }
 }
