@@ -59,6 +59,8 @@ public class WhistlingStatue : MonoBehaviour
     [SerializeField] private AudioClip goodWhistle;
     [Tooltip("Bad Noise")]
     [SerializeField] private AudioClip badWhistle;
+    [SerializeField] private PlayerInput playerInput;
+    private string controlScheme;
 
     public void Awake()
     {
@@ -112,6 +114,7 @@ public class WhistlingStatue : MonoBehaviour
             whistleParticles.SetActive(false);
             badParticles.SetActive(false);
         }
+        playerInput.onControlsChanged += (input) => UpdateControlScheme();
     }
 
     private void Update()
@@ -233,6 +236,7 @@ public class WhistlingStatue : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
+            UpdateControlScheme();
             popUp.gameObject.SetActive(true);
         }
     }
@@ -280,5 +284,17 @@ public class WhistlingStatue : MonoBehaviour
                 happyWhistle.time = musicSource.time - 114.870f;
             }
          }
+    }
+    private void UpdateControlScheme()
+    {
+        controlScheme = playerInput.currentControlScheme;
+        if (controlScheme == "Keyboard and Mouse")
+        {
+            popUp.text = "Press Q to interact with the statue.";
+        }
+        else if (controlScheme == "Gamepad")
+        {
+            popUp.text = "Press X to interact with the statue";
+        }
     }
 }

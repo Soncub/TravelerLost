@@ -83,12 +83,19 @@ public class ChargeCrystal : ChargeSource
         }
     }
 
-    public new void Charge()
+    public override void Charge()
     {
         if (!isLit)
         {
             timer = dieTime;
             isLit = true;
+            LineRenderer line = beamObject.GetComponent<LineRenderer>();
+            if (line != null)
+            {
+                color.a = 1f;
+                line.startColor = color;
+                line.endColor = color;
+            }
             beamObject.SetActive(true);
             if (darkObject != null)
                 darkObject.SetActive(false);
@@ -100,12 +107,13 @@ public class ChargeCrystal : ChargeSource
         }
     }
 
-    public new void Uncharge()
+    public override void Uncharge()
     {
         if (isLit)
         {
             isLit = false;
             Debug.Log($"{name} is dying.");
+            timer = dieTime;
         }
     }
 }
