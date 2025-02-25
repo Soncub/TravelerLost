@@ -9,7 +9,12 @@ public class PopUpUI : MonoBehaviour
 {
     public TextMeshProUGUI popUp;
     public PauseMenuManager pause;
-    // Start is called before the first frame update
+    public string text;
+    public bool dissapear;
+    public bool forCreature;
+    public float dissapearTimer;
+    private float time;
+        // Start is called before the first frame update
     public void Start()
     {
         popUp.gameObject.SetActive(false);
@@ -18,27 +23,69 @@ public class PopUpUI : MonoBehaviour
 
     public void Update()
     {
-
+        if (time > 0)
+        {
+            time -= Time.deltaTime;
+            if (time < 0)
+            {
+                popUp.text = null;
+                this.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (pause.isPaused == false)
-        { 
-            if (other.transform.tag == "Player")
+        {
+            if (forCreature == false)
             {
-                popUp.gameObject.SetActive(true);
+                if (other.transform.tag == "Player")
+                {
+                    popUp.gameObject.SetActive(true);
+                    popUp.text = text;
+                    if (dissapear == true)
+                    {
+                        time = dissapearTimer;
+                    }
+                }
+            }
+            else if (forCreature == true)
+            {
+                if (other.CompareTag("Creature"))
+                {
+                    popUp.gameObject.SetActive(true);
+                    popUp.text = text;
+                    if (dissapear == true)
+                    {
+                        time = dissapearTimer;
+                    }
+                }
             }
         }
     }
     public void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "Player")
+        if (forCreature == false)
         {
-            popUp.gameObject.SetActive(false);
+            if (other.transform.tag == "Player" && dissapear == false)
+            {
+                popUp.gameObject.SetActive(false);
+                popUp.text = null;
+                time = 0;
+            }
+        }
+        else if  (forCreature == true)
+        {
+            if (other.CompareTag("Creature") && dissapear == false)
+            {
+                popUp.gameObject.SetActive(false);
+                popUp.text = null;
+                time = 0;
+            }
         }
     }
-    /*
+
     public void PopUpOn(string notification)
     {
         popUp.gameObject.SetActive(true);
@@ -50,5 +97,4 @@ public class PopUpUI : MonoBehaviour
         popUp.gameObject.SetActive(false);
         popUp.text = null;
     }
-    */
 }

@@ -67,14 +67,16 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (IsGrounded())
+        if (this.enabled == true)
         {
-            playerSounds.Play();
+            if (IsGrounded())
+            {
+                playerSounds.Play();
+            }
+            if (!context.started) return;
+            if (!IsGrounded()) return;
+            velocity += jumpPower;
         }
-        if (!context.started) return;
-        if (!IsGrounded()) return;
-        velocity += jumpPower;
-
     }
 
     private bool IsGrounded() => characterController.isGrounded;
