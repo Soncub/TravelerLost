@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
@@ -10,6 +12,7 @@ public class WhistleSystem : MonoBehaviour
     [SerializeField] private bool whistlingEnabled = true;
     [Tooltip("UI object to move around for pointing where the whistle should fire")]
     [SerializeField] private GameObject whistleMarker;
+    [SerializeField] private GameObject threeDWhistleMarker;
     [Tooltip("How fast the whistle point should move")]
     [SerializeField] private float whistleMoveSpeed = 1;
     [Tooltip("Camera used as a reference for whistling (should be the same one used when whistling)")]
@@ -30,21 +33,69 @@ public class WhistleSystem : MonoBehaviour
     public AudioClip[] soundEffects;
     public AudioSource whistleSound;
     private int currentIndex = 0;
+    private LayerMask layer;
+    [SerializeField] private PlayerInput playerInput;
+    private string controlScheme;
+    private float controllerMultiplier = 5;
+    private float controllerWhistle;
+    private float pcWhistle;
 
     private void Start()
     {
+        layer = LayerMask.GetMask("Terrain");
         //Set the default position to be where the point starts
         markerAnchorPoint = whistleMarker.transform.position;
         //Find the player and creature
         creature = FindFirstObjectByType<CreatureController>();
         player = FindFirstObjectByType<PlayerController>();
+        playerInput.onControlsChanged += (input) => controlScheme = playerInput.currentControlScheme;
+        controllerWhistle = whistleMoveSpeed * controllerMultiplier;
+        pcWhistle = whistleMoveSpeed;
     }
 
     private void Update()
     {
         //When whistling, move the pointer based on input
         if (whistling && whistlingEnabled)
+        {
             whistleMarker.transform.position += Time.deltaTime * whistleMoveSpeed * (Vector3)input;
+            if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit, Mathf.Infinity,layer))
+            {
+                threeDWhistleMarker.SetActive(true);
+                NavMeshHit navHit;
+                if (NavMesh.SamplePosition(hit.point, out navHit, travelRange, NavMesh.AllAreas))
+                {
+                    //threeDWhistleMarker.transform.position = hit.point;
+                }
+                threeDWhistleMarker.transform.position = navHit.position;
+
+                bool works = true;
+
+                if (Vector3.Distance(player.transform.position, creature.transform.position) >= listenRange)
+                {
+                    works = false;
+                }
+                if (Vector3.Distance(hit.point, creature.transform.position) >= travelRange)
+                {
+                    works = false;
+                }
+                MeshRenderer color = threeDWhistleMarker.GetComponent<MeshRenderer>();
+                if (color !=null)
+                {
+                    color.material.EnableKeyword("_EMISSION");
+                    color.material.SetColor("_EmissionColor", works ? Color.gray : Color.red);
+                }
+            }
+        }
+        controlScheme = playerInput.currentControlScheme;
+        if (controlScheme == "Gamepad")
+        {
+            whistleMoveSpeed = controllerWhistle;
+        }
+        else if (controlScheme == "Keyboard and Mouse")
+        {
+            whistleMoveSpeed = pcWhistle;
+        }
     }
 
     public void Whistle(InputAction.CallbackContext context)
@@ -54,7 +105,8 @@ public class WhistleSystem : MonoBehaviour
         {
             whistling = true;
             whistleMarker.transform.position = markerAnchorPoint;
-            whistleMarker.SetActive(true);
+            //whistleMarker.SetActive(true);
+
         }
         //When unpressed, stop whistling and find the point to move the creature to
         if (whistling && context.canceled)
@@ -62,8 +114,9 @@ public class WhistleSystem : MonoBehaviour
             PlayNextSound();
             whistling = false;
             whistleMarker.SetActive(false);
+            threeDWhistleMarker.SetActive(false);
             //Do a raycast from the marker position, then attract the creature if it's in listen+travel range
-            if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit) &&
+            if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit, Mathf.Infinity, layer) &&
                 Vector3.Distance(player.transform.position, creature.transform.position) < listenRange &&
                 Vector3.Distance(hit.point, creature.transform.position) < travelRange)
             {
@@ -80,7 +133,16 @@ public class WhistleSystem : MonoBehaviour
                     }
                 }
                 if(!flag)
-                    creature.NewTargetDestination(hit.point);
+                {
+                    NavMeshHit navHit;
+                    Vector3 destination = hit.point;
+                    if (NavMesh.SamplePosition(hit.point, out navHit, travelRange, layer))
+                    {
+                        destination = navHit.position;
+                    }
+                    creature.NewTargetDestination(destination);
+                    threeDWhistleMarker.transform.position = destination;
+                }
             }
         }
     }
