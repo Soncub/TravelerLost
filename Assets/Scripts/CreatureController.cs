@@ -38,21 +38,21 @@ public class CreatureController : MonoBehaviour
             {
                 if (interactable != null && Vector3.Distance(transform.position, movingTarget.position) <= interactable.interactionDistance)
                 {
-                    interactable.onInteract.Invoke();
+                    interactable.Interact();
                     interactable = null;
                     LoseFocus();
-                  
+
                 }
                 else
                     agent.SetDestination(movingTarget.position);
             }
         }
 
-                    //If currently afraid, calm down if close enough to the flee position
-                    if (afraid && agent.remainingDistance <= fleeRange)
-                    {
-                        LoseFocus();
-                    }
+        //If currently afraid, calm down if close enough to the flee position
+        if (afraid && agent.remainingDistance <= fleeRange)
+        {
+            LoseFocus();
+        }
     }
  
     public void NewTargetDestination(Vector3 position)

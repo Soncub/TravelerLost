@@ -194,4 +194,17 @@ public class CrystalStatue : ChargeSource
             Debug.Log($"{name} is now unlit.");
         }
     }
+    private void OnDrawGizmos()
+    {
+        if (isLit)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * pillarRaycastDistance);
+    }
 }
