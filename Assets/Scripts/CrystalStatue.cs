@@ -52,13 +52,13 @@ public class CrystalStatue : ChargeSource
         // Pillar Logic Setup
         if (itemDivot == null)
         {
-            Debug.LogError("ItemDivot reference is not set in CrystalStatue.");
+            Debug.Log("Item Divot reference is not set in CrystalStatue.");
             return;
         }
 
         if (beamObject == null)
         {
-            Debug.LogError("PillarObject reference is not set in CrystalStatue.");
+            Debug.Log("Beam Object reference is not set in CrystalStatue.");
             return;
         }
 
@@ -124,8 +124,8 @@ public class CrystalStatue : ChargeSource
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, pillarRaycastDistance, pillarLayerMask))
         {
-            CrystalStatue otherPillar = hit.collider.GetComponent<CrystalStatue>();
-            if (otherPillar != null && otherPillar.itemDivot.ItemIsPlaced)
+            ChargeSource otherPillar = hit.collider.GetComponent<ChargeSource>();
+            if (otherPillar != null)
             {
                 if (!hitPillars.Contains(otherPillar))
                 {
@@ -176,10 +176,7 @@ public class CrystalStatue : ChargeSource
         if (!isLit)
         {
             isLit = true;
-            beamObject.SetActive(true);
-            if(darkObject != null)
-                darkObject.SetActive(false);
-            Debug.Log($"{name} is now lit up.");
+            UpdateBeam();
         }
     }
 
@@ -188,12 +185,33 @@ public class CrystalStatue : ChargeSource
         if (isLit)
         {
             isLit = false;
-            beamObject.SetActive(false);
-            if (darkObject != null)
-                darkObject.SetActive(true);
-            Debug.Log($"{name} is now unlit.");
+            UpdateBeam();
         }
     }
+
+    public void UpdateBeam()
+    {
+        if ((isLit || isFirst) && itemDivot.ItemIsPlaced)
+        {
+            if (!beamObject.activeSelf)
+            {
+                beamObject.SetActive(true);
+                if (darkObject != null)
+                    darkObject.SetActive(false);
+                Debug.Log($"{name} is now lit up.");
+            }
+        } else
+        {
+            if (beamObject.activeSelf)
+            {
+                beamObject.SetActive(false);
+                if (darkObject != null)
+                    darkObject.SetActive(true);
+                Debug.Log($"{name} is now unlit.");
+            }
+        }
+    }
+
     private void OnDrawGizmos()
     {
         if (isLit)

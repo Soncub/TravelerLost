@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 8215002611119167863}
   - component: {fileID: 6733114946999443966}
   m_Layer: 0
-  m_Name: slot1
+  m_Name: ChargeStatue
   m_TagString: Divot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,10 +233,34 @@ MonoBehaviour:
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5643125732165636796}
+        m_TargetAssemblyTypeName: CrystalStatue, Assembly-CSharp
+        m_MethodName: UpdateBeam
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ReleaseItemEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5643125732165636796}
+        m_TargetAssemblyTypeName: CrystalStatue, Assembly-CSharp
+        m_MethodName: UpdateBeam
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   divotNoise: {fileID: 8215002611119167863}
 --- !u!114 &5643125732165636796
 MonoBehaviour:
