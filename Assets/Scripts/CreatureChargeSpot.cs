@@ -24,21 +24,9 @@ public class CreatureChargeSpot : ChargeSource
     private void Start()
     {
         if (startOn)
-        {
             isLit = true;
-            beamObject.SetActive(true);
-            if (darkObject != null)
-                darkObject.SetActive(false);
-            if(nextSource != null)
-                nextSource.Charge();
-        }
         else
-        {
             isLit = false;
-            beamObject.SetActive(false);
-            if (darkObject != null)
-                darkObject.SetActive(true);
-        }
     }
 
     public override void Charge()
