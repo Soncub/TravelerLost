@@ -17,7 +17,6 @@ public class PopUpUI : MonoBehaviour
         // Start is called before the first frame update
     public void Start()
     {
-        popUp.gameObject.SetActive(false);
         pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
     }
 
@@ -84,6 +83,11 @@ public class PopUpUI : MonoBehaviour
                 time = 0;
             }
         }
+    }
+
+    public void EnableTrigger()
+    {
+        this.gameObject.SetActive(true);
     }
 
     public void PopUpOn(string notification)
