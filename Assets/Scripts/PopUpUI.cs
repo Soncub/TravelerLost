@@ -14,6 +14,7 @@ public class PopUpUI : MonoBehaviour
     public bool forCreature;
     public float dissapearTimer;
     private float time;
+    public GameObject box;
         // Start is called before the first frame update
     public void Start()
     {
@@ -29,6 +30,7 @@ public class PopUpUI : MonoBehaviour
             {
                 popUp.text = null;
                 this.gameObject.SetActive(false);
+                box.SetActive(false);
             }
         }
     }
@@ -42,6 +44,7 @@ public class PopUpUI : MonoBehaviour
                 if (other.transform.tag == "Player")
                 {
                     popUp.gameObject.SetActive(true);
+                    box.SetActive(true);
                     popUp.text = text;
                     if (dissapear == true)
                     {
@@ -54,6 +57,7 @@ public class PopUpUI : MonoBehaviour
                 if (other.CompareTag("Creature"))
                 {
                     popUp.gameObject.SetActive(true);
+                    box.SetActive(true);
                     popUp.text = text;
                     if (dissapear == true)
                     {
@@ -70,6 +74,7 @@ public class PopUpUI : MonoBehaviour
             if (other.transform.tag == "Player" && dissapear == false)
             {
                 popUp.gameObject.SetActive(false);
+                box.SetActive(false);
                 popUp.text = null;
                 time = 0;
             }
@@ -79,6 +84,7 @@ public class PopUpUI : MonoBehaviour
             if (other.CompareTag("Creature") && dissapear == false)
             {
                 popUp.gameObject.SetActive(false);
+                box.SetActive(false);
                 popUp.text = null;
                 time = 0;
             }

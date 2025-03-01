@@ -25,6 +25,7 @@ public class CreatureDoor : MonoBehaviour
     private bool stopLever;
     public AudioSource sound;
     public AudioClip clip;
+    public GameObject trigger;
 
     void Start()
     {
@@ -77,6 +78,7 @@ public class CreatureDoor : MonoBehaviour
             stopLever = true;
             sound.Play();
             sound.loop = true;
+            trigger.SetActive(true);
         }
     }
     private void OnTriggerEnter(Collider other)
