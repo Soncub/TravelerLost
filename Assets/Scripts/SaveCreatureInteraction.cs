@@ -24,10 +24,10 @@ public class SaveCreatureInteraction : CreatureInteractable
     {
         if (waiting)
         {
-            if (Vector3.Distance(transform.position, creature.transform.position) <= interactionDistance)
+            if (Vector3.Distance(transform.position, creature.transform.position) > interactionDistance)
                 return;
             foreach (var creature in neededOtherCreatures) {
-                if (Vector3.Distance(transform.position, creature.transform.position) <= interactionDistance)
+                if (Vector3.Distance(transform.position, creature.transform.position) > interactionDistance)
                     return;
             }
             foreach (var creature in neededOtherCreatures)
