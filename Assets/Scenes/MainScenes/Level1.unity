@@ -12301,7 +12301,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.016666668
+  m_VoxelSize: 0.65000004
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: bdd4385047fc4ae41a3917f2c1acde53, type: 2}
   m_BuildHeightMesh: 0
@@ -16540,6 +16540,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.12822172, y: 0.11205529, z: 0.122367986}
   m_Center: {x: -0.00036063793, y: -0.0021625177, z: 0.061441813}
+--- !u!4 &1657571610 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+  m_PrefabInstance: {fileID: 1920548389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1662050783
 GameObject:
   m_ObjectHideFlags: 0
@@ -19877,6 +19882,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910024723}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1920548389
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1939908193873097134}
+    m_Modifications:
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.145
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.6889992
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197955897498573310, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811595779285047258, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
+      propertyPath: m_Name
+      value: DustTrail
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44f5c79658bea6d4ba5ea144a3582418, type: 3}
 --- !u!1 &1925399729
 GameObject:
   m_ObjectHideFlags: 0
@@ -21065,7 +21127,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.036666665
+  m_VoxelSize: 0.65000004
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: a1657a844ea96d94e88011d7fdb987a5, type: 2}
   m_BuildHeightMesh: 0
@@ -22435,7 +22497,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7809708578373855689, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1657571610}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1918428708783262245, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
       insertIndex: -1
