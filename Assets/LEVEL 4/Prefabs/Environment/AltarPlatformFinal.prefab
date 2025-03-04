@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 187.4
+      value: 77.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.185814
+      value: 374.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -99.597145
+      value: -5.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
       propertyPath: m_LocalRotation.w
@@ -68,9 +68,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 71e80210937dd34459c3c1da73a83e26, type: 2}
+    - target: {fileID: -1437913795655372009, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
       propertyPath: m_Name
       value: AltarPlatformFinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79,6 +87,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8249514517736528268}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4280658381489644412}
     - targetCorrespondingSourceObject: {fileID: -1437913795655372009, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5984319478487087380}
@@ -107,9 +118,40 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6651996940435722187, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
+--- !u!114 &4280658381489644412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062891755248404070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 640
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.65000004
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 05eeb7a21a87efc4ba4a6c9ceb19c1c2, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &6388534548458571808 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1437913795655372009, guid: 672f65e9473d4f940802cf89bfa3e318, type: 3}
