@@ -6330,7 +6330,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8353,7 +8353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropLocation: {fileID: 469413337}
-  canBePlaced: 0
+  canBePlaced: 1
   isKey: 1
   creatureCrystalRenderer: {fileID: 1650765841}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
@@ -10112,7 +10112,7 @@ MonoBehaviour:
   ReleaseItemEvent:
     m_PersistentCalls:
       m_Calls: []
-  divotNoise: {fileID: 0}
+  divotNoise: {fileID: 1323943989}
 --- !u!82 &1323943989
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10828,7 +10828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropLocation: {fileID: 1659078034}
-  canBePlaced: 0
+  canBePlaced: 1
   isKey: 0
   creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 0}
@@ -10838,7 +10838,7 @@ MonoBehaviour:
   ReleaseItemEvent:
     m_PersistentCalls:
       m_Calls: []
-  divotNoise: {fileID: 0}
+  divotNoise: {fileID: 1323943989}
 --- !u!82 &1411827861
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11512,6 +11512,14 @@ PrefabInstance:
     - target: {fileID: 2784599007472857744, guid: 78ece1cad8d28014db4369bbb93de011, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2784599007472857744, guid: 78ece1cad8d28014db4369bbb93de011, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2784599007472857744, guid: 78ece1cad8d28014db4369bbb93de011, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2784599007472857744, guid: 78ece1cad8d28014db4369bbb93de011, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_FloatArgument
@@ -12758,7 +12766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropLocation: {fileID: 1840040810}
-  canBePlaced: 0
+  canBePlaced: 1
   isKey: 1
   creatureCrystalRenderer: {fileID: 92187182}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
