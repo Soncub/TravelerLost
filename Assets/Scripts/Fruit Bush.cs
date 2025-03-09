@@ -16,8 +16,8 @@ public class FruitBush : MonoBehaviour
 
     [SerializeField] private InputAction pickUpAction;
 
-    [Tooltip("The prefab of the item to spawn")]
-    [SerializeField] private GameObject itemPrefab;
+    [Tooltip("List of possible item prefabs to spawn")]
+    [SerializeField] private GameObject[] itemPrefabs;
 
     [Tooltip("Cooldown time in seconds before another item can be spawned")]
     [SerializeField] private float spawnCooldown = 2.0f;
@@ -30,7 +30,8 @@ public class FruitBush : MonoBehaviour
     private bool canSpawn = true;
     private float cooldownTimer;
     private GameObject currentSpawnedItem;
-    //UI Variable
+
+    // UI Variables
     public GameObject canvas;
     public Transform childObject;
     public TextMeshProUGUI popUp;
@@ -40,14 +41,12 @@ public class FruitBush : MonoBehaviour
 
     private void Start()
     {
-        //UI Assign
         canvas = GameObject.Find("MessageCanvas");
         childObject = canvas.transform.Find("BushMessage");
         popUp = childObject.GetComponent<TextMeshProUGUI>();
-        //UI Script
         popUp.gameObject.SetActive(false);
         pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
-        // Ensure the SpawnPoint exists
+
         spawnPoint = transform.Find("SpawnPoint");
         if (spawnPoint == null)
         {
@@ -55,7 +54,6 @@ public class FruitBush : MonoBehaviour
             return;
         }
 
-        // Ensure the Player exists
         GameObject playerObject = GameObject.Find("Player");
         if (playerObject != null)
         {
@@ -67,7 +65,6 @@ public class FruitBush : MonoBehaviour
             return;
         }
 
-        // Ensure ItemInteraction is found
         itemInteraction = FindFirstObjectByType<ItemInteraction>();
         if (itemInteraction == null)
         {
@@ -75,14 +72,12 @@ public class FruitBush : MonoBehaviour
             return;
         }
 
-        // Ensure itemPrefab is assigned
-        if (itemPrefab == null)
+        if (itemPrefabs == null || itemPrefabs.Length == 0)
         {
-            Debug.LogError("Item prefab is not assigned.", this);
+            Debug.LogError("Item prefabs list is empty.", this);
             return;
         }
 
-        // Enable the Input Action and subscribe to it
         pickUpAction.Enable();
         pickUpAction.performed += SpawnItem;
         playerInput.onControlsChanged += (input) => UpdateControlScheme();
@@ -90,21 +85,6 @@ public class FruitBush : MonoBehaviour
 
     private void Update()
     {
-        //UI Variable
-        /*float range = Vector3.Distance(player.transform.position, transform.position);
-        if (range <= pickUpDistance)
-        {
-            PopUpOn("Press E to Get a Fruit");
-            if (pause.isPaused == true)
-            {
-                PopUpOff();
-            }
-        }
-        else
-        {
-            PopUpOff();
-        }*/
-        // Handle cooldown timer
         if (!canSpawn)
         {
             cooldownTimer -= Time.deltaTime;
@@ -114,13 +94,12 @@ public class FruitBush : MonoBehaviour
             }
         }
 
-        // Check if the current spawned item is still within pickup distance
         if (currentSpawnedItem != null)
         {
             float distanceToItem = Vector3.Distance(currentSpawnedItem.transform.position, transform.position);
             if (distanceToItem > pickUpDistance)
             {
-                currentSpawnedItem = null; // Allow new item to be spawned if it's moved away
+                currentSpawnedItem = null;
             }
         }
     }
@@ -129,7 +108,6 @@ public class FruitBush : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
-        // Prevent spawning if there is still an item within the pickup distance
         if (currentSpawnedItem != null)
         {
             Debug.Log("Cannot spawn new item until the previous one is moved out of range.");
@@ -138,33 +116,21 @@ public class FruitBush : MonoBehaviour
 
         if (context.performed && !itemInteraction.itemIsPicked && distanceToPlayer <= pickUpDistance && canSpawn)
         {
-            if (itemPrefab != null)
+            GameObject selectedPrefab = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
+            GameObject newSpawnedItem = Instantiate(selectedPrefab, spawnPoint.position, spawnPoint.rotation);
+            Rigidbody rb = newSpawnedItem.GetComponent<Rigidbody>();
+
+            if (rb != null)
             {
-                // Create a new item each time SpawnItem is called
-                GameObject newSpawnedItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
-                Rigidbody rb = newSpawnedItem.GetComponent<Rigidbody>();
-
-                if (rb != null)
-                {
-                    rb.isKinematic = true; // Disable physics during growth
-                }
-
-                StartCoroutine(GrowItem(newSpawnedItem));
-                Debug.Log("Item spawned at spawn point.");
-
-                // Track the currently spawned item
-                currentSpawnedItem = newSpawnedItem;
-
-                // Start cooldown
-                canSpawn = false;
-                cooldownTimer = spawnCooldown;
+                rb.isKinematic = true;
             }
-            else
-            {
-                Debug.LogError("Item prefab is not assigned.", this);
-            }
+
+            StartCoroutine(GrowItem(newSpawnedItem));
+            currentSpawnedItem = newSpawnedItem;
+            canSpawn = false;
+            cooldownTimer = spawnCooldown;
         }
-        else if (context.performed && (itemInteraction.itemIsPicked || distanceToPlayer >= pickUpDistance || !canSpawn))
+        else
         {
             Debug.Log("Cannot spawn item.");
         }
@@ -183,10 +149,7 @@ public class FruitBush : MonoBehaviour
             yield return null;
         }
 
-        // Ensure the item reaches its final size
         item.transform.localScale = targetScale;
-
-        // Re-enable the Rigidbody to allow it to fall
         Rigidbody rb = item.GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -196,7 +159,6 @@ public class FruitBush : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Disable the Input Action and unsubscribe to prevent memory leaks
         pickUpAction.Disable();
         pickUpAction.performed -= SpawnItem;
     }
@@ -209,17 +171,19 @@ public class FruitBush : MonoBehaviour
             Gizmos.DrawWireSphere(this.transform.position, pickUpDistance);
         }
     }
-    //UI Script
+
     public void PopUpOn(string notification)
     {
         popUp.gameObject.SetActive(true);
         popUp.text = notification;
     }
+
     public void PopUpOff()
     {
         popUp.gameObject.SetActive(false);
-        popUp.text = null;
+        popUp.text = "";
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
@@ -228,6 +192,7 @@ public class FruitBush : MonoBehaviour
             popUp.gameObject.SetActive(true);
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
@@ -235,16 +200,10 @@ public class FruitBush : MonoBehaviour
             popUp.gameObject.SetActive(false);
         }
     }
+
     private void UpdateControlScheme()
     {
         controlScheme = playerInput.currentControlScheme;
-        if (controlScheme == "Keyboard and Mouse")
-        {
-            popUp.text = "Press E to get a fruit";
-        }
-        else if (controlScheme == "Gamepad")
-        {
-            popUp.text = "Press A to get a fruit";
-        }
+        popUp.text = controlScheme == "Keyboard and Mouse" ? "Press E to get a fruit" : "Press A to get a fruit";
     }
 }
