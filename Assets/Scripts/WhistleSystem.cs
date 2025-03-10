@@ -26,7 +26,7 @@ public class WhistleSystem : MonoBehaviour
 
     private Vector3 markerAnchorPoint;
     private Vector2 input;
-    private bool whistling;
+    public bool whistling;
 
     private CreatureController creature;
     private PlayerController player;
@@ -39,6 +39,8 @@ public class WhistleSystem : MonoBehaviour
     private float controllerMultiplier = 5;
     private float controllerWhistle;
     private float pcWhistle;
+    public Animator animator;
+    public int anilayer = 1;
 
     private void Start()
     {
@@ -51,6 +53,7 @@ public class WhistleSystem : MonoBehaviour
         playerInput.onControlsChanged += (input) => controlScheme = playerInput.currentControlScheme;
         controllerWhistle = whistleMoveSpeed * controllerMultiplier;
         pcWhistle = whistleMoveSpeed;
+        animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
     }
 
     private void Update()
@@ -105,6 +108,7 @@ public class WhistleSystem : MonoBehaviour
         {
             whistling = true;
             whistleMarker.transform.position = markerAnchorPoint;
+            animator.SetLayerWeight(anilayer, 0.7f);
             //whistleMarker.SetActive(true);
 
         }
@@ -115,6 +119,7 @@ public class WhistleSystem : MonoBehaviour
             whistling = false;
             whistleMarker.SetActive(false);
             threeDWhistleMarker.SetActive(false);
+            animator.SetLayerWeight(anilayer, 0f);
             //Do a raycast from the marker position, then attract the creature if it's in listen+travel range
             if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit, Mathf.Infinity, layer) &&
                 Vector3.Distance(player.transform.position, creature.transform.position) < listenRange &&
