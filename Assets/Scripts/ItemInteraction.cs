@@ -33,6 +33,11 @@ public class ItemInteraction : MonoBehaviour
     public PauseMenuManager pause;
     [SerializeField] private PlayerInput playerInput;
     private string controlScheme;
+    public Animator animator;
+    public int anilayer = 2;
+    public WhistleSystem whistleSystem;
+    bool pickUp;
+    bool place;
 
     private void Start()
     {
@@ -52,6 +57,8 @@ public class ItemInteraction : MonoBehaviour
         pickUpAction.action.performed += PickUp;
         playerInput = GameObject.Find("PlayerInput").GetComponent<PlayerInput>();
         playerInput.onControlsChanged += (input) => UpdateControlScheme();
+        animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
+        whistleSystem = GameObject.Find("Player").GetComponent <WhistleSystem>();
     }
     //UI Script
     private void Update()
@@ -88,7 +95,7 @@ public class ItemInteraction : MonoBehaviour
     {
         // Calculate distance dynamically
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
-        if (context.performed && distanceToPlayer <= pickUpDistance && !itemIsPicked && pickUpPoint.childCount < 1)
+        if (context.performed && distanceToPlayer <= pickUpDistance && !itemIsPicked && pickUpPoint.childCount < 1 && !whistleSystem.whistling)
         {
             rb.useGravity = false;
             rb.velocity = Vector3.zero; // Stop object movement when picked up
@@ -98,16 +105,20 @@ public class ItemInteraction : MonoBehaviour
 
             itemIsPicked = true;
             PickUpEvent.Invoke();
+            animator.SetTrigger("PickUp");
+            animator.SetLayerWeight(anilayer, 0.8f);
         }
         else if (itemIsPicked && context.performed)
         {
-            Vector3 placePosition = player.position + player.forward * placeOffset;
+            Vector3 placePosition = player.position + player.forward * placeOffset + player.up * -placeOffset;
             this.transform.position = placePosition;
             this.transform.parent = null;
             rb.useGravity = true;
             rb.detectCollisions |= true;
             itemIsPicked = false;
             DropEvent.Invoke();
+            animator.SetTrigger("Place");
+            animator.SetLayerWeight(anilayer, 0f);
         }
     }
 

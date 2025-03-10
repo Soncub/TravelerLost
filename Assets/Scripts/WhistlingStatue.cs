@@ -61,10 +61,14 @@ public class WhistlingStatue : MonoBehaviour
     [SerializeField] private AudioClip badWhistle;
     [SerializeField] private PlayerInput playerInput;
     private string controlScheme;
+    public Animator animator;
+    int isRotatingHash;
+    bool isRotating;
 
     public void Awake()
     {
         happyWhistle.time = musicSource.time;
+        isRotatingHash = Animator.StringToHash("IsRotating");
     }
 
     void Start()
@@ -115,6 +119,7 @@ public class WhistlingStatue : MonoBehaviour
             badParticles.SetActive(false);
         }
         playerInput.onControlsChanged += (input) => UpdateControlScheme();
+        animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
     }
 
     private void Update()
@@ -146,6 +151,7 @@ public class WhistlingStatue : MonoBehaviour
             PopUpOff();
         }*/
         updateTimer -= Time.deltaTime;
+        isRotating = animator.GetBool(isRotatingHash);
         if (updateTimer < 0)
         {
             //On a timer, either call or distract the creature if its in range based on rotation
@@ -200,11 +206,15 @@ public class WhistlingStatue : MonoBehaviour
                 swivel.Play();
                 interacting = true;
                 player.DisablePlayerController();
+                animator.SetBool(isRotatingHash, true);
+                animator.speed = 0;
             }
         }
         //When unpressed, stop interaction and re-enable player movement
         if (interacting && context.canceled)
         {
+            animator.speed = 1;
+            animator.SetBool(isRotatingHash, false);
             swivel.Stop();
             interacting = false;
             player.EnablePlayerController();
@@ -214,7 +224,22 @@ public class WhistlingStatue : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         if (interacting)
+        {
             input = context.ReadValue<Vector2>().x;
+            if (input == 0)
+            {
+                animator.speed = 0;
+            }
+            else if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                animator.speed = 1;
+            }
+            else if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                //animator.speed = -1;
+            }
+        }
+
     }
 
     static private bool CheckAngle(float check, float min, float max)
