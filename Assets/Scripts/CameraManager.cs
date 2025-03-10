@@ -57,7 +57,7 @@ public class CameraManager : MonoBehaviour
     {
         if (!whistling) 
         {
-            cameraRotation.Yaw += input.x * mouseSensitivity.horizontal * BoolToInt(mouseSensitivity.invertHorizontal) * Time.deltaTime;
+            cameraRotation.Yaw += input.x * mouseSensitivity.horizontal * BoolToInt(!mouseSensitivity.invertHorizontal) * Time.deltaTime;
             cameraRotation.Pitch += input.y * mouseSensitivity.vertical * BoolToInt(mouseSensitivity.invertVertical) * Time.deltaTime;
             cameraRotation.Pitch = Mathf.Clamp(cameraRotation.Pitch, cameraAngle.min, cameraAngle.max);
         }

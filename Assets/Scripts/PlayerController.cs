@@ -22,11 +22,25 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float jumpPower;
     public AudioSource playerSounds;
+    public Animator animator;
+    int isWalkingHash;
+    bool isWalking;
+    int isJumpingHash;
+    bool isJumping;
+    int isFallingHash;
+    bool isFalling;
+    int isLandingHash;
+    bool isLanding;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         mainCamera = Camera.main;
+        animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
+        isWalkingHash = Animator.StringToHash("IsWalking");
+        isJumpingHash = Animator.StringToHash("IsJumping");
+        isFallingHash = Animator.StringToHash("IsFalling");
+        isLandingHash = Animator.StringToHash("IsGrounded");
     }
 
     private void Update()
@@ -34,16 +48,24 @@ public class PlayerController : MonoBehaviour
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
+        isWalking = animator.GetBool(isWalkingHash);
+        isJumping = animator.GetBool(isJumpingHash);
+        isFalling = animator.GetBool(isFallingHash);
+        isLanding = animator.GetBool(isLandingHash);
     }
 
     private void ApplyGravity()
     {
         if (IsGrounded() && velocity < 0.0f)
         {
+            animator.SetBool(isJumpingHash, false);
+            animator.SetBool(isFallingHash, false);
+            animator.SetBool(isLandingHash, true);
             velocity = -1.0f;
         }
         else
         {
+            animator.SetBool(isFallingHash, true);
             velocity += gravity * gravityMultiplier * Time.deltaTime;
         }
         direction.y = velocity;
@@ -63,6 +85,11 @@ public class PlayerController : MonoBehaviour
     {
         input = context.ReadValue<Vector2>();
         direction = new Vector3(input.x, 0.0f, input.y);
+        animator.SetBool(isWalkingHash, true);
+        if (input.sqrMagnitude == 0)
+        {
+            animator.SetBool(isWalkingHash, false);
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -71,6 +98,8 @@ public class PlayerController : MonoBehaviour
         {
             if (IsGrounded())
             {
+                animator.SetBool(isJumpingHash, true);
+                animator.SetBool(isLandingHash, false);
                 playerSounds.Play();
             }
             if (!context.started) return;

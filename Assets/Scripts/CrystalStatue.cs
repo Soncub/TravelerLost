@@ -38,8 +38,14 @@ public class CrystalStatue : ChargeSource
     [Tooltip("Maximum distance for the player to interact with the crystal statue")]
     [SerializeField] private float maxInteractDistance;
 
+    public Animator animator;
+    int isRotatingHash;
+    bool isRotating;
+
     private void Start()
     {
+        isRotatingHash = Animator.StringToHash("IsRotating");
+        animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
         interactAction.action.Enable();
         interactAction.action.performed += Interact;
         interactAction.action.canceled += Interact;
@@ -89,6 +95,7 @@ public class CrystalStatue : ChargeSource
 
     private void Update()
     {
+        isRotating = animator.GetBool(isRotatingHash);
         // Pillar Logic Update
         if (isLit)
         {
@@ -155,11 +162,15 @@ public class CrystalStatue : ChargeSource
             {
                 interacting = true;
                 player.DisablePlayerController();
+                animator.SetBool(isRotatingHash, true);
+                animator.speed = 0;
             }
         }
 
         if (interacting && context.canceled)
         {
+            animator.speed = 1;
+            animator.SetBool(isRotatingHash, false);
             interacting = false;
             player.EnablePlayerController();
         }
@@ -168,7 +179,21 @@ public class CrystalStatue : ChargeSource
     private void Move(InputAction.CallbackContext context)
     {
         if (interacting)
+        {
             input = context.ReadValue<Vector2>().x;
+            if (input == 0)
+            {
+                animator.speed = 0;
+            }
+            else if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                animator.speed = 1;
+            }
+            else if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                //animator.speed = -1;
+            }
+        }
     }
 
     public override void Charge()

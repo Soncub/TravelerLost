@@ -24,9 +24,14 @@ public class Fruit : MonoBehaviour
     public PlayerController playerMovement;
     public float dissapearTimer;
     private float time;
+    public Animator animator;
+    int isOfferingHash;
+    [SerializeField] bool isHeOffering;
+    public int anilayer = 2;
 
     private void Start()
     {
+        isOfferingHash = Animator.StringToHash("IsOffering");
         creature = FindObjectOfType<CreatureController>();
         player = GameObject.Find("Player").transform;
         characterController = player.GetComponent<CharacterController>();
@@ -40,15 +45,20 @@ public class Fruit : MonoBehaviour
             messageUI.gameObject.SetActive(false);
 
         playerMovement = player.GetComponent<PlayerController>();
+        animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
     }
     public void Update()
     {
+        isHeOffering = animator.GetBool(isOfferingHash);
         if (time > 0)
         {
             time -= Time.deltaTime;
             if (time < 0)
             {
                 playerMovement.EnablePlayerController();
+                animator.SetBool(isOfferingHash, false);
+                animator.SetLayerWeight(anilayer, 0f);
+                Destroy(gameObject);
             }
         }
     }
@@ -80,6 +90,7 @@ public class Fruit : MonoBehaviour
         if (playerMovement != null)
         {
             playerMovement.DisablePlayerController();
+            animator.SetBool(isOfferingHash, true);
             time = dissapearTimer;
         }
 
@@ -105,6 +116,8 @@ public class Fruit : MonoBehaviour
         if (playerMovement != null)
         {
             playerMovement.EnablePlayerController();
+            animator.SetBool(isOfferingHash, false);
+            animator.SetLayerWeight(anilayer, 0f);
             time = 0;
         }
 
