@@ -9,7 +9,7 @@ public class OtherCreatureController : MonoBehaviour
     private CreatureController mainCreature;
 
     [Tooltip("How far does the main creature have to be for it to follow it")]
-    [SerializeField] private float followDistance = 7;
+    [SerializeField] private float followDistance = 16;
     [Tooltip("This creature is trapped and shouldnt follow the main creature")]
     [SerializeField] private bool trapped = true;
 
@@ -19,29 +19,34 @@ public class OtherCreatureController : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        mainCreature = GetComponent<CreatureController>();
+        mainCreature = FindFirstObjectByType<CreatureController>();
     }
 
     private void FixedUpdate()
     {
-        if (currentlyFollowing)
+        if (!trapped)
         {
-            if (Vector3.Distance(transform.position, mainCreature.transform.position) > followDistance)
-                agent.SetDestination(mainCreature.transform.position);
-            else
-                agent.SetDestination(transform.position);
-        } else if (interaction != null)
-        {
-            if (Vector3.Distance(transform.position, interaction.transform.position) > interaction.interactionDistance)
-                agent.SetDestination(interaction.transform.position);
-            else
-                agent.SetDestination(transform.position);
+            if (currentlyFollowing)
+            {
+                if (Vector3.Distance(transform.position, mainCreature.transform.position) > followDistance)
+                    agent.SetDestination(mainCreature.transform.position);
+                else
+                    agent.SetDestination(transform.position);
+            }
+            else if (interaction != null)
+            {
+                if (Vector3.Distance(transform.position, interaction.transform.position) > interaction.interactionDistance)
+                    agent.SetDestination(interaction.transform.position);
+                else
+                    agent.SetDestination(transform.position);
+            }
         }
     }
 
     public void Free()
     {
         trapped = false;
+        SetToFollow();
     }
 
     public void SetToFollow()

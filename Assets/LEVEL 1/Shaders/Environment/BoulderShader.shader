@@ -54,52 +54,35 @@ Shader "Custom/BoulderShader"
             ENDCG
         }
 
-        // Main Boulder Pass
-        Pass
+        // Main Boulder Pass (Handles all light sources)
+        CGPROGRAM
+        #pragma surface surf Lambert
+
+        sampler2D _MainTex;
+        float4 _LightColor;
+        float4 _DarkColor;
+
+        struct Input
         {
-            Tags { "LightMode"="ForwardBase" }
-            Cull Back  // Render front faces normally
+            float2 uv_MainTex;
+            float3 worldNormal;
+        };
 
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
+        void surf (Input IN, inout SurfaceOutput o)
+        {
+            // Sample texture
+            fixed4 texColor = tex2D(_MainTex, IN.uv_MainTex);
 
-            #include "UnityCG.cginc"
+            // Get lighting intensity (supports all lights)
+            float lightIntensity = saturate(dot(IN.worldNormal, normalize(_WorldSpaceLightPos0.xyz)));
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
-                float2 uv : TEXCOORD0;
-            };
+            // Smooth transition from dark to light
+            float gradient = smoothstep(0.2, 0.8, lightIntensity);
+            fixed4 lightingColor = lerp(_DarkColor, _LightColor, gradient);
 
-            struct v2f
-            {
-                float4 pos : SV_POSITION;
-                float3 worldNormal : TEXCOORD1;
-                float2 uv : TEXCOORD0;
-            };
-
-            sampler2D _MainTex;
-            float4 _LightColor;
-            float4 _DarkColor;
-
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.worldNormal = UnityObjectToWorldNormal(v.normal);
-                o.uv = v.uv;
-                return o;
-            }
-
-            fixed4 frag (v2f i) : SV_Target
-            {
-                float lightIntensity = dot(normalize(i.worldNormal), float3(0, 1, 0));
-                float gradient = smoothstep(0.3, 0.7, lightIntensity);
-                return lerp(_DarkColor, _LightColor, gradient);
-            }
-            ENDCG
+            // Apply shading and texture
+            o.Albedo = texColor.rgb * lightingColor.rgb;
         }
+        ENDCG
     }
 }

@@ -61,10 +61,17 @@ public class WhistlingStatue : MonoBehaviour
     [SerializeField] private AudioClip badWhistle;
     [SerializeField] private PlayerInput playerInput;
     private string controlScheme;
+    public Animator animator;
+    int isRotatingHash;
+    bool isRotating;
+    int isReverseHash;
+    bool isReverse;
 
     public void Awake()
     {
         happyWhistle.time = musicSource.time;
+        isRotatingHash = Animator.StringToHash("IsRotating");
+        isReverseHash = Animator.StringToHash("IsReverse");
     }
 
     void Start()
@@ -115,6 +122,7 @@ public class WhistlingStatue : MonoBehaviour
             badParticles.SetActive(false);
         }
         playerInput.onControlsChanged += (input) => UpdateControlScheme();
+        animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
     }
 
     private void Update()
@@ -146,6 +154,8 @@ public class WhistlingStatue : MonoBehaviour
             PopUpOff();
         }*/
         updateTimer -= Time.deltaTime;
+        isRotating = animator.GetBool(isRotatingHash);
+        isReverse = animator.GetBool(isReverseHash);
         if (updateTimer < 0)
         {
             //On a timer, either call or distract the creature if its in range based on rotation
@@ -200,11 +210,16 @@ public class WhistlingStatue : MonoBehaviour
                 swivel.Play();
                 interacting = true;
                 player.DisablePlayerController();
+                animator.SetBool(isRotatingHash, true);
+                animator.speed = 0;
             }
         }
         //When unpressed, stop interaction and re-enable player movement
         if (interacting && context.canceled)
         {
+            animator.speed = 1;
+            animator.SetBool(isRotatingHash, false);
+            animator.SetBool(isReverseHash, false);
             swivel.Stop();
             interacting = false;
             player.EnablePlayerController();
@@ -214,7 +229,23 @@ public class WhistlingStatue : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         if (interacting)
+        {
             input = context.ReadValue<Vector2>().x;
+            if (input == 0)
+            {
+                animator.SetBool(isReverseHash, false);
+                animator.speed = 0;
+            }
+            else if (motionAction.action.ReadValue<Vector2>().x < -0.2f/*Input.GetKeyDown(KeyCode.LeftArrow)*/)
+            {
+                animator.speed = 1;
+                animator.SetBool(isReverseHash, true);
+            }
+            else if (motionAction.action.ReadValue<Vector2>().x > 0.2f/*Input.GetAxisRaw("Horizontal") > 0*/)
+            {
+                animator.speed = 1;
+            }
+        }
     }
 
     static private bool CheckAngle(float check, float min, float max)

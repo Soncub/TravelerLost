@@ -16,6 +16,8 @@ public class SaveCreatureInteraction : CreatureInteractable
     public override void Interact()
     {
         waiting = true;
+        foreach (var creature in neededOtherCreatures)
+            creature.SendToInteraction(this);
     }
 
     private void FixedUpdate()
@@ -30,6 +32,7 @@ public class SaveCreatureInteraction : CreatureInteractable
             }
             foreach (var creature in neededOtherCreatures)
             {
+                creature.EndInteraction();
                 creature.SetToFollow();
             }
             waiting = false;

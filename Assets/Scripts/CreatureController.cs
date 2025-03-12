@@ -9,7 +9,7 @@ public class CreatureController : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Transform movingTarget;
-    private CreatureInteractable interactable;
+    public CreatureInteractable interactable;
 
     [Tooltip("Flee position distance")]
     [SerializeField] private float fleeRange = 3;
@@ -91,6 +91,7 @@ public class CreatureController : MonoBehaviour
     {
         afraid = false;
         movingTarget = null;
+        interactable = null;
         agent.SetDestination(transform.position);
     }
 
