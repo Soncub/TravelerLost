@@ -388,7 +388,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!114 &2316993276465668449
 MonoBehaviour:
@@ -418,6 +418,9 @@ MonoBehaviour:
   popUp: {fileID: 4780619964799007440}
   pause: {fileID: 0}
   playerInput: {fileID: 0}
+  animator: {fileID: 0}
+  anilayer: 2
+  whistleSystem: {fileID: 0}
 --- !u!114 &8767361045172403995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +458,9 @@ MonoBehaviour:
   characterController: {fileID: 0}
   playerMovement: {fileID: 0}
   dissapearTimer: 5
+  animator: {fileID: 0}
+  isHeOffering: 0
+  anilayer: 2
 --- !u!114 &-5224614846270555441
 MonoBehaviour:
   m_ObjectHideFlags: 0
