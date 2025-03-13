@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5893663742189668991}
-  - component: {fileID: 4078444848962996975}
   - component: {fileID: 5206682047285043641}
   - component: {fileID: 3055340279318833434}
+  - component: {fileID: 9209873285859314192}
   m_Layer: 0
   m_Name: LODTree03
   m_TagString: Untagged
@@ -37,27 +37,6 @@ Transform:
   - {fileID: 4480705014087565718}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4078444848962996975
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902208644183878540}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.7190876, y: 4.810168, z: 0.5737106}
-  m_Center: {x: -0.017169476, y: 1.9050839, z: -0.028359383}
 --- !u!54 &5206682047285043641
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115,6 +94,29 @@ LODGroup:
     - renderer: {fileID: 3227920260493563848}
     - renderer: {fileID: 3343225241439550201}
   m_Enabled: 1
+--- !u!136 &9209873285859314192
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902208644183878540}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.27534696
+  m_Height: 4.585656
+  m_Direction: 1
+  m_Center: {x: -0.023506796, y: 1.7928255, z: -0.051234458}
 --- !u!1001 &3165807371913311175
 PrefabInstance:
   m_ObjectHideFlags: 0

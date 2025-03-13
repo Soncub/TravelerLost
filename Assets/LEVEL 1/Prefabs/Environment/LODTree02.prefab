@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 82657583304331989}
   - component: {fileID: 1324918671966600346}
   - component: {fileID: 186091636853249446}
-  - component: {fileID: 2076730053228369110}
+  - component: {fileID: 8348996917330437536}
   m_Layer: 0
   m_Name: LODTree02
   m_TagString: Untagged
@@ -94,8 +94,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2076730053228369110
-BoxCollider:
+--- !u!136 &8348996917330437536
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -112,9 +112,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2824316, y: 4.7674584, z: 1}
-  m_Center: {x: 0.03757584, y: 2.279875, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.56863487
+  m_Height: 4.4408855
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.7204446, z: -0.06863498}
 --- !u!1001 &620938302766336835
 PrefabInstance:
   m_ObjectHideFlags: 0
