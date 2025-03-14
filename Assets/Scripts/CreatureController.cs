@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 public class CreatureController : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Rigidbody rb;
+    private Animator animator;
     private Transform movingTarget;
     public CreatureInteractable interactable;
 
@@ -22,10 +24,13 @@ public class CreatureController : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void FixedUpdate()
     {
+        animator.SetFloat("speed", agent.velocity.magnitude);
         //If currently focused, update focus time. Ignore this if its afraid, as when its afraid focus does not matter
         if (!afraid && focusTimeLeft > 0)
         {
@@ -52,6 +57,7 @@ public class CreatureController : MonoBehaviour
         if (afraid && agent.remainingDistance <= fleeRange)
         {
             LoseFocus();
+            animator.SetBool("fleeing", false);
         }
     }
  
@@ -65,6 +71,7 @@ public class CreatureController : MonoBehaviour
             movingTarget = null;
         focusTimeLeft = targetFocusTime;
         agent.SetDestination(position);
+        animator.SetTrigger("whistle");
     }
 
     public void NewMovingTarget(Transform transform)
@@ -76,6 +83,7 @@ public class CreatureController : MonoBehaviour
         movingTarget = transform;
         focusTimeLeft = targetFocusTime;
         agent.SetDestination(movingTarget.position);
+        animator.SetTrigger("whistle");
     }
 
     public void NewInteractionTarget(CreatureInteractable interactable)
@@ -103,5 +111,11 @@ public class CreatureController : MonoBehaviour
         if (movingTarget != null)
             movingTarget = null;
         agent.SetDestination(position);
+        animator.SetBool("fleeing", true);
+    }
+
+    public void AnimatorTrigger(string key)
+    {
+        animator.SetTrigger(key);
     }
 }
