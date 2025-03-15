@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 41972627}
   - component: {fileID: 41972631}
   - component: {fileID: 41972632}
+  - component: {fileID: 41972633}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -168,6 +169,7 @@ MonoBehaviour:
   cameraAngle:
     min: 0
     max: 10
+  startCameraValue: -90
 --- !u!81 &41972628
 AudioListener:
   m_ObjectHideFlags: 0
@@ -338,6 +340,50 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &41972633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41972626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!4 &44022736 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58487424faca055448a1b6a3f0d6fcd5, type: 3}
@@ -543,11 +589,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 569717441127996189, guid: 9140abbfe0bfe8b489cdf41f2f26f5df, type: 3}
   m_PrefabInstance: {fileID: 1611002196}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &92187182 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 828172051729518760, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &131006557
 PrefabInstance:
@@ -7499,9 +7540,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 739261370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -809.4, y: -377.93}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -809.4, y: 162.07}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695299252
@@ -7526,7 +7567,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press E to Pick Up Crystal
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e6cc2880490f55a41972f0c3f94763fe, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7590,7 +7631,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -803.2947, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &695299253
@@ -7605,11 +7646,6 @@ CanvasRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 569717441127996189, guid: 9140abbfe0bfe8b489cdf41f2f26f5df, type: 3}
   m_PrefabInstance: {fileID: 1080949772}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &738639048 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7567323738631470719, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &739261366
 GameObject:
@@ -8398,11 +8434,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5504447586387018125, guid: 420de54044ac3c745aabe61fa90ae041, type: 3}
   m_PrefabInstance: {fileID: 2347446858677675188}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &919080222 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4111789041942466679, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &930931100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58487424faca055448a1b6a3f0d6fcd5, type: 3}
@@ -8531,7 +8562,7 @@ MonoBehaviour:
   dropLocation: {fileID: 469413337}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 1650765841}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -9545,7 +9576,7 @@ MonoBehaviour:
   dropLocation: {fileID: 878393128}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 738639048}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -11474,7 +11505,7 @@ MonoBehaviour:
   dropLocation: {fileID: 1960161934}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 919080222}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -12530,11 +12561,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58487424faca055448a1b6a3f0d6fcd5, type: 3}
---- !u!23 &1650765841 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2312557303515192898, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1659078033
 GameObject:
   m_ObjectHideFlags: 0
@@ -13166,11 +13192,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2964408273643143715, guid: 2bcb152c2bd63514eb935038610662bb, type: 3}
   m_PrefabInstance: {fileID: 1939526900755734904}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &1797619048 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2762042423121128703, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1808749792
 GameObject:
   m_ObjectHideFlags: 0
@@ -13294,7 +13315,7 @@ MonoBehaviour:
   dropLocation: {fileID: 1840040810}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 92187182}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -14410,7 +14431,7 @@ MonoBehaviour:
   dropLocation: {fileID: 2055329818}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 1797619048}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
