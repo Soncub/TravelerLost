@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -25,10 +26,12 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private CameraAngle cameraAngle;
 
     private CameraRotation cameraRotation;
+    public float startCameraValue;
 
     private void Awake()
     {
         transform.position = target.transform.position - new Vector3(0, 0, 15f);
+        cameraRotation.Yaw += input.x + startCameraValue;
         distanceToPlayer = Vector3.Distance(transform.position, target.position);
         if (instance == null)
         {
@@ -57,8 +60,8 @@ public class CameraManager : MonoBehaviour
     {
         if (!whistling) 
         {
-            cameraRotation.Yaw += input.x * mouseSensitivity.horizontal * BoolToInt(!mouseSensitivity.invertHorizontal) * Time.deltaTime;
-            cameraRotation.Pitch += input.y * mouseSensitivity.vertical * BoolToInt(mouseSensitivity.invertVertical) * Time.deltaTime;
+            cameraRotation.Yaw += input.x * mouseSensitivity.horizontal * BoolToInt(mouseSensitivity.invertHorizontal) * Time.deltaTime;
+            cameraRotation.Pitch += input.y * mouseSensitivity.vertical * BoolToInt(!mouseSensitivity.invertVertical) * Time.deltaTime;
             cameraRotation.Pitch = Mathf.Clamp(cameraRotation.Pitch, cameraAngle.min, cameraAngle.max);
         }
     }
