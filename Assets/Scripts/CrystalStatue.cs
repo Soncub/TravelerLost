@@ -41,10 +41,13 @@ public class CrystalStatue : ChargeSource
     public Animator animator;
     int isRotatingHash;
     bool isRotating;
+    int isReverseHash;
+    bool isReverse;
 
     private void Start()
     {
         isRotatingHash = Animator.StringToHash("IsRotating");
+        isReverseHash = Animator.StringToHash("IsReverse");
         animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
         interactAction.action.Enable();
         interactAction.action.performed += Interact;
@@ -96,6 +99,7 @@ public class CrystalStatue : ChargeSource
     private void Update()
     {
         isRotating = animator.GetBool(isRotatingHash);
+        isReverse = animator.GetBool(isReverseHash);
         // Pillar Logic Update
         if (isLit)
         {
@@ -173,6 +177,7 @@ public class CrystalStatue : ChargeSource
         {
             animator.speed = 1;
             animator.SetBool(isRotatingHash, false);
+            animator.SetBool(isReverseHash, false);
             interacting = false;
             player.EnablePlayerController();
         }
@@ -185,15 +190,17 @@ public class CrystalStatue : ChargeSource
             input = context.ReadValue<Vector2>().x;
             if (input == 0)
             {
+                animator.SetBool(isReverseHash, false);
                 animator.speed = 0;
             }
-            else if (Input.GetAxisRaw("Horizontal") > 0)
+            else if (motionAction.action.ReadValue<Vector2>().x < -0.2f/*Input.GetKeyDown(KeyCode.LeftArrow)*/)
             {
                 animator.speed = 1;
+                animator.SetBool(isReverseHash, true);
             }
-            else if (Input.GetAxisRaw("Horizontal") < 0)
+            else if (motionAction.action.ReadValue<Vector2>().x > 0.2f/*Input.GetAxisRaw("Horizontal") > 0*/)
             {
-                //animator.speed = -1;
+                animator.speed = 1;
             }
         }
     }

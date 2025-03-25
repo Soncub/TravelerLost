@@ -27,7 +27,7 @@ public class CreatureDoor : MonoBehaviour
     public AudioClip clip;
     public GameObject trigger;
     public bool zAxis;
-    public ParticleSystem moveParticles;
+    //public ParticleSystem moveParticles;
 
     void Start()
     {
@@ -71,7 +71,7 @@ public class CreatureDoor : MonoBehaviour
                 doorFullyOpened = true;
                 isOpening = false;
                 sound.loop = false;
-                moveParticles.Stop();
+                //moveParticles.Stop();
                 /*creatureAgent.isStopped = false;*/
             }
         }
@@ -82,14 +82,15 @@ public class CreatureDoor : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
         if (context.performed && distanceToPlayer <= interactDistance && stopLever == false)
         {
-            lever.transform.position += new Vector3(0f, -1.2f, 0f);
-            lever.transform.Rotate(0f, 0f, 80f, Space.Self);
+            //lever.transform.position += new Vector3(0f, -1.2f, 0f);
+            //lever.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+            lever.transform.Rotate(Vector3.up * 45);
             isOpening = true;
             stopLever = true;
             sound.Play();
             sound.loop = true;
             trigger.SetActive(true);
-            moveParticles.Play();
+            //moveParticles.Play();
         }
     }
     private void OnTriggerEnter(Collider other)
