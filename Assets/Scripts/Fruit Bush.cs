@@ -29,7 +29,7 @@ public class FruitBush : MonoBehaviour
     private Transform spawnPoint;
     private bool canSpawn = true;
     private float cooldownTimer;
-    private GameObject currentSpawnedItem;
+    private List<GameObject> spawnedItems = new List<GameObject>(); // Track spawned items
 
     // UI Variables
     public GameObject canvas;
@@ -94,25 +94,13 @@ public class FruitBush : MonoBehaviour
             }
         }
 
-        if (currentSpawnedItem != null)
-        {
-            float distanceToItem = Vector3.Distance(currentSpawnedItem.transform.position, transform.position);
-            if (distanceToItem > pickUpDistance)
-            {
-                currentSpawnedItem = null;
-            }
-        }
+        // Remove items that are picked up or out of range
+        spawnedItems.RemoveAll(item => item == null || Vector3.Distance(item.transform.position, transform.position) > pickUpDistance);
     }
 
     private void SpawnItem(InputAction.CallbackContext context)
     {
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
-
-        if (currentSpawnedItem != null)
-        {
-            Debug.Log("Cannot spawn new item until the previous one is moved out of range.");
-            return;
-        }
 
         if (context.performed && !itemInteraction.itemIsPicked && distanceToPlayer <= pickUpDistance && canSpawn)
         {
@@ -126,7 +114,7 @@ public class FruitBush : MonoBehaviour
             }
 
             StartCoroutine(GrowItem(newSpawnedItem));
-            currentSpawnedItem = newSpawnedItem;
+            spawnedItems.Add(newSpawnedItem); // Add to list
             canSpawn = false;
             cooldownTimer = spawnCooldown;
         }

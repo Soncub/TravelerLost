@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     bool isFalling;
     int isLandingHash;
     bool isLanding;
+    public ParticleSystem jumpParticles;
 
     private void Awake()
     {
@@ -101,6 +102,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool(isJumpingHash, true);
                 animator.SetBool(isLandingHash, false);
                 playerSounds.Play();
+                jumpParticles.Play();
             }
             if (!context.started) return;
             if (!IsGrounded()) return;

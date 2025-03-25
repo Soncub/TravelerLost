@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8812155894475797712}
-  - component: {fileID: 2930039016653284188}
   - component: {fileID: 1136723643957178301}
+  - component: {fileID: 7113651176614663312}
   m_Layer: 0
   m_Name: LODpineTree (1)
   m_TagString: Untagged
@@ -36,27 +36,6 @@ Transform:
   - {fileID: 5305755730808451154}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2930039016653284188
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133241749245647684}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.99477005, y: 13.269482, z: 0.9984312}
-  m_Center: {x: -0.07, y: 6.43, z: -0.03}
 --- !u!205 &1136723643957178301
 LODGroup:
   m_ObjectHideFlags: 0
@@ -87,6 +66,29 @@ LODGroup:
     - renderer: {fileID: 6479264128543968061}
     - renderer: {fileID: 736695118876951844}
   m_Enabled: 1
+--- !u!136 &7113651176614663312
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133241749245647684}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.67214274
+  m_Height: 28.558756
+  m_Direction: 1
+  m_Center: {x: 0, y: 13.382733, z: 0.09455146}
 --- !u!1001 &5632716450246023097
 PrefabInstance:
   m_ObjectHideFlags: 0

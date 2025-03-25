@@ -10,7 +10,7 @@ public class CreatureDoor : MonoBehaviour
     public GameObject creatureDoor;
     public GameObject lever;
     public float moveSpeed = 3f;
-    public float maxHeight = 6f;
+    public float moveDistance = 6f;
     //public NavMeshAgent creatureAgent;
     private Vector3 movePosition;
     private Vector3 initialPosition;
@@ -26,11 +26,20 @@ public class CreatureDoor : MonoBehaviour
     public AudioSource sound;
     public AudioClip clip;
     public GameObject trigger;
+    public bool zAxis;
+    public ParticleSystem moveParticles;
 
     void Start()
     {
         initialPosition = creatureDoor.transform.position;
-        movePosition = new Vector3(0.0f, maxHeight, 0.0f);
+        if(zAxis == true)
+        {
+            movePosition = new Vector3(0.0f, 0.0f, moveDistance);
+        }
+        else
+        {
+            movePosition = new Vector3(moveDistance, 0.0f, 0.0f);
+        }
         interactAction.action.Enable();
         interactAction.action.performed += Flick;
         GameObject playerObject = GameObject.Find("Player");
@@ -62,6 +71,7 @@ public class CreatureDoor : MonoBehaviour
                 doorFullyOpened = true;
                 isOpening = false;
                 sound.loop = false;
+                moveParticles.Stop();
                 /*creatureAgent.isStopped = false;*/
             }
         }
@@ -79,6 +89,7 @@ public class CreatureDoor : MonoBehaviour
             sound.Play();
             sound.loop = true;
             trigger.SetActive(true);
+            moveParticles.Play();
         }
     }
     private void OnTriggerEnter(Collider other)

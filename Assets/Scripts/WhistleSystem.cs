@@ -40,7 +40,10 @@ public class WhistleSystem : MonoBehaviour
     private float controllerWhistle;
     private float pcWhistle;
     public Animator animator;
-    public int anilayer = 1;
+    public float transitionSpeed = 1.0f;
+    private float currentWeight = 0.0f;
+    private float targetWeight = 1.0f;
+    //public int anilayer = 1;
 
     private void Start()
     {
@@ -54,6 +57,7 @@ public class WhistleSystem : MonoBehaviour
         controllerWhistle = whistleMoveSpeed * controllerMultiplier;
         pcWhistle = whistleMoveSpeed;
         animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
+        targetWeight = 0.0f;
     }
 
     private void Update()
@@ -99,6 +103,8 @@ public class WhistleSystem : MonoBehaviour
         {
             whistleMoveSpeed = pcWhistle;
         }
+        currentWeight = Mathf.Lerp(currentWeight, targetWeight, transitionSpeed * Time.deltaTime);
+        animator.SetLayerWeight(1, currentWeight);
     }
 
     public void Whistle(InputAction.CallbackContext context)
@@ -108,7 +114,8 @@ public class WhistleSystem : MonoBehaviour
         {
             whistling = true;
             whistleMarker.transform.position = markerAnchorPoint;
-            animator.SetLayerWeight(anilayer, 0.7f);
+            targetWeight = 1.0f;
+            //animator.SetLayerWeight(anilayer, 0.7f);
             //whistleMarker.SetActive(true);
 
         }
@@ -119,7 +126,8 @@ public class WhistleSystem : MonoBehaviour
             whistling = false;
             whistleMarker.SetActive(false);
             threeDWhistleMarker.SetActive(false);
-            animator.SetLayerWeight(anilayer, 0f);
+            targetWeight = 0.0f;
+            //animator.SetLayerWeight(anilayer, 0f);
             //Do a raycast from the marker position, then attract the creature if it's in listen+travel range
             if (Physics.Raycast(refCamera.ScreenPointToRay(whistleMarker.transform.position), out RaycastHit hit, Mathf.Infinity, layer) &&
                 Vector3.Distance(player.transform.position, creature.transform.position) < listenRange &&

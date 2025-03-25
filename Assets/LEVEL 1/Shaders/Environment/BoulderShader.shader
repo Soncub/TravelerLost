@@ -1,4 +1,4 @@
-Shader "Custom/BoulderShader"
+Shader "URP/BoulderShader"
 {
     Properties
     {
@@ -9,80 +9,98 @@ Shader "Custom/BoulderShader"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderPipeline"="UniversalRenderPipeline" "RenderType"="Opaque" }
 
-        // Outline Pass
-        Pass
+        Pass // Outline Pass
         {
-            Tags { "LightMode"="ForwardBase" }
-            Cull Front  // Render back faces to create an outline
-            ZWrite On
-            ZTest LEqual
+            Name "OutlinePass"
+            Tags { "LightMode"="SRPDefaultUnlit" }
 
-            CGPROGRAM
+            Cull Front // Render backfaces for outline
+
+            HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-            #include "UnityCG.cginc"
-
-            struct appdata
+            struct Attributes
             {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
+                float4 positionOS : POSITION;
+                float3 normalOS : NORMAL;
             };
 
-            struct v2f
+            struct Varyings
             {
-                float4 pos : SV_POSITION;
+                float4 positionHCS : SV_POSITION;
             };
 
             float _OutlineWidth;
 
-            v2f vert (appdata v)
+            Varyings vert(Attributes IN)
             {
-                v2f o;
-                float3 normal = normalize(v.normal) * _OutlineWidth;
-                v.vertex += float4(normal, 0); // Push vertices outward
-                o.pos = UnityObjectToClipPos(v.vertex);
-                return o;
+                Varyings OUT;
+                float3 normalWS = normalize(TransformObjectToWorldNormal(IN.normalOS));
+                IN.positionOS.xyz += normalWS * _OutlineWidth;
+                OUT.positionHCS = TransformObjectToHClip(IN.positionOS);
+                return OUT;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            half4 frag(Varyings IN) : SV_Target
             {
-                return fixed4(0,0,0,1); // Black outline
+                return half4(0,0,0,1); // Black outline
             }
-            ENDCG
+            ENDHLSL
         }
 
-        // Main Boulder Pass (Handles all light sources)
-        CGPROGRAM
-        #pragma surface surf Lambert
-
-        sampler2D _MainTex;
-        float4 _LightColor;
-        float4 _DarkColor;
-
-        struct Input
+        Pass // Main Boulder Pass
         {
-            float2 uv_MainTex;
-            float3 worldNormal;
-        };
+            Name "LitPass"
+            Tags { "LightMode"="UniversalForward" }
 
-        void surf (Input IN, inout SurfaceOutput o)
-        {
-            // Sample texture
-            fixed4 texColor = tex2D(_MainTex, IN.uv_MainTex);
+            HLSLPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
-            // Get lighting intensity (supports all lights)
-            float lightIntensity = saturate(dot(IN.worldNormal, normalize(_WorldSpaceLightPos0.xyz)));
+            struct Attributes
+            {
+                float4 positionOS : POSITION;
+                float3 normalOS : NORMAL;
+                float2 uv : TEXCOORD0;
+            };
 
-            // Smooth transition from dark to light
-            float gradient = smoothstep(0.2, 0.8, lightIntensity);
-            fixed4 lightingColor = lerp(_DarkColor, _LightColor, gradient);
+            struct Varyings
+            {
+                float2 uv : TEXCOORD0;
+                float3 normalWS : TEXCOORD1;
+                float4 positionHCS : SV_POSITION;
+            };
 
-            // Apply shading and texture
-            o.Albedo = texColor.rgb * lightingColor.rgb;
+            TEXTURE2D(_MainTex);
+            SAMPLER(sampler_MainTex);
+            float4 _LightColor;
+            float4 _DarkColor;
+
+            Varyings vert(Attributes IN)
+            {
+                Varyings OUT;
+                OUT.uv = IN.uv;
+                OUT.normalWS = normalize(TransformObjectToWorldNormal(IN.normalOS));
+                OUT.positionHCS = TransformObjectToHClip(IN.positionOS);
+                return OUT;
+            }
+
+            half4 frag(Varyings IN) : SV_Target
+            {
+                half4 texColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
+                Light mainLight = GetMainLight();
+                float lightIntensity = saturate(dot(IN.normalWS, mainLight.direction));
+                float gradient = smoothstep(0.2, 0.8, lightIntensity);
+                half4 lightingColor = lerp(_DarkColor, _LightColor, gradient);
+                return half4(texColor.rgb * lightingColor.rgb, 1);
+            }
+            ENDHLSL
         }
-        ENDCG
     }
 }

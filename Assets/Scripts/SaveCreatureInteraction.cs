@@ -32,9 +32,11 @@ public class SaveCreatureInteraction : CreatureInteractable
             }
             foreach (var creature in neededOtherCreatures)
             {
+                creature.AnimatorTrigger("attack");
                 creature.EndInteraction();
                 creature.SetToFollow();
             }
+            creature.AnimatorTrigger("attack");
             waiting = false;
             onInteract.Invoke();
         }

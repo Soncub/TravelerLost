@@ -116,11 +116,13 @@ public class CrystalStatue : ChargeSource
             Charge();
         else
             CastRayToManagePillars();
+        UpdateBeam();
     }
 
     private void OnItemReleased()
     {
         Uncharge();
+        UpdateBeam();
     }
 
     private void CastRayToManagePillars()

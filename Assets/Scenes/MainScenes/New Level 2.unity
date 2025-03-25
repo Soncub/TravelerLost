@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 3c1fc37eeaf532c409d9f7201264a0ae, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e7706dac630a3f84fa19dfc0c77d4366, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 41972627}
   - component: {fileID: 41972631}
   - component: {fileID: 41972632}
+  - component: {fileID: 41972633}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -168,6 +169,7 @@ MonoBehaviour:
   cameraAngle:
     min: 0
     max: 10
+  startCameraValue: -90
 --- !u!81 &41972628
 AudioListener:
   m_ObjectHideFlags: 0
@@ -338,6 +340,50 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &41972633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41972626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!4 &44022736 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58487424faca055448a1b6a3f0d6fcd5, type: 3}
@@ -426,6 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 71051189}
   - component: {fileID: 71051188}
+  - component: {fileID: 71051190}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -510,6 +557,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &71051190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71051187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!4 &74282964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5598584936363890882, guid: f4dd28b1eb8409348b30c95c6076e444, type: 3}
@@ -519,11 +589,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 569717441127996189, guid: 9140abbfe0bfe8b489cdf41f2f26f5df, type: 3}
   m_PrefabInstance: {fileID: 1611002196}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &92187182 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 828172051729518760, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &131006557
 PrefabInstance:
@@ -7475,9 +7540,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 739261370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -809.4, y: -377.93}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -809.4, y: 162.07}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695299252
@@ -7502,7 +7567,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press E to Pick Up Crystal
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e6cc2880490f55a41972f0c3f94763fe, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7566,7 +7631,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -803.2947, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &695299253
@@ -7581,11 +7646,6 @@ CanvasRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 569717441127996189, guid: 9140abbfe0bfe8b489cdf41f2f26f5df, type: 3}
   m_PrefabInstance: {fileID: 1080949772}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &738639048 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7567323738631470719, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &739261366
 GameObject:
@@ -8109,6 +8169,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestCreature (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5118136434043630146, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3923e79fd8b1ebb43992a9d7c6725a85, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8374,11 +8438,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5504447586387018125, guid: 420de54044ac3c745aabe61fa90ae041, type: 3}
   m_PrefabInstance: {fileID: 2347446858677675188}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &919080222 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4111789041942466679, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &930931100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58487424faca055448a1b6a3f0d6fcd5, type: 3}
@@ -8507,7 +8566,7 @@ MonoBehaviour:
   dropLocation: {fileID: 469413337}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 1650765841}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -9521,7 +9580,7 @@ MonoBehaviour:
   dropLocation: {fileID: 878393128}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 738639048}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -9796,6 +9855,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3051293453274753313, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051293453274753313, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c22969ef6cac8ab478e7de4f98861cf5, type: 2}
+    - target: {fileID: 3051293453274753313, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1cf68f19d57487a48a636cb05791ee38, type: 2}
     - target: {fileID: 3105931826439314954, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -10494,8 +10565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropLocation: {fileID: 1682953077}
-  canBePlaced: 0
-  isKey: 0
+  canBePlaced: 1
+  isKey: 1
   creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 0}
   PlaceItemEvent:
@@ -11327,6 +11398,63 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &1458746202
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7315196662803439376, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_Name
+      value: Fireflies (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 323.46515
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.364
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -167.91115
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336299886327083078, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4fce306e2c54d74c91bcaf194debdb0, type: 3}
 --- !u!1 &1459546488
 GameObject:
   m_ObjectHideFlags: 0
@@ -11450,7 +11578,7 @@ MonoBehaviour:
   dropLocation: {fileID: 1960161934}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 919080222}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -12506,11 +12634,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58487424faca055448a1b6a3f0d6fcd5, type: 3}
---- !u!23 &1650765841 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2312557303515192898, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1659078033
 GameObject:
   m_ObjectHideFlags: 0
@@ -13142,11 +13265,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2964408273643143715, guid: 2bcb152c2bd63514eb935038610662bb, type: 3}
   m_PrefabInstance: {fileID: 1939526900755734904}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &1797619048 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2762042423121128703, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1808749792
 GameObject:
   m_ObjectHideFlags: 0
@@ -13270,7 +13388,7 @@ MonoBehaviour:
   dropLocation: {fileID: 1840040810}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 92187182}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -13744,6 +13862,7 @@ GameObject:
   - component: {fileID: 1894027471}
   - component: {fileID: 1894027473}
   - component: {fileID: 1894027472}
+  - component: {fileID: 1894027474}
   m_Layer: 0
   m_Name: Brightness Camera
   m_TagString: Untagged
@@ -13835,7 +13954,7 @@ Camera:
   m_GameObject: {fileID: 1894027470}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -13877,6 +13996,50 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1894027474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894027470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1001 &1900247912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14159,7 +14322,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -14341,7 +14504,7 @@ MonoBehaviour:
   dropLocation: {fileID: 2055329818}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 1797619048}
+  creatureCrystalRenderer: {fileID: 0}
   creatureCrystalOnMat: {fileID: 2100000, guid: b458514c133829149ac2131b3feb62b2, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -14949,6 +15112,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: 3495916363889676372, guid: c286a6127ebcf3043b24047575ccafa0, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495916363889676372, guid: c286a6127ebcf3043b24047575ccafa0, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7fc57706dd9aa5640946ff0a2aab1440, type: 2}
     - target: {fileID: 5807957463543163878, guid: c286a6127ebcf3043b24047575ccafa0, type: 3}
       propertyPath: m_Name
       value: Stone Gate
@@ -15014,10 +15185,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock_low (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 1703247012232208498, guid: 9140abbfe0bfe8b489cdf41f2f26f5df, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b6af30a5ffcb7d44ebca26ba573697d5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16497,3 +16664,4 @@ SceneRoots:
   - {fileID: 443651058}
   - {fileID: 1661350334}
   - {fileID: 401463512}
+  - {fileID: 1458746202}

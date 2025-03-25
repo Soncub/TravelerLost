@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1181123758363381148}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.561, y: 1.318, z: 0}
+  m_LocalPosition: {x: -0.561, y: 2.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4889,7 +4889,7 @@ Transform:
   m_GameObject: {fileID: 5574659794000528973}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.561, y: 1.318, z: 0}
+  m_LocalPosition: {x: -0.561, y: 2.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9727,7 +9727,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.540078, y: 0.99633825, z: -0.037234962}
-  m_LocalScale: {x: 2, y: 4, z: 2}
+  m_LocalScale: {x: 1.604, y: 3.208, z: 1.604}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1194123426779987823}
@@ -9823,6 +9823,7 @@ MonoBehaviour:
   goodWhistle: {fileID: 8300000, guid: f97d20b6e162beb4eb981eddeab5cef6, type: 3}
   badWhistle: {fileID: 8300000, guid: 4ee7dde3d557eb840855e573e2d6978d, type: 3}
   playerInput: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!136 &9047806495961086720
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10167,15 +10168,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f2228e56f4d6f3848ba4515e920c2180, type: 3}
       propertyPath: m_LocalScale.x
-      value: 73.80656
+      value: 216.69
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2228e56f4d6f3848ba4515e920c2180, type: 3}
       propertyPath: m_LocalScale.y
-      value: 52.361885
+      value: 153.73021
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2228e56f4d6f3848ba4515e920c2180, type: 3}
       propertyPath: m_LocalScale.z
-      value: 73.80656
+      value: 216.69
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2228e56f4d6f3848ba4515e920c2180, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10183,7 +10184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2228e56f4d6f3848ba4515e920c2180, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 91.6333
+      value: 307
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2228e56f4d6f3848ba4515e920c2180, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10216,6 +10217,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f2228e56f4d6f3848ba4515e920c2180, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f2228e56f4d6f3848ba4515e920c2180, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f2228e56f4d6f3848ba4515e920c2180, type: 3}
       propertyPath: m_Name
@@ -10290,6 +10295,22 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
       propertyPath: m_Name
       value: Monkey Statue_low
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087386981011368673, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 213.91812
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087386981011368673, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 212.39043
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087386981011368673, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 213.91812
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087386981011368673, guid: 47c953146fb8bcd4d92ee867beb11efc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -368
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
