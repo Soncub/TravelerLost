@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -44,8 +45,21 @@ public class CrystalStatue : ChargeSource
     int isReverseHash;
     bool isReverse;
 
+    [Tooltip("Pop up text")]
+    public GameObject canvas;
+    public Transform childObject;
+    public TextMeshProUGUI popUp;
+    public PauseMenuManager pause;
+    [SerializeField] private PlayerInput playerInput;
+    private string controlScheme;
+
     private void Start()
     {
+        canvas = GameObject.Find("MessageCanvas");
+        childObject = canvas.transform.Find("StatueMessage");
+        popUp = childObject.GetComponent<TextMeshProUGUI>();
+        popUp.gameObject.SetActive(false);
+        pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
         isRotatingHash = Animator.StringToHash("IsRotating");
         isReverseHash = Animator.StringToHash("IsReverse");
         animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
@@ -81,6 +95,7 @@ public class CrystalStatue : ChargeSource
         if (interactAction != null) interactAction.action.performed += Interact;
         if (interactAction != null) interactAction.action.canceled += Interact;
         if (motionAction != null) motionAction.action.performed += Move;
+        playerInput.onControlsChanged += (input) => UpdateControlScheme();
     }
 
     private void OnDestroy()
@@ -258,5 +273,32 @@ public class CrystalStatue : ChargeSource
         }
 
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * pillarRaycastDistance);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            UpdateControlScheme();
+            popUp.gameObject.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            popUp.gameObject.SetActive(false);
+        }
+    }
+    private void UpdateControlScheme()
+    {
+        controlScheme = playerInput.currentControlScheme;
+        if (controlScheme == "Keyboard and Mouse")
+        {
+            popUp.text = "Press Q to interact with the statue.";
+        }
+        else if (controlScheme == "Gamepad")
+        {
+            popUp.text = "Press X to interact with the statue";
+        }
     }
 }
