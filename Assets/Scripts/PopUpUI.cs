@@ -23,15 +23,23 @@ public class PopUpUI : MonoBehaviour
 
     public void Update()
     {
-        if (time > 0)
+        if (time > 0 && pause.isPaused == false)
         {
+            popUp.gameObject.SetActive(true);
+            box.SetActive(true);
             time -= Time.deltaTime;
             if (time < 0)
             {
                 popUp.text = null;
                 this.gameObject.SetActive(false);
+                popUp.gameObject.SetActive(false);
                 box.SetActive(false);
             }
+        }
+        if (pause.isPaused == true && popUp.gameObject.activeSelf & box.activeSelf)
+        {
+            popUp.gameObject.SetActive(false);
+            box.SetActive(false);
         }
     }
 

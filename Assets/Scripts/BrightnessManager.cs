@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class BrightnessManager : MonoBehaviour
 {
+    public Volume volume;
     public static BrightnessManager instance;
+    public LiftGammaGain liftGammaGain;
     public Slider brightnessSlider;
-    public PostProcessProfile brightness;
-    public PostProcessLayer layer;
-    private float currentBrightnessValue = 1f;
-    AutoExposure exposure;
+    //public PostProcessProfile brightness;
+    //public PostProcessLayer layer;
+    private float currentBrightnessValue = 0f;
+    //AutoExposure exposure;
 
     private void Awake()
     {
@@ -32,14 +36,18 @@ public class BrightnessManager : MonoBehaviour
 
     void Start()
     {
-        brightness.TryGetSettings(out exposure);
-        AdjustBrightness();
+        //brightness.TryGetSettings(out exposure);
+        if (volume != null && volume.profile.TryGet(out liftGammaGain))
+        {
+            AdjustBrightness();
+        }
     }
 
     public void AdjustBrightness()
     {
         currentBrightnessValue = brightnessSlider.value;
-        exposure.keyValue.value = currentBrightnessValue;
+        liftGammaGain.gamma.value = new Vector4(1f, 1f, 1f, currentBrightnessValue);
+        //exposure.keyValue.value = currentBrightnessValue;
 
         /*if(value != 0)
         {

@@ -18,6 +18,7 @@ public class PauseMenuManager : MonoBehaviour
     AudioBank audioBank;
     public bool isPaused;
     [SerializeField] LevelEnd levelEnd;
+    public LevelLoader levelLoader;
 
     private void Awake()
     {
@@ -132,10 +133,11 @@ public class PauseMenuManager : MonoBehaviour
     public void BackToMenu()
     {
         CloseAllMenus();
-        audioBank.PlaySFX(audioBank.selectSound);
+        /*audioBank.PlaySFX(audioBank.selectSound);
         Time.timeScale = 1f;
-        SaveAndLoad.instance.SaveGame();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuScene");
+        SaveAndLoad.instance.SaveGame();*/
+        levelLoader.LoadLevel(0);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuScene");
     }
     public void QuitGame()
     {
