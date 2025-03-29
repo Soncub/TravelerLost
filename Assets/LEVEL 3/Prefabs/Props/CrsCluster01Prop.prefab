@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 48e4a350b6f683d4f9d63f43b17def7c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 471.24002
+      value: 201.75893
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48e4a350b6f683d4f9d63f43b17def7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.280001
+      value: 0.095394544
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48e4a350b6f683d4f9d63f43b17def7c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -183.72336
+      value: 146.73468
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48e4a350b6f683d4f9d63f43b17def7c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -58,10 +58,39 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8b56c91097e318d4584d152421c71222, type: 2}
     - target: {fileID: 919132149155446097, guid: 48e4a350b6f683d4f9d63f43b17def7c, type: 3}
       propertyPath: m_Name
-      value: sm_CrsCluster02 (1)
+      value: CrsCluster01Prop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 48e4a350b6f683d4f9d63f43b17def7c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 98533333457137426}
   m_SourcePrefab: {fileID: 100100000, guid: 48e4a350b6f683d4f9d63f43b17def7c, type: 3}
+--- !u!1 &50328994909162572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 48e4a350b6f683d4f9d63f43b17def7c, type: 3}
+  m_PrefabInstance: {fileID: 897241232340398365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &98533333457137426
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50328994909162572}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.115493, y: 3.9847314, z: 1.8232212}
+  m_Center: {x: 0.06570918, y: 2.0305884, z: -0.0027091193}

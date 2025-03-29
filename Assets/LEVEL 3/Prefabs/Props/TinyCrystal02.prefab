@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a4d8fc4766999a488557e4e83ea4f7d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.14
+      value: 207.20358
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a4d8fc4766999a488557e4e83ea4f7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.37
+      value: 2.400207
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a4d8fc4766999a488557e4e83ea4f7d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -242.62
+      value: 133.43875
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a4d8fc4766999a488557e4e83ea4f7d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -70,10 +70,39 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 2ed52e67f2829004286e30d9fdbcbe31, type: 2}
     - target: {fileID: 919132149155446097, guid: 7a4d8fc4766999a488557e4e83ea4f7d, type: 3}
       propertyPath: m_Name
-      value: sm_Crystal01 (2)
+      value: TinyCrystal02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a4d8fc4766999a488557e4e83ea4f7d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7620922886462893857}
   m_SourcePrefab: {fileID: 100100000, guid: 7a4d8fc4766999a488557e4e83ea4f7d, type: 3}
+--- !u!1 &295888829012728293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a4d8fc4766999a488557e4e83ea4f7d, type: 3}
+  m_PrefabInstance: {fileID: 637924016652444852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7620922886462893857
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295888829012728293}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9136627, y: 11.496854, z: 2.3030293}
+  m_Center: {x: -0.025408784, y: 3.0486462, z: -0.15771444}
