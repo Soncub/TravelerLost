@@ -294,7 +294,7 @@ public class CrystalStatue : ChargeSource
         controlScheme = playerInput.currentControlScheme;
         if (controlScheme == "Keyboard and Mouse")
         {
-            popUp.text = "Press Q to interact with the statue.";
+            popUp.text = "Press Q to interact with the statue";
         }
         else if (controlScheme == "Gamepad")
         {
