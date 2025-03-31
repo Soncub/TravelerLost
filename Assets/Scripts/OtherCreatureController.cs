@@ -65,7 +65,8 @@ public class OtherCreatureController : MonoBehaviour
 
     public void SendToInteraction(SaveCreatureInteraction interaction)
     {
-        this.interaction = interaction;
+        if (!trapped)
+            this.interaction = interaction;
     }
 
     public void EndInteraction()
