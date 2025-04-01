@@ -38,6 +38,7 @@ public class ItemInteraction : MonoBehaviour
     public WhistleSystem whistleSystem;
     bool pickUp;
     bool place;
+    public Transform respawnPoint;
 
     private void Start()
     {
@@ -59,6 +60,10 @@ public class ItemInteraction : MonoBehaviour
         playerInput.onControlsChanged += (input) => UpdateControlScheme();
         animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
         whistleSystem = GameObject.Find("Player").GetComponent <WhistleSystem>();
+        if (respawnPoint == null)
+        {
+            respawnPoint = GameObject.Find("RespawnPoint").transform;
+        }
     }
     //UI Script
     private void Update()
@@ -168,6 +173,11 @@ public class ItemInteraction : MonoBehaviour
         {
             UpdateControlScheme();
             popUp.gameObject.SetActive(true);
+
+        }
+        if (other.gameObject.CompareTag("Respawn"))
+        {
+            Respawn();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -188,5 +198,9 @@ public class ItemInteraction : MonoBehaviour
         {
             popUp.text = "Press A to pick up the item";
         }
+    }
+    private void Respawn()
+    {
+        this.transform.position = respawnPoint.position;
     }
 }

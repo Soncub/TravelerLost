@@ -2327,6 +2327,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   anilayer: 2
   whistleSystem: {fileID: 0}
+  respawnPoint: {fileID: 1746791707}
 --- !u!135 &107447255
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6934,6 +6935,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   anilayer: 2
   whistleSystem: {fileID: 0}
+  respawnPoint: {fileID: 397001842}
 --- !u!135 &346389508
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7395,6 +7397,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1972827041}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &397001841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 397001842}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &397001842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397001841}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 288.81244, y: 3.05, z: -89.785736}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 466391295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &398415969
 GameObject:
@@ -8580,6 +8613,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459865448}
   m_CullTransparentMesh: 1
+--- !u!1 &466391294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466391295}
+  m_Layer: 0
+  m_Name: Crystal Respawn Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &466391295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466391294}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1168154416}
+  - {fileID: 1746791707}
+  - {fileID: 397001842}
+  - {fileID: 1886632209}
+  - {fileID: 2091530058}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &472332189 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2836766562474344559, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
@@ -13974,7 +14043,7 @@ GameObject:
   - component: {fileID: 830583136}
   m_Layer: 0
   m_Name: 'water on the floor '
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19794,6 +19863,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9191005764340534094, guid: 424b5214167c7fb4d906244903f5c942, type: 3}
   m_PrefabInstance: {fileID: 1454620588}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1168154415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168154416}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1168154416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168154415}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -32.479893, y: 2.38, z: -240.55263}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 466391295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1169385486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21695,7 +21795,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -26587,6 +26687,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   anilayer: 2
   whistleSystem: {fileID: 0}
+  respawnPoint: {fileID: 1886632209}
 --- !u!135 &1568858834
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -29120,6 +29221,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2235996274027451393, guid: 387acd55e9b4bd643af4921562c28198, type: 3}
   m_PrefabInstance: {fileID: 1746571870}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1746791706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1746791707}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1746791707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746791706}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 42.9177, y: 8.53, z: -214.03822}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 466391295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1751884056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31039,6 +31171,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fleeLocation: {fileID: 1861408183}
+--- !u!1 &1886632208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1886632209}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1886632209
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886632208}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0.0000029504295}
+  m_LocalPosition: {x: 289.72, y: 23.76, z: -197.02728}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 466391295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1899050668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34336,6 +34499,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   anilayer: 2
   whistleSystem: {fileID: 0}
+  respawnPoint: {fileID: 2091530058}
 --- !u!135 &2091193114
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -34428,6 +34592,37 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2091530057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2091530058}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0 (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2091530058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091530057}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 336.06726, y: 13.61, z: -248.10046}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 466391295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2091914901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7095094199759848158, guid: 5882a36b4d03d5c469407f252f0d9a1e, type: 3}
@@ -36714,6 +36909,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 670472798}
+    - target: {fileID: 1178794003170500201, guid: 74abdcfc3b4dc4a4eb0a97fe42e3b909, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1168154416}
     - target: {fileID: 4144055198479619400, guid: 74abdcfc3b4dc4a4eb0a97fe42e3b909, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.49
@@ -37723,3 +37922,4 @@ SceneRoots:
   - {fileID: 278525313}
   - {fileID: 2088009106}
   - {fileID: 1497323672}
+  - {fileID: 466391295}

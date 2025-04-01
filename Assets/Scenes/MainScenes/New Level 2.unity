@@ -8749,6 +8749,43 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3000119331276746533, guid: a05183a0e57b24249adca39a2890923a, type: 3}
   m_PrefabInstance: {fileID: 1372158812713830698}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &963751060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 963751061}
+  m_Layer: 0
+  m_Name: Crystal Respawn Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &963751061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963751060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 159.05003, y: 8.860039, z: -209.03143}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1657058953}
+  - {fileID: 1959213676}
+  - {fileID: 1080437760}
+  - {fileID: 1143078276}
+  - {fileID: 1160407037}
+  - {fileID: 1201442732}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &991557054
 GameObject:
   m_ObjectHideFlags: 0
@@ -9500,6 +9537,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1960736157}
   m_SourcePrefab: {fileID: 100100000, guid: 78ece1cad8d28014db4369bbb93de011, type: 3}
+--- !u!1 &1080437759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080437760}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1080437760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080437759}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -311.57, y: -6.45, z: 170.63144}
+  m_LocalScale: {x: 0.90808, y: 0.90808, z: 0.90808}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963751061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1080949772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9609,6 +9677,111 @@ Transform:
   - {fileID: 1006232977}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1105769829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1105769833}
+  - component: {fileID: 1105769832}
+  - component: {fileID: 1105769831}
+  - component: {fileID: 1105769830}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Respawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1105769830
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105769829}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1000, y: 3, z: 1000}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1105769831
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105769829}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1105769832
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105769829}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1105769833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105769829}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 172, y: -10, z: -119}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1114197335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58487424faca055448a1b6a3f0d6fcd5, type: 3}
@@ -9680,6 +9853,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 569717441127996189, guid: 9140abbfe0bfe8b489cdf41f2f26f5df, type: 3}
   m_PrefabInstance: {fileID: 1131341306}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1143078275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1143078276}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1143078276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143078275}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -206.74998, y: -6.56, z: -171.72855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963751061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1156263868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9749,6 +9953,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fa635839a3b55f459a9b152aee1e7fa, type: 3}
+--- !u!1 &1160407036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160407037}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0 (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1160407037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160407036}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 283.02997, y: -6.1, z: -197.76855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963751061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1191722154 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4611839425158470210, guid: f4bda99f6a6fe9c4d9f342be7266aba4, type: 3}
@@ -9764,6 +9999,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8935505247656998023, guid: 1c59586937ef54b4c86b3772c30728c1, type: 3}
   m_PrefabInstance: {fileID: 1520767828}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1201442731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1201442732}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0 (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1201442732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201442731}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 320.24994, y: -4.5800385, z: 111.831436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963751061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1219670871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10155,6 +10421,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1381602547244357141, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1201442732}
     - target: {fileID: 1418650994087970253, guid: 83d773b26f4c7174fb8c848de05524a1, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -13159,6 +13429,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58487424faca055448a1b6a3f0d6fcd5, type: 3}
+--- !u!1 &1657058952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657058953}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1657058953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657058952}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 171.42998, y: -6.210041, z: 109.31143}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963751061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1659078033
 GameObject:
   m_ObjectHideFlags: 0
@@ -15439,6 +15740,37 @@ Transform:
   - {fileID: 135866224}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1959213675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1959213676}
+  m_Layer: 0
+  m_Name: Crystal Respawn Point 0 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1959213676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959213675}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 252.15999, y: 1.62, z: 419.84143}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963751061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1959889491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6581025339180572129, guid: 9fa635839a3b55f459a9b152aee1e7fa, type: 3}
@@ -16402,6 +16734,10 @@ PrefabInstance:
       propertyPath: pickUpAction
       value: 
       objectReference: {fileID: 6781468535072096557, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
+    - target: {fileID: 2651280653719982911, guid: a05183a0e57b24249adca39a2890923a, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1160407037}
     - target: {fileID: 3000119331276746533, guid: a05183a0e57b24249adca39a2890923a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.5
@@ -16471,6 +16807,10 @@ PrefabInstance:
       propertyPath: pickUpAction
       value: 
       objectReference: {fileID: 6781468535072096557, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
+    - target: {fileID: 7427141092861834374, guid: 1c59586937ef54b4c86b3772c30728c1, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1080437760}
     - target: {fileID: 8935505247656998023, guid: 1c59586937ef54b4c86b3772c30728c1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.90808
@@ -16523,8 +16863,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7427141092861834374, guid: 1c59586937ef54b4c86b3772c30728c1, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16589,6 +16928,10 @@ PrefabInstance:
       propertyPath: pickUpAction
       value: 
       objectReference: {fileID: 6781468535072096557, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
+    - target: {fileID: 5695128785860410835, guid: 2bcb152c2bd63514eb935038610662bb, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1959213676}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16606,6 +16949,10 @@ PrefabInstance:
       propertyPath: pickUpAction
       value: 
       objectReference: {fileID: 6781468535072096557, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
+    - target: {fileID: 2053178064341593287, guid: 420de54044ac3c745aabe61fa90ae041, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1143078276}
     - target: {fileID: 4684931134315616219, guid: 420de54044ac3c745aabe61fa90ae041, type: 3}
       propertyPath: m_LocalPosition.x
       value: -185.76
@@ -16727,6 +17074,10 @@ PrefabInstance:
       propertyPath: pickUpAction
       value: 
       objectReference: {fileID: 6781468535072096557, guid: 68231d8a39001d84fb21ede2130489b4, type: 3}
+    - target: {fileID: 9104350573014330816, guid: 3bbbf3c6e44086043abd2cea2c1bf54c, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1657058953}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17698,3 +18049,5 @@ SceneRoots:
   - {fileID: 1458746202}
   - {fileID: 1965879929}
   - {fileID: 1718476561}
+  - {fileID: 963751061}
+  - {fileID: 1105769833}
