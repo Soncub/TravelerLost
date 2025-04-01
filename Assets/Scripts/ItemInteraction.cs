@@ -38,7 +38,6 @@ public class ItemInteraction : MonoBehaviour
     public WhistleSystem whistleSystem;
     bool pickUp;
     bool place;
-    private FruitBush FruitBush;
 
     private void Start()
     {
@@ -59,8 +58,7 @@ public class ItemInteraction : MonoBehaviour
         playerInput = GameObject.Find("PlayerInput").GetComponent<PlayerInput>();
         playerInput.onControlsChanged += (input) => UpdateControlScheme();
         animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
-        whistleSystem = GameObject.Find("Player").GetComponent<WhistleSystem>();
-        FruitBush = GameObject.Find("Fruit bush").GetComponent<FruitBush>();
+        whistleSystem = GameObject.Find("Player").GetComponent <WhistleSystem>();
     }
     //UI Script
     private void Update()
@@ -97,9 +95,7 @@ public class ItemInteraction : MonoBehaviour
     {
         // Calculate distance dynamically
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
-
-        // Allow pickup only if the item has finished growing
-        if (context.performed && distanceToPlayer <= pickUpDistance && !itemIsPicked && pickUpPoint.childCount < 1 && !whistleSystem.whistling && FruitBush.isGrown)
+        if (context.performed && distanceToPlayer <= pickUpDistance && !itemIsPicked && pickUpPoint.childCount < 1 && !whistleSystem.whistling)
         {
             rb.useGravity = false;
             rb.velocity = Vector3.zero; // Stop object movement when picked up

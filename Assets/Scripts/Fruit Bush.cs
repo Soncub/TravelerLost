@@ -39,8 +39,6 @@ public class FruitBush : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     private string controlScheme;
 
-    public bool isGrown = false; // Add this flag to track if the item is fully grown
-
     private void Start()
     {
         canvas = GameObject.Find("MessageCanvas");
@@ -140,8 +138,6 @@ public class FruitBush : MonoBehaviour
         }
 
         item.transform.localScale = targetScale;
-        isGrown = true; // Mark the item as grown when it finishes growing
-
         Rigidbody rb = item.GetComponent<Rigidbody>();
         if (rb != null)
         {
