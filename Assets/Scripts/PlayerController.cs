@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         this.enabled = false;
     }
-    /*private void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Respawn"))
         {
