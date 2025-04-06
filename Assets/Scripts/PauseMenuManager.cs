@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PauseMenuManager : MonoBehaviour
+public class PauseMenuManager : BookAnimation
 {
     [SerializeField] private GameObject pauseMenuCanavs;
     [SerializeField] private GameObject settingsMenuCanavs;
@@ -35,7 +35,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         if(levelEnd.fadeTimer == 0)
         {
-            if (InputManager.instance.menuOpenCloseInput)
+            if (InputManager.instance.menuOpenCloseInput && !IsAnimating())
             {
                 if (!isPaused)
                 {
@@ -51,13 +51,9 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Pause()
     {
-        isPaused = true;
-        Time.timeScale = 0f;
-
-        player.enabled = false;
-        whistle.enabled = false;
-
-        OpenMainMenu();
+        OpenBook();
+        
+        StartCoroutine(PauseLogic(animationLength));
     }
 
     public void Unpause()
@@ -69,6 +65,8 @@ public class PauseMenuManager : MonoBehaviour
         whistle.enabled = true;
 
         CloseAllMenus();
+
+        CloseBook();
     }
 
     private void OpenMainMenu()
@@ -146,4 +144,21 @@ public class PauseMenuManager : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit();
     }
+
+    #region IEnumerators
+    IEnumerator PauseLogic(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        OpenMainMenu();
+
+        isPaused = true;
+        Time.timeScale = 0f;
+
+        player.enabled = false;
+        whistle.enabled = false;
+
+        CloseAnimationState(true);
+    }
+    #endregion
 }
