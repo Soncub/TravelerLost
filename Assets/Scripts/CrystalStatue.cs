@@ -129,7 +129,7 @@ public class CrystalStatue : ChargeSource
     }
 
     // --- Pillar Logic Methods ---
-    private void OnItemPlaced()
+    public void OnItemPlaced()
     {
         if (isFirst)
             Charge();
@@ -138,9 +138,8 @@ public class CrystalStatue : ChargeSource
         UpdateBeam();
     }
 
-    private void OnItemReleased()
+    public void OnItemReleased()
     {
-        Uncharge();
         UpdateBeam();
     }
 

@@ -14,13 +14,16 @@ public class EnemyFunctions : MonoBehaviour
     [SerializeField] private float fleeSpeed = 15;
     private bool fleeing = false;
     private float attackCooldown;
+    private AudioSource audio;
 
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        if(GetComponent<AudioSource>() != null)
+            audio = GetComponent<AudioSource>();
         if (startAsleep)
             animator.SetTrigger("Sleep");
-        attackCooldown = Random.Range(2, 10);
+        attackCooldown = Random.Range(2, 6);
     }
 
     private void Update()
@@ -32,8 +35,9 @@ public class EnemyFunctions : MonoBehaviour
             attackCooldown -= Time.deltaTime;
             if (attackCooldown <= 0)
             {
+                audio.Play();
                 animator.SetTrigger("Attack");
-                attackCooldown = Random.Range(2, 10);
+                attackCooldown = Random.Range(2, 6);
             }
         }
     }
