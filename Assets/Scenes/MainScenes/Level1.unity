@@ -22193,7 +22193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &899104276
 Transform:
   m_ObjectHideFlags: 0
@@ -45115,7 +45115,19 @@ MonoBehaviour:
         m_CallState: 2
   exitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 899104275}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &1839922510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45135,8 +45147,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18.373077, y: 7.625948, z: 35.083855}
-  m_Center: {x: 8.686539, y: 0, z: -6.8843117}
+  m_Size: {x: 179.42155, y: 31.540058, z: 296.62128}
+  m_Center: {x: -71.8377, y: -7.8158855, z: -137.65302}
 --- !u!4 &1839922511
 Transform:
   m_ObjectHideFlags: 0
@@ -45146,7 +45158,7 @@ Transform:
   m_GameObject: {fileID: 1839922508}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 372.76, y: 38.97, z: -41.18}
+  m_LocalPosition: {x: 372.76, y: 34.5, z: -41.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
