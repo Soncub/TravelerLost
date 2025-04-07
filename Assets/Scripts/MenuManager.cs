@@ -10,11 +10,13 @@ public class MenuManager : MonoBehaviour
     public GameObject controlsCanvas;
     public GameObject settingsCanvas;
     public GameObject creditsCanvas;
+    public GameObject levelSelectCanvas;
 
     public GameObject menuButtonName;
     public GameObject controlsButtonName;
     public GameObject settingsButtonName;
     public GameObject creditsButtonName;
+    public GameObject[] levelSelectButtons;
 
     AudioBank audioBank;
 
@@ -29,6 +31,7 @@ public class MenuManager : MonoBehaviour
         controlsCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
         creditsCanvas.SetActive(false);
+        levelSelectCanvas.SetActive(false);
 
         if (canvasName == "Controls")
         {
@@ -50,6 +53,17 @@ public class MenuManager : MonoBehaviour
             creditsCanvas.SetActive(true);
             canvas.SetActive(false);
             EventSystem.current.SetSelectedGameObject(creditsButtonName);
+        }
+        else if (canvasName == "LevelSelect")
+        {
+            for (int i = 0; i < levelSelectButtons.Length; i++)
+            {
+                levelSelectButtons[i].SetActive(i <= SaveAndLoad.instance.saveData.levelsBeat);
+            }
+            audioBank.PlaySFX(audioBank.selectSound);
+            levelSelectCanvas.SetActive(true);
+            canvas.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(levelSelectButtons[0]);
         }
         else if (canvasName == "Main")
         {
@@ -80,6 +94,11 @@ public class MenuManager : MonoBehaviour
     public void MenuPopUp()
     {
         ActivateCanvas("Main");
+    }
+
+    public void LevelSelectPopUp()
+    {
+        ActivateCanvas("LevelSelect");
     }
 
     public void LoadLevel1()

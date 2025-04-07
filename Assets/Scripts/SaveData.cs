@@ -14,6 +14,7 @@ public class SaveData
     public float verticalSensitivity = 75f;
     public bool invertHorizontal = false;
     public bool invertVertical = false;
+    public int levelsBeat = 0;
 
     public SaveData()
     {
