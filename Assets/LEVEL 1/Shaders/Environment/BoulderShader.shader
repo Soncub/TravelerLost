@@ -22,6 +22,7 @@ Shader "URP/BoulderShader"
             #pragma vertex vert
             #pragma fragment frag
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl"
 
             struct Attributes
             {
@@ -40,14 +41,14 @@ Shader "URP/BoulderShader"
             {
                 Varyings OUT;
                 float3 normalWS = normalize(TransformObjectToWorldNormal(IN.normalOS));
-                IN.positionOS.xyz += normalWS * _OutlineWidth;
-                OUT.positionHCS = TransformObjectToHClip(IN.positionOS);
+                float3 positionWS = TransformObjectToWorld(IN.positionOS.xyz + normalWS * _OutlineWidth);
+                OUT.positionHCS = TransformWorldToHClip(positionWS);
                 return OUT;
             }
 
             half4 frag(Varyings IN) : SV_Target
             {
-                return half4(0,0,0,1); // Black outline
+                return half4(0, 0, 0, 1); // Black outline
             }
             ENDHLSL
         }
@@ -62,6 +63,7 @@ Shader "URP/BoulderShader"
             #pragma fragment frag
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl"
 
             struct Attributes
             {
@@ -87,7 +89,8 @@ Shader "URP/BoulderShader"
                 Varyings OUT;
                 OUT.uv = IN.uv;
                 OUT.normalWS = normalize(TransformObjectToWorldNormal(IN.normalOS));
-                OUT.positionHCS = TransformObjectToHClip(IN.positionOS);
+                float3 positionWS = TransformObjectToWorld(IN.positionOS.xyz);
+                OUT.positionHCS = TransformWorldToHClip(positionWS);
                 return OUT;
             }
 
