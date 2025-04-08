@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5293357180392610706}
-  - component: {fileID: 1297862074074748547}
+  - component: {fileID: 8623264350213900540}
   m_Layer: 0
   m_Name: rockLVL4
   m_TagString: Untagged
@@ -33,8 +33,8 @@ Transform:
   - {fileID: 338623614956585376}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1297862074074748547
-BoxCollider:
+--- !u!64 &8623264350213900540
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51,9 +51,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 6.466406, y: 4.7254734, z: 4.6185303}
-  m_Center: {x: 0.06691837, y: 0.06009686, z: -0.0037078857}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5524581511353213692, guid: d4beb3979652f4045a44e5f97fce2bd0, type: 3}
 --- !u!1001 &232411603641214539
 PrefabInstance:
   m_ObjectHideFlags: 0
