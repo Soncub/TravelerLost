@@ -15,6 +15,10 @@ public class EnemyFunctions : MonoBehaviour
     private bool fleeing = false;
     private float attackCooldown;
     private AudioSource audio;
+    public bool forwardOtherWay;
+    //Vector3 flyAway;
+    float fleeDistance = 0.0f;
+    float incrementRate = 15.0f;
 
     private void Start()
     {
@@ -24,12 +28,26 @@ public class EnemyFunctions : MonoBehaviour
         if (startAsleep)
             animator.SetTrigger("Sleep");
         attackCooldown = Random.Range(2, 6);
+        animator.speed = Random.Range(0.8f, 1.2f);
+        //flyAway = new Vector3(fleeDistance, fleeDistance, 0.0f);
     }
 
     private void Update()
     {
         if (fleeing)
-            transform.position += fleeSpeed * Time.deltaTime * Vector3.up;
+        {
+            fleeDistance += incrementRate * Time.deltaTime;
+            //transform.position += fleeSpeed * Time.deltaTime * Vector3.up;
+            if (forwardOtherWay)
+            {
+                transform.position += -Vector3.forward * fleeDistance * Time.deltaTime;
+            }
+            else
+            {
+                transform.position += Vector3.forward * fleeDistance * Time.deltaTime;
+            }
+            transform.position += Vector3.up * fleeDistance * Time.deltaTime;
+        }
         else if (!startAsleep)
         {
             attackCooldown -= Time.deltaTime;
