@@ -129,7 +129,7 @@ public class CrystalStatue : ChargeSource
     }
 
     // --- Pillar Logic Methods ---
-    private void OnItemPlaced()
+    public void OnItemPlaced()
     {
         if (isFirst)
             Charge();
@@ -138,9 +138,8 @@ public class CrystalStatue : ChargeSource
         UpdateBeam();
     }
 
-    private void OnItemReleased()
+    public void OnItemReleased()
     {
-        Uncharge();
         UpdateBeam();
     }
 
@@ -294,7 +293,7 @@ public class CrystalStatue : ChargeSource
         controlScheme = playerInput.currentControlScheme;
         if (controlScheme == "Keyboard and Mouse")
         {
-            popUp.text = "Press Q to interact with the statue.";
+            popUp.text = "Press Q to interact with the statue";
         }
         else if (controlScheme == "Gamepad")
         {

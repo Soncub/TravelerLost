@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     int isLandingHash;
     bool isLanding;
     public ParticleSystem jumpParticles;
+    //public Transform respawnPoint;
 
     private void Awake()
     {
@@ -121,4 +122,15 @@ public class PlayerController : MonoBehaviour
     {
         this.enabled = false;
     }
+    /*public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Respawn"))
+        {
+            Respawn();
+        }
+    }
+    private void Respawn()
+    {
+        this.transform.position = respawnPoint.position;
+    }*/
 }

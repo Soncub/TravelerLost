@@ -17,6 +17,8 @@ public class LevelEnd : MonoBehaviour
     [SerializeField] bool creature, player;
     public float fadeTimer = 0;
     public Collider zone;
+    [Tooltip("What level is this")]
+    [SerializeField] int curLevel;
 
     private void Update()
     {
@@ -33,6 +35,8 @@ public class LevelEnd : MonoBehaviour
             fade.color = new(0, 0, 0, fadeTimer / waitTime);
             if (waitTimer <= 0 && creature && player)
             {
+                SaveAndLoad.instance.saveData.levelsBeat = Mathf.Max(SaveAndLoad.instance.saveData.levelsBeat, curLevel);
+                SaveAndLoad.instance.SaveGame();
                 finishEvent.Invoke();
             }
         }

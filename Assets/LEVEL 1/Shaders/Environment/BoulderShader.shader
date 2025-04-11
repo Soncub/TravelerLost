@@ -9,18 +9,22 @@ Shader "URP/BoulderShader"
     }
     SubShader
     {
-        Tags { "RenderPipeline"="UniversalRenderPipeline" "RenderType"="Opaque" }
+        Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" }
 
-        Pass // Outline Pass
+        // Pass 1: Outline
+        Pass
         {
             Name "OutlinePass"
-            Tags { "LightMode"="SRPDefaultUnlit" }
+            Tags { "LightMode" = "SRPDefaultUnlit" }
 
-            Cull Front // Render backfaces for outline
+            Cull Front
+            ZWrite On
+            ZTest LEqual
 
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             struct Attributes
@@ -39,27 +43,29 @@ Shader "URP/BoulderShader"
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
-                float3 normalWS = normalize(TransformObjectToWorldNormal(IN.normalOS));
-                IN.positionOS.xyz += normalWS * _OutlineWidth;
-                OUT.positionHCS = TransformObjectToHClip(IN.positionOS);
+                float3 normalWS = TransformObjectToWorldNormal(IN.normalOS);
+                float3 offsetPosWS = TransformObjectToWorld(IN.positionOS.xyz + normalWS * _OutlineWidth);
+                OUT.positionHCS = TransformWorldToHClip(offsetPosWS);
                 return OUT;
             }
 
             half4 frag(Varyings IN) : SV_Target
             {
-                return half4(0,0,0,1); // Black outline
+                return half4(0, 0, 0, 1); // solid black outline
             }
             ENDHLSL
         }
 
-        Pass // Main Boulder Pass
+        // Pass 2: Main Lit Boulder
+        Pass
         {
             Name "LitPass"
-            Tags { "LightMode"="UniversalForward" }
+            Tags { "LightMode" = "UniversalForward" }
 
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
@@ -86,19 +92,23 @@ Shader "URP/BoulderShader"
             {
                 Varyings OUT;
                 OUT.uv = IN.uv;
-                OUT.normalWS = normalize(TransformObjectToWorldNormal(IN.normalOS));
-                OUT.positionHCS = TransformObjectToHClip(IN.positionOS);
+                OUT.normalWS = TransformObjectToWorldNormal(IN.normalOS);
+                float3 posWS = TransformObjectToWorld(IN.positionOS.xyz);
+                OUT.positionHCS = TransformWorldToHClip(posWS);
                 return OUT;
             }
 
             half4 frag(Varyings IN) : SV_Target
             {
-                half4 texColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
                 Light mainLight = GetMainLight();
-                float lightIntensity = saturate(dot(IN.normalWS, mainLight.direction));
-                float gradient = smoothstep(0.2, 0.8, lightIntensity);
-                half4 lightingColor = lerp(_DarkColor, _LightColor, gradient);
-                return half4(texColor.rgb * lightingColor.rgb, 1);
+                float3 normal = normalize(IN.normalWS);
+                float lightStrength = saturate(dot(normal, mainLight.direction));
+
+                float gradient = smoothstep(0.2, 0.8, lightStrength);
+                float4 litColor = lerp(_DarkColor, _LightColor, gradient);
+
+                float4 texColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
+                return float4(texColor.rgb * litColor.rgb, 1);
             }
             ENDHLSL
         }

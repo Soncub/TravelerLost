@@ -65,7 +65,6 @@ public class CreatureDoor : MonoBehaviour
             float step = moveSpeed * Time.deltaTime;
             creatureDoor.transform.position = Vector3.MoveTowards(creatureDoor.transform.position, initialPosition + movePosition, step);
 
-
             if (creatureDoor.transform.position == initialPosition + movePosition)
             {
                 doorFullyOpened = true;

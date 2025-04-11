@@ -78,7 +78,7 @@ public class Fruit : MonoBehaviour
             if (distanceToCreature <= offerDistance)
             {
                 StartCoroutine(OfferFruitCoroutine());
-                creature.AnimatorTrigger("eat");
+                creature.AnimatorTrigger("Eat");
             }
         }
     }

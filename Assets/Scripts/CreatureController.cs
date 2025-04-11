@@ -20,6 +20,7 @@ public class CreatureController : MonoBehaviour
     [SerializeField] private float targetFocusTime = 5;
     private float focusTimeLeft = 0;
     private bool afraid = false;
+    private float idleTime;
     
     private void Start()
     {
@@ -31,28 +32,43 @@ public class CreatureController : MonoBehaviour
     private void FixedUpdate()
     {
         animator.SetFloat("speed", agent.velocity.magnitude);
-        //If currently focused, update focus time. Ignore this if its afraid, as when its afraid focus does not matter
-        if (!afraid && focusTimeLeft > 0)
+        if (!afraid)
         {
-            focusTimeLeft -= Time.deltaTime;
-            //If focus is lost, stop moving towards a target destination
-            if (focusTimeLeft < 0)
-                LoseFocus();
-            //If focus is not lost and using a moving target, update its destination
-            else if (movingTarget != null)
+            //If currently focused, update focus time. Ignore this if its afraid, as when its afraid focus does not matter
+            if (focusTimeLeft > 0)
             {
-                if (interactable != null && Vector3.Distance(transform.position, movingTarget.position) <= interactable.interactionDistance)
-                {
-                    interactable.Interact();
-                    interactable = null;
+                focusTimeLeft -= Time.deltaTime;
+                //If focus is lost, stop moving towards a target destination
+                if (focusTimeLeft < 0)
                     LoseFocus();
+                //If focus is not lost and using a moving target, update its destination
+                else if (movingTarget != null)
+                {
+                    if (interactable != null && Vector3.Distance(transform.position, movingTarget.position) <= interactable.interactionDistance)
+                    {
+                        interactable.Interact();
+                        interactable = null;
+                        LoseFocus();
 
+                    }
+                    else
+                        agent.SetDestination(movingTarget.position);
                 }
-                else
-                    agent.SetDestination(movingTarget.position);
+            }
+            //If not focused on something, keep track of how long it hasn't moved for and randomly play idle animations.
+            else
+            {
+                idleTime += Time.deltaTime;
+                if (idleTime >= 10)
+                {   
+                    if(Random.value > .5)
+                        animator.SetTrigger("idle1");
+                    else
+                        animator.SetTrigger("idle2");
+                    idleTime = 0;
+                }
             }
         }
-
         //If currently afraid, calm down if close enough to the flee position
         if (afraid && agent.remainingDistance <= fleeRange)
         {

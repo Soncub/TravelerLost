@@ -63,9 +63,7 @@ public class WhistlingStatue : MonoBehaviour
     private string controlScheme;
     public Animator animator;
     int isRotatingHash;
-    bool isRotating;
     int isReverseHash;
-    bool isReverse;
 
     public void Awake()
     {
@@ -154,8 +152,6 @@ public class WhistlingStatue : MonoBehaviour
             PopUpOff();
         }*/
         updateTimer -= Time.deltaTime;
-        isRotating = animator.GetBool(isRotatingHash);
-        isReverse = animator.GetBool(isReverseHash);
         if (updateTimer < 0)
         {
             //On a timer, either call or distract the creature if its in range based on rotation
@@ -217,6 +213,7 @@ public class WhistlingStatue : MonoBehaviour
         //When unpressed, stop interaction and re-enable player movement
         if (interacting && context.canceled)
         {
+            input = 0;
             animator.speed = 1;
             animator.SetBool(isRotatingHash, false);
             animator.SetBool(isReverseHash, false);
@@ -321,7 +318,7 @@ public class WhistlingStatue : MonoBehaviour
         controlScheme = playerInput.currentControlScheme;
         if (controlScheme == "Keyboard and Mouse")
         {
-            popUp.text = "Press Q to interact with the statue.";
+            popUp.text = "Press Q to interact with the statue";
         }
         else if (controlScheme == "Gamepad")
         {

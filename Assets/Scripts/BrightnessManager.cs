@@ -46,7 +46,7 @@ public class BrightnessManager : MonoBehaviour
     public void AdjustBrightness()
     {
         currentBrightnessValue = brightnessSlider.value;
-        liftGammaGain.gamma.value = new Vector4(1f, 1f, 1f, currentBrightnessValue);
+        liftGammaGain.gain.value = new Vector4(1f, 1f, 1f, currentBrightnessValue);
         //exposure.keyValue.value = currentBrightnessValue;
 
         /*if(value != 0)
