@@ -21,7 +21,10 @@ public class CreatureController : MonoBehaviour
     private float focusTimeLeft = 0;
     private bool afraid = false;
     private float idleTime;
-    
+    public AudioSource growl;
+    public AudioSource whimper;
+
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -85,6 +88,7 @@ public class CreatureController : MonoBehaviour
         //Set the destination and erase the current moving target if there is one
         if (movingTarget != null)
             movingTarget = null;
+        growl.Play();
         focusTimeLeft = targetFocusTime;
         agent.SetDestination(position);
         animator.SetTrigger("whistle");
@@ -96,6 +100,7 @@ public class CreatureController : MonoBehaviour
         if (afraid)
             return;
         //Set a new moving target that will update every frame
+        growl.Play();
         movingTarget = transform;
         focusTimeLeft = targetFocusTime;
         agent.SetDestination(movingTarget.position);
@@ -127,6 +132,7 @@ public class CreatureController : MonoBehaviour
         if (movingTarget != null)
             movingTarget = null;
         agent.SetDestination(position);
+        whimper.Play();
         animator.SetBool("fleeing", true);
     }
 

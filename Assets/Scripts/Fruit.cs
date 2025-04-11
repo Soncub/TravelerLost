@@ -33,6 +33,7 @@ public class Fruit : MonoBehaviour
     int isOfferingHash;
     [SerializeField] bool isHeOffering;
     public int anilayer = 2;
+    public AudioSource eat;
 
     private void Start()
     {
@@ -54,7 +55,8 @@ public class Fruit : MonoBehaviour
         canvas = GameObject.Find("MessageCanvas");
         childObject = canvas.transform.Find("FruitMessage");
         errorTag = childObject.GetComponent<TextMeshProUGUI>();
-    }
+        eat = GetComponent<AudioSource>();
+}
     public void Update()
     {
         isHeOffering = animator.GetBool(isOfferingHash);
@@ -94,7 +96,8 @@ public class Fruit : MonoBehaviour
             if (distanceToCreature <= offerDistance)
             {
                 StartCoroutine(OfferFruitCoroutine());
-                creature.AnimatorTrigger("Eat");
+                eat.Play();
+                creature.AnimatorTrigger("eat");
             }
             else
             { 

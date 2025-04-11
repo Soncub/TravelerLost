@@ -39,6 +39,7 @@ public class ItemInteraction : MonoBehaviour
     bool pickUp;
     bool place;
     public Transform respawnPoint;
+    public AudioSource pickUpSound;
 
     private void Start()
     {
@@ -112,6 +113,7 @@ public class ItemInteraction : MonoBehaviour
             PickUpEvent.Invoke();
             animator.SetTrigger("PickUp");
             animator.SetLayerWeight(anilayer, 0.8f);
+            pickUpSound.Play();
         }
         else if (itemIsPicked && context.performed)
         {

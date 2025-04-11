@@ -14,7 +14,7 @@ public class EnemyFunctions : MonoBehaviour
     [SerializeField] private float fleeSpeed = 15;
     private bool fleeing = false;
     private float attackCooldown;
-    private AudioSource audio;
+    private AudioSource attack;
     public bool forwardOtherWay;
     //Vector3 flyAway;
     float fleeDistance = 0.0f;
@@ -24,7 +24,7 @@ public class EnemyFunctions : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         if(GetComponent<AudioSource>() != null)
-            audio = GetComponent<AudioSource>();
+            attack = GetComponent<AudioSource>();
         if (startAsleep)
             animator.SetTrigger("Sleep");
         attackCooldown = Random.Range(2, 6);
@@ -53,7 +53,7 @@ public class EnemyFunctions : MonoBehaviour
             attackCooldown -= Time.deltaTime;
             if (attackCooldown <= 0)
             {
-                audio.Play();
+                attack.Play();
                 animator.SetTrigger("Attack");
                 attackCooldown = Random.Range(2, 6);
             }

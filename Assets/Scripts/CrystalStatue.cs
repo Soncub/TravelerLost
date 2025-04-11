@@ -225,7 +225,6 @@ public class CrystalStatue : ChargeSource
         if (!isLit)
         {
             isLit = true;
-            lightUp.Play();
             UpdateBeam();
         }
     }
@@ -246,6 +245,7 @@ public class CrystalStatue : ChargeSource
             if (!beamObject.activeSelf)
             {
                 beamObject.SetActive(true);
+                lightUp.Play();
                 if (darkObject != null)
                     darkObject.SetActive(false);
                 Debug.Log($"{name} is now lit up.");
