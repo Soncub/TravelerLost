@@ -19,6 +19,7 @@ public class PauseMenuManager : BookAnimation
     public bool isPaused;
     [SerializeField] LevelEnd levelEnd;
     public LevelLoader levelLoader;
+    public AudioSource openBook;
 
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class PauseMenuManager : BookAnimation
     public void Pause()
     {
         OpenBook();
+        openBook.Play();
         
         StartCoroutine(PauseLogic(animationLength));
     }

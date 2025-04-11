@@ -19,6 +19,11 @@ public class Fruit : MonoBehaviour
     private CreatureController creature;                // Reference to the creature
     private bool isOffering = false;                    // Is the fruit currently being offered
     private ItemInteraction itemInteraction;            // Reference to ItemInteraction for pickup status
+    public GameObject canvas;
+    public Transform childObject;
+    public TextMeshProUGUI errorTag;
+    public float tagDissapearTimer = 5;
+    private float tagTime;
 
     public CharacterController characterController;
     public PlayerController playerMovement;
@@ -46,6 +51,9 @@ public class Fruit : MonoBehaviour
 
         playerMovement = player.GetComponent<PlayerController>();
         animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
+        canvas = GameObject.Find("MessageCanvas");
+        childObject = canvas.transform.Find("FruitMessage");
+        errorTag = childObject.GetComponent<TextMeshProUGUI>();
     }
     public void Update()
     {
@@ -59,6 +67,14 @@ public class Fruit : MonoBehaviour
                 animator.SetBool(isOfferingHash, false);
                 animator.SetLayerWeight(anilayer, 0f);
                 Destroy(gameObject);
+            }
+        }
+        if (tagTime > 0)
+        {
+            tagTime -= Time.deltaTime;
+            if (tagTime < 0)
+            {
+                errorTag.gameObject.SetActive(false);
             }
         }
     }
@@ -79,6 +95,11 @@ public class Fruit : MonoBehaviour
             {
                 StartCoroutine(OfferFruitCoroutine());
                 creature.AnimatorTrigger("Eat");
+            }
+            else
+            { 
+                errorTag.gameObject.SetActive(true);
+                tagTime = tagDissapearTimer;
             }
         }
     }

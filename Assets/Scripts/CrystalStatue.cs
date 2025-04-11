@@ -44,6 +44,7 @@ public class CrystalStatue : ChargeSource
     bool isRotating;
     int isReverseHash;
     bool isReverse;
+    public AudioSource lightUp;
 
     [Tooltip("Pop up text")]
     public GameObject canvas;
@@ -224,6 +225,7 @@ public class CrystalStatue : ChargeSource
         if (!isLit)
         {
             isLit = true;
+            lightUp.Play();
             UpdateBeam();
         }
     }
