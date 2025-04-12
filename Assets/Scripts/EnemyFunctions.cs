@@ -14,7 +14,9 @@ public class EnemyFunctions : MonoBehaviour
     [SerializeField] private float fleeSpeed = 15;
     private bool fleeing = false;
     private float attackCooldown;
-    private AudioSource attack;
+    public AudioSource attack;
+    public AudioSource flying;
+    public AudioSource sleep;
     public bool forwardOtherWay;
     //Vector3 flyAway;
     float fleeDistance = 0.0f;
@@ -26,9 +28,12 @@ public class EnemyFunctions : MonoBehaviour
         if(GetComponent<AudioSource>() != null)
             attack = GetComponent<AudioSource>();
         if (startAsleep)
+        {
             animator.SetTrigger("Sleep");
+            flying.Stop();
+        }
         attackCooldown = Random.Range(2, 6);
-        animator.speed = Random.Range(0.8f, 1.2f);
+        animator.speed = Random.Range(0.9f, 1.1f);
         //flyAway = new Vector3(fleeDistance, fleeDistance, 0.0f);
     }
 
@@ -36,6 +41,7 @@ public class EnemyFunctions : MonoBehaviour
     {
         if (fleeing)
         {
+            sleep.Stop();
             fleeDistance += incrementRate * Time.deltaTime;
             //transform.position += fleeSpeed * Time.deltaTime * Vector3.up;
             if (forwardOtherWay)
@@ -50,6 +56,8 @@ public class EnemyFunctions : MonoBehaviour
         }
         else if (!startAsleep)
         {
+            sleep.Stop();
+            flying.pitch = animator.speed;
             attackCooldown -= Time.deltaTime;
             if (attackCooldown <= 0)
             {
@@ -69,6 +77,7 @@ public class EnemyFunctions : MonoBehaviour
     {
         animator.SetTrigger("Flee");
         fleeing = true;
+        flying.Play();
         Destroy(gameObject, animationTime);
     }
 }
