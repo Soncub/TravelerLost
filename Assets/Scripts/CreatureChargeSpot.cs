@@ -14,12 +14,11 @@ public class CreatureChargeSpot : ChargeSource
     [Tooltip("Should this be on by default? (If false, another source needs to lead into it)")]
     [SerializeField] bool startOn;
 
-    [Tooltip("Crystal on creature's back to alter the material of")]
-    [SerializeField] MeshRenderer creatureBack;
-    [Tooltip("Material for the creature back when not charged")]
-    [SerializeField] Material offMat;
+    [Tooltip("Crystals on creature's back to alter the material of")]
+    [SerializeField] SkinnedMeshRenderer[] creatureBack;
+    Material[] offMat;
     [Tooltip("Material for the creature back when charged")]
-    [SerializeField] Material onMat;
+    [SerializeField] Material[] onMat;
 
     private void Start()
     {
@@ -27,6 +26,8 @@ public class CreatureChargeSpot : ChargeSource
             isLit = true;
         else
             isLit = false;
+        for (int i = 0; i < creatureBack.Length; i++)
+            offMat[i] = creatureBack[i].material;
     }
 
     public override void Charge()
@@ -42,7 +43,8 @@ public class CreatureChargeSpot : ChargeSource
                 Debug.Log($"{name} is now lit up.");
                 if (nextSource != null)
                     nextSource.Charge();
-                creatureBack.material = onMat;
+                for (int i = 0; i < creatureBack.Length; i++)
+                    creatureBack[i].material = onMat[i];
             }
         }
     }
@@ -60,7 +62,8 @@ public class CreatureChargeSpot : ChargeSource
                 Debug.Log($"{name} is now unlit.");
                 if (nextSource != null)
                     nextSource.Uncharge();
-                creatureBack.material = offMat;
+                for (int i = 0; i < creatureBack.Length; i++)
+                    creatureBack[i].material = offMat[i];
             }
         }
     }
@@ -77,7 +80,8 @@ public class CreatureChargeSpot : ChargeSource
                     darkObject.SetActive(false);
                 Debug.Log($"{name} is now lit up.");
                 nextSource.Charge();
-                creatureBack.material = onMat;
+                for (int i = 0; i < creatureBack.Length; i++)
+                    creatureBack[i].material = onMat[i];
             }
         }
     }
@@ -94,7 +98,8 @@ public class CreatureChargeSpot : ChargeSource
                     darkObject.SetActive(true);
                 Debug.Log($"{name} is now unlit.");
                 nextSource.Uncharge();
-                creatureBack.material = offMat;
+                for (int i = 0; i < creatureBack.Length; i++)
+                    creatureBack[i].material = offMat[i];
             }
         }
     }

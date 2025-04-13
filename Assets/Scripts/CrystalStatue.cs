@@ -258,6 +258,11 @@ public class CrystalStatue : ChargeSource
                 if (darkObject != null)
                     darkObject.SetActive(true);
                 Debug.Log($"{name} is now unlit.");
+                foreach (var pillar in hitPillars)
+                {
+                    pillar.Uncharge();
+                    hitPillars.Remove(pillar);
+                }
             }
         }
     }

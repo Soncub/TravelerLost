@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class ChargeCrystal : ChargeSource
 {
@@ -22,7 +23,8 @@ public class ChargeCrystal : ChargeSource
     [Tooltip("Material to use while on")]
     [SerializeField] Material onMat;
 
-    private Color color;
+    [Tooltip("VFX for the beam")]
+    [SerializeField] VisualEffect beamEffect;
 
     private void Start()
     {
@@ -48,9 +50,6 @@ public class ChargeCrystal : ChargeSource
             if (crystalMesh != null)
                 crystalMesh.material = offMat;
         }
-        LineRenderer line = beamObject.GetComponent<LineRenderer>();
-        if (line != null)
-            color = line.startColor;
     }
 
     private void Update()
@@ -63,10 +62,7 @@ public class ChargeCrystal : ChargeSource
             LineRenderer line = beamObject.GetComponent<LineRenderer>();
             if (line != null)
             {
-                color.a = timer / dieTime;
-                line.startColor = color;
-                color.a = (timer / dieTime * .5f) + .5f;
-                line.endColor = color;
+                beamEffect.SetFloat(1, timer / dieTime);
             }
             //When it runs out, kill the light and re-enable the dark
             if (timer <= 0)
@@ -91,11 +87,7 @@ public class ChargeCrystal : ChargeSource
             isLit = true;
             LineRenderer line = beamObject.GetComponent<LineRenderer>();
             if (line != null)
-            {
-                color.a = 1f;
-                line.startColor = color;
-                line.endColor = color;
-            }
+                beamEffect.SetFloat(1, 1);
             beamObject.SetActive(true);
             if (darkObject != null)
                 darkObject.SetActive(false);
