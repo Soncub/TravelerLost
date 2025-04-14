@@ -52,6 +52,8 @@ public class PauseMenuManager : BookAnimation
 
     public void Pause()
     {
+        player.enabled = false;
+
         OpenBook();
         openBook.Play();
         
