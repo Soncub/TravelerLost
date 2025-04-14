@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.003
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.9528302, g: 0.18014142, b: 0.13034001, a: 1}
-  m_AmbientEquatorColor: {r: 0.8584906, g: 0.74802065, b: 0.23082057, a: 1}
-  m_AmbientGroundColor: {r: 0.754717, g: 0.24792627, b: 0.13171947, a: 1}
+  m_AmbientSkyColor: {r: 0.21097177, g: 0.93962264, b: 0.8971051, a: 1}
+  m_AmbientEquatorColor: {r: 0.18309002, g: 0.6981132, b: 0.334433, a: 1}
+  m_AmbientGroundColor: {r: 0.89433956, g: 0.399825, b: 0.106308244, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
-  m_SubtractiveShadowColor: {r: 0.33962262, g: 0.32765722, b: 0.30598074, a: 1}
+  m_SubtractiveShadowColor: {r: 0.37736553, g: 0.5698112, b: 0.4370926, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: ac0c632d6e138654b8ddd2dbabd98085, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -1972,7 +1972,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.7924528, g: 0.5824733, b: 0.3252047, a: 1}
+  m_Color: {r: 0.9098039, g: 0.33333328, b: 0.6381677, a: 1}
   m_Intensity: 2.24
   m_Range: 10
   m_SpotAngle: 30
@@ -4531,6 +4531,10 @@ PrefabInstance:
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 1669143750}
+    - target: {fileID: 5459680935383252727, guid: ee286230f29402c42a0a265d35eaa1e2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d4e8f60b56bb454aa4630bc46cb2fc9, type: 2}
     - target: {fileID: 6152567972703836709, guid: ee286230f29402c42a0a265d35eaa1e2, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -17967,7 +17971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3858693269622796411, guid: 832de7e9d6f5f0949ad5af506e73d9cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 46.3
+      value: 42.08
       objectReference: {fileID: 0}
     - target: {fileID: 3858693269622796411, guid: 832de7e9d6f5f0949ad5af506e73d9cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45293,7 +45297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4249396867315208074, guid: e2874c24a7a0c884dabc60c7258e11b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 43.6
+      value: 39.6
       objectReference: {fileID: 0}
     - target: {fileID: 4249396867315208074, guid: e2874c24a7a0c884dabc60c7258e11b8, type: 3}
       propertyPath: m_LocalPosition.z
