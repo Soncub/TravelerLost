@@ -166,7 +166,7 @@ public class CrystalStatue : ChargeSource
         HashSet<ChargeSource> toRemove = new HashSet<ChargeSource>(hitPillars);
         foreach (var pillar in toRemove)
         {
-            if (!Physics.Raycast(ray, out hit, pillarRaycastDistance, pillarLayerMask) || hit.collider.GetComponent<CrystalStatue>() != pillar)
+            if (!Physics.Raycast(ray, out hit, pillarRaycastDistance, pillarLayerMask) || hit.collider.GetComponent<ChargeSource>() != pillar)
             {
                 pillar.Uncharge();
                 hitPillars.Remove(pillar);

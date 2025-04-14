@@ -16,7 +16,8 @@ public class CreatureChargeSpot : ChargeSource
 
     [Tooltip("Crystals on creature's back to alter the material of")]
     [SerializeField] SkinnedMeshRenderer[] creatureBack;
-    Material[] offMat;
+    [Tooltip("Material for the creature back when not charged")]
+    [SerializeField] Material[] offMat;
     [Tooltip("Material for the creature back when charged")]
     [SerializeField] Material[] onMat;
 
@@ -26,8 +27,6 @@ public class CreatureChargeSpot : ChargeSource
             isLit = true;
         else
             isLit = false;
-        for (int i = 0; i < creatureBack.Length; i++)
-            offMat[i] = creatureBack[i].material;
     }
 
     public override void Charge()

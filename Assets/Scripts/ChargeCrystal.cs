@@ -59,8 +59,7 @@ public class ChargeCrystal : ChargeSource
         {
             timer -= Time.deltaTime;
             //Change the beam based on remaining time
-            LineRenderer line = beamObject.GetComponent<LineRenderer>();
-            if (line != null)
+            if (beamEffect != null)
             {
                 beamEffect.SetFloat(1, timer / dieTime);
             }
@@ -86,7 +85,7 @@ public class ChargeCrystal : ChargeSource
             timer = dieTime;
             isLit = true;
             LineRenderer line = beamObject.GetComponent<LineRenderer>();
-            if (line != null)
+            if (beamEffect != null)
                 beamEffect.SetFloat(1, 1);
             beamObject.SetActive(true);
             if (darkObject != null)
