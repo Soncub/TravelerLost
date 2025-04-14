@@ -13,7 +13,7 @@ public class ItemDivot : MonoBehaviour
     [SerializeField] public bool isKey;
 
     [Tooltip("The creature crystal renderer associated with this divot")]
-    [SerializeField] private MeshRenderer creatureCrystalRenderer;
+    [SerializeField] private SkinnedMeshRenderer creatureCrystalRenderer;
     [Tooltip("Material for the crystal renderer to change to when the divot activates")]
     [SerializeField] private Material creatureCrystalOnMat;
     private Material creatureCrystalOffMat;
