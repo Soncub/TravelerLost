@@ -1,28 +1,22 @@
 using UnityEngine;
 using UnityEngine.Video;
-using UnityEngine.SceneManagement;
 
-public class VideoEndSceneLoader : MonoBehaviour
+public class CutsceneManager : MonoBehaviour
 {
-    public VideoPlayer videoPlayer;      // Assign in Inspector or via code
-    public string nextSceneName;         // The name of the scene to load
-    private bool hasSkipped = false;     // Prevents multiple calls
+    public VideoPlayer videoPlayer;
+    public LevelLoader levelLoader;
+    public int nextSceneIndex;
+    private bool hasSkipped = false;
 
     private void Start()
     {
         if (videoPlayer == null)
-        {
             videoPlayer = GetComponent<VideoPlayer>();
-        }
 
         if (videoPlayer != null)
-        {
             videoPlayer.loopPointReached += OnVideoEnd;
-        }
         else
-        {
             Debug.LogError("No VideoPlayer found on this GameObject.");
-        }
     }
 
     private void Update()
@@ -38,7 +32,7 @@ public class VideoEndSceneLoader : MonoBehaviour
         if (!hasSkipped)
         {
             hasSkipped = true;
-            LoadNextScene();
+            EndCutsceneAndLoadLevel();
         }
     }
 
@@ -46,11 +40,18 @@ public class VideoEndSceneLoader : MonoBehaviour
     {
         hasSkipped = true;
         videoPlayer.Stop();
-        LoadNextScene();
+        EndCutsceneAndLoadLevel();
     }
 
-    private void LoadNextScene()
+    private void EndCutsceneAndLoadLevel()
     {
-        SceneManager.LoadScene(nextSceneName);
+        if (levelLoader != null)
+        {
+            levelLoader.LoadLevel(nextSceneIndex);
+        }
+        else
+        {
+            Debug.LogWarning("LevelLoader reference not set in CutsceneManager.");
+        }
     }
 }
