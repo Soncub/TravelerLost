@@ -666,79 +666,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829269734}
   m_CullTransparentMesh: 1
---- !u!1 &902972924
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 902972927}
-  - component: {fileID: 902972926}
-  - component: {fileID: 902972925}
-  m_Layer: 0
-  m_Name: LevelLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &902972925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902972924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80765af89a3e57649ba1983b56c714dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waitTime: 5
-  finishEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  fade: {fileID: 0}
-  fadeImage: {fileID: 501422393}
-  waitTimer: 0
-  creature: 0
-  player: 0
-  fadeTimer: 0
-  zone: {fileID: 1664660384}
-  curLevel: 5
---- !u!114 &902972926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902972924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4226004701e050428d107c5222722b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 829269734}
-  slider: {fileID: 947257381}
-  progressText: {fileID: 1746209181}
-  levelEnd: {fileID: 902972925}
---- !u!4 &902972927
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902972924}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &947257379
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,7 +786,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 501422394}
-  levelLoader: {fileID: 902972926}
+  loadingScreen: {fileID: 829269734}
+  slider: {fileID: 947257381}
+  progressText: {fileID: 1746209181}
   nextSceneIndex: 1
 --- !u!4 &1114406930
 Transform:
@@ -1343,6 +1272,5 @@ SceneRoots:
   - {fileID: 1202202276}
   - {fileID: 501422395}
   - {fileID: 1114406930}
-  - {fileID: 902972927}
   - {fileID: 441828550}
   - {fileID: 1664660385}
