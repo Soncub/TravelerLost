@@ -2399,6 +2399,7 @@ MonoBehaviour:
   whistleSystem: {fileID: 0}
   respawnPoint: {fileID: 1746791707}
   pickUpSound: {fileID: 107447260}
+  canBePickedUp: 1
 --- !u!135 &107447255
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8183,6 +8184,7 @@ MonoBehaviour:
   whistleSystem: {fileID: 0}
   respawnPoint: {fileID: 397001842}
   pickUpSound: {fileID: 346389513}
+  canBePickedUp: 1
 --- !u!135 &346389508
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -32196,6 +32198,7 @@ MonoBehaviour:
   whistleSystem: {fileID: 0}
   respawnPoint: {fileID: 1886632209}
   pickUpSound: {fileID: 1568858839}
+  canBePickedUp: 1
 --- !u!135 &1568858834
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -42857,6 +42860,7 @@ MonoBehaviour:
   whistleSystem: {fileID: 0}
   respawnPoint: {fileID: 2091530058}
   pickUpSound: {fileID: 2091193119}
+  canBePickedUp: 1
 --- !u!135 &2091193114
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -45854,6 +45858,10 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 1168154416}
+    - target: {fileID: 1178794003170500201, guid: 74abdcfc3b4dc4a4eb0a97fe42e3b909, type: 3}
+      propertyPath: canBePickedUp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4144055198479619400, guid: 74abdcfc3b4dc4a4eb0a97fe42e3b909, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.49

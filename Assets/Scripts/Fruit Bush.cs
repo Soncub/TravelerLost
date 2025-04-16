@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,32 +6,19 @@ using UnityEngine.InputSystem;
 
 public class FruitBush : MonoBehaviour
 {
-    ItemInteraction itemInteraction;
-
-    [Tooltip("Distance for picking up object (will change gizmo size to match)")]
     [SerializeField] private float pickUpDistance;
-
-    [Tooltip("Visual for Distance for spawning object in")]
     [SerializeField] private bool enableGizmos;
-
     [SerializeField] private InputAction pickUpAction;
-
-    [Tooltip("List of possible item prefabs to spawn")]
     [SerializeField] private GameObject[] itemPrefabs;
-
-    [Tooltip("Cooldown time in seconds before another item can be spawned")]
     [SerializeField] private float spawnCooldown = 2.0f;
-
-    [Tooltip("Time it takes for the item to grow to full size")]
     [SerializeField] private float growDuration = 1.0f;
 
     private Transform player;
     private Transform spawnPoint;
     private bool canSpawn = true;
     private float cooldownTimer;
-    private List<GameObject> spawnedItems = new List<GameObject>(); // Track spawned items
+    private List<GameObject> spawnedItems = new List<GameObject>();
 
-    // UI Variables
     public GameObject canvas;
     public Transform childObject;
     public TextMeshProUGUI popUp;
@@ -48,29 +35,7 @@ public class FruitBush : MonoBehaviour
         pause = GameObject.Find("Pause Menu").GetComponent<PauseMenuManager>();
 
         spawnPoint = transform.Find("SpawnPoint");
-        if (spawnPoint == null)
-        {
-            Debug.LogError("SpawnPoint child object not found.", this);
-            return;
-        }
-
-        GameObject playerObject = GameObject.Find("Player");
-        if (playerObject != null)
-        {
-            player = playerObject.transform;
-        }
-        else
-        {
-            Debug.LogError("Player GameObject not found.", this);
-            return;
-        }
-
-        itemInteraction = FindFirstObjectByType<ItemInteraction>();
-        if (itemInteraction == null)
-        {
-            Debug.LogError("ItemInteraction component is missing from this GameObject.", this);
-            return;
-        }
+        player = GameObject.Find("Player").transform;
 
         if (itemPrefabs == null || itemPrefabs.Length == 0)
         {
@@ -89,12 +54,9 @@ public class FruitBush : MonoBehaviour
         {
             cooldownTimer -= Time.deltaTime;
             if (cooldownTimer <= 0f)
-            {
                 canSpawn = true;
-            }
         }
 
-        // Remove items that are picked up or out of range
         spawnedItems.RemoveAll(item => item == null || Vector3.Distance(item.transform.position, transform.position) > pickUpDistance);
     }
 
@@ -102,25 +64,17 @@ public class FruitBush : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
-        if (context.performed && !itemInteraction.itemIsPicked && distanceToPlayer <= pickUpDistance && canSpawn)
+        if (context.performed && distanceToPlayer <= pickUpDistance && canSpawn)
         {
             GameObject selectedPrefab = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
-            GameObject newSpawnedItem = Instantiate(selectedPrefab, spawnPoint.position, spawnPoint.rotation);
-            Rigidbody rb = newSpawnedItem.GetComponent<Rigidbody>();
+            GameObject newItem = Instantiate(selectedPrefab, spawnPoint.position, spawnPoint.rotation);
+            Rigidbody rb = newItem.GetComponent<Rigidbody>();
+            if (rb != null) rb.isKinematic = true;
 
-            if (rb != null)
-            {
-                rb.isKinematic = true;
-            }
-
-            StartCoroutine(GrowItem(newSpawnedItem));
-            spawnedItems.Add(newSpawnedItem); // Add to list
+            StartCoroutine(GrowItem(newItem));
+            spawnedItems.Add(newItem);
             canSpawn = false;
             cooldownTimer = spawnCooldown;
-        }
-        else
-        {
-            Debug.Log("Cannot spawn item.");
         }
     }
 
@@ -138,11 +92,14 @@ public class FruitBush : MonoBehaviour
         }
 
         item.transform.localScale = targetScale;
+
         Rigidbody rb = item.GetComponent<Rigidbody>();
         if (rb != null)
-        {
             rb.isKinematic = false;
-        }
+
+        ItemInteraction itemInteraction = item.GetComponent<ItemInteraction>();
+        if (itemInteraction != null)
+            itemInteraction.canBePickedUp = true; 
     }
 
     private void OnDestroy()
@@ -155,9 +112,7 @@ public class FruitBush : MonoBehaviour
     {
         Gizmos.color = Color.red;
         if (enableGizmos)
-        {
             Gizmos.DrawWireSphere(this.transform.position, pickUpDistance);
-        }
     }
 
     public void PopUpOn(string notification)
