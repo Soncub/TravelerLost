@@ -1,10 +1,15 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CutsceneManager : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
-    public LevelLoader levelLoader;
+    public GameObject loadingScreen;
+    public Slider slider;
+    public Text progressText;
     public int nextSceneIndex;
     private bool hasSkipped = false;
 
@@ -32,7 +37,8 @@ public class CutsceneManager : MonoBehaviour
         if (!hasSkipped)
         {
             hasSkipped = true;
-            EndCutsceneAndLoadLevel();
+            //EndCutsceneAndLoadLevel();
+            StartCoroutine(LoadAsynchronously(nextSceneIndex));
         }
     }
 
@@ -40,9 +46,11 @@ public class CutsceneManager : MonoBehaviour
     {
         hasSkipped = true;
         videoPlayer.Stop();
-        EndCutsceneAndLoadLevel();
+        //EndCutsceneAndLoadLevel();
+        StartCoroutine(LoadAsynchronously(nextSceneIndex));
     }
 
+    /*
     private void EndCutsceneAndLoadLevel()
     {
         if (levelLoader != null)
@@ -52,6 +60,23 @@ public class CutsceneManager : MonoBehaviour
         else
         {
             Debug.LogWarning("LevelLoader reference not set in CutsceneManager.");
+        }
+    }
+    */
+
+    IEnumerator LoadAsynchronously (int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        loadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            //Debug.Log(progress);
+            slider.value = progress;
+            progressText.text = progress * 100f + "%";
+
+            yield return null;
         }
     }
 }
