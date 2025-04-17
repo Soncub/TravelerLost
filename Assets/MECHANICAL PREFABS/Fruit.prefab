@@ -183,7 +183,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press E to Pick Up Fruit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e6cc2880490f55a41972f0c3f94763fe, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -183.24783, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3729353094801200202
@@ -418,6 +418,8 @@ MonoBehaviour:
   canvas: {fileID: 0}
   childObject: {fileID: 0}
   popUp: {fileID: 4780619964799007440}
+  childObject2: {fileID: 0}
+  popUp2: {fileID: 0}
   pause: {fileID: 0}
   playerInput: {fileID: 0}
   animator: {fileID: 0}
@@ -425,6 +427,7 @@ MonoBehaviour:
   whistleSystem: {fileID: 0}
   respawnPoint: {fileID: 0}
   pickUpSound: {fileID: 6862201227451680821}
+  canBePickedUp: 0
 --- !u!114 &8767361045172403995
 MonoBehaviour:
   m_ObjectHideFlags: 0

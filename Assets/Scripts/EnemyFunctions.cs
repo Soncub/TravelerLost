@@ -34,6 +34,7 @@ public class EnemyFunctions : MonoBehaviour
         }
         attackCooldown = Random.Range(2, 6);
         animator.speed = Random.Range(0.9f, 1.1f);
+        attack.pitch = Random.Range(0.5f, 1.5f);
         //flyAway = new Vector3(fleeDistance, fleeDistance, 0.0f);
     }
 
