@@ -25,6 +25,8 @@ public class ItemDivot : MonoBehaviour
     public bool ItemIsPlaced => itemIsPlaced;
     private GameObject placedItem;
     public AudioSource divotNoise;
+    public bool spin;
+    public float speed = 100f;
 
     private void Start()
     {
@@ -38,6 +40,10 @@ public class ItemDivot : MonoBehaviour
         if (itemIsPlaced && placedItem.transform.parent != dropLocation)
         {
             ReleaseItem(null); // Call release without passing an ItemInteraction reference
+        }
+        if (spin)
+        {
+            dropLocation.transform.Rotate(new Vector3(0, speed * Time.deltaTime, 0));
         }
     }
 

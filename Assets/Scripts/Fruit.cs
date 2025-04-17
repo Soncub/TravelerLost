@@ -53,7 +53,7 @@ public class Fruit : MonoBehaviour
         playerMovement = player.GetComponent<PlayerController>();
         animator = GameObject.Find("MC Animations1").GetComponent<Animator>();
         canvas = GameObject.Find("MessageCanvas");
-        childObject = canvas.transform.Find("FruitMessage");
+        childObject = canvas.transform.Find("OfferMessage");
         errorTag = childObject.GetComponent<TextMeshProUGUI>();
         eat = GetComponent<AudioSource>();
 }

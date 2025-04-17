@@ -23,6 +23,8 @@ public class ItemInteraction : MonoBehaviour
     public GameObject canvas;
     public Transform childObject;
     public TextMeshProUGUI popUp;
+    public Transform childObject2;
+    public TextMeshProUGUI popUp2;
     public PauseMenuManager pause;
     [SerializeField] private PlayerInput playerInput;
     private string controlScheme;
@@ -40,6 +42,11 @@ public class ItemInteraction : MonoBehaviour
         canvas = GameObject.Find("MessageCanvas");
         childObject = canvas.transform.Find("ItemMessage");
         popUp = childObject.GetComponent<TextMeshProUGUI>();
+        if (gameObject.tag == "Item")
+        {
+            childObject2 = canvas.transform.Find("FruitMessage");
+            popUp2 = childObject2.GetComponent<TextMeshProUGUI>();
+        }
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         pickUpPoint = GameObject.Find("PickUpPoint").transform;
@@ -71,6 +78,11 @@ public class ItemInteraction : MonoBehaviour
             animator.SetTrigger("PickUp");
             animator.SetLayerWeight(anilayer, 0.8f);
             pickUpSound.Play();
+            if (gameObject.tag == "Item")
+            {
+                UpdateControlScheme();
+                popUp2.gameObject.SetActive(true);
+            }
         }
         else if (itemIsPicked && context.performed)
         {
@@ -83,6 +95,11 @@ public class ItemInteraction : MonoBehaviour
             DropEvent.Invoke();
             animator.SetTrigger("Place");
             animator.SetLayerWeight(anilayer, 0f);
+            if (gameObject.tag == "Item")
+            {
+                UpdateControlScheme();
+                popUp2.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -150,6 +167,10 @@ public class ItemInteraction : MonoBehaviour
     {
         controlScheme = playerInput.currentControlScheme;
         popUp.text = controlScheme == "Keyboard and Mouse" ? "Press E to pick up the item" : "Press A to pick up the item";
+        if (gameObject.tag == "Item")
+        {
+            popUp2.text = controlScheme == "Keyboard and Mouse" ? "Press R to offer fruit" : "Press LT to offer fruit";
+        }
     }
 
     private void Respawn()
