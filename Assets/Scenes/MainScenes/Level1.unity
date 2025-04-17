@@ -989,8 +989,8 @@ MonoBehaviour:
     invertVertical: 0
     invertHorizontal: 0
   cameraAngle:
-    min: -10
-    max: 10
+    min: -20
+    max: 20
   startCameraValue: 180
 --- !u!20 &41972629
 Camera:
@@ -18533,6 +18533,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 857515930}
     m_Modifications:
+    - target: {fileID: 113008205522023645, guid: 8fafa8e563c858340846b6854be24261, type: 3}
+      propertyPath: m_Radius
+      value: 3.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1194123426779987823, guid: 8fafa8e563c858340846b6854be24261, type: 3}
       propertyPath: m_LocalPosition.x
       value: -65.8
@@ -18595,7 +18599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6645060557190236586, guid: 8fafa8e563c858340846b6854be24261, type: 3}
       propertyPath: maxInteractDistance
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8326163520883512446, guid: 8fafa8e563c858340846b6854be24261, type: 3}
       propertyPath: m_Name
@@ -27425,7 +27429,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 113008205522023645, guid: 8fafa8e563c858340846b6854be24261, type: 3}
       propertyPath: m_Radius
-      value: 2.5
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 1194123426779987823, guid: 8fafa8e563c858340846b6854be24261, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27499,6 +27503,10 @@ PrefabInstance:
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 1669143750}
+    - target: {fileID: 6645060557190236586, guid: 8fafa8e563c858340846b6854be24261, type: 3}
+      propertyPath: maxInteractDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7440823200523088473, guid: 8fafa8e563c858340846b6854be24261, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -29228,6 +29236,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e3cb6448-d943-4499-8710-7eab1dc99ff6
     m_ActionName: Player/MenuOpenClose[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e5610df3-b55e-4857-9dbd-595545a12332
+    m_ActionName: Player/Interact[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 47db78ed-21c8-4af0-a842-c4db4907fb58
+    m_ActionName: Player/Offer Action[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -38069,6 +38085,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1522142469265215647, guid: f4bda99f6a6fe9c4d9f342be7266aba4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7b22498628baf214b9916851da24f78e, type: 3}
     - target: {fileID: 1612456785444372036, guid: f4bda99f6a6fe9c4d9f342be7266aba4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -38209,6 +38229,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 360106588}
+    - target: {fileID: 4379123871487519702, guid: f4bda99f6a6fe9c4d9f342be7266aba4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7b22498628baf214b9916851da24f78e, type: 3}
     - target: {fileID: 4394742323299821507, guid: f4bda99f6a6fe9c4d9f342be7266aba4, type: 3}
       propertyPath: m_MinValue
       value: 1
@@ -38469,6 +38493,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7526625560786164264, guid: f4bda99f6a6fe9c4d9f342be7266aba4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7b22498628baf214b9916851da24f78e, type: 3}
     - target: {fileID: 8959654200401455408, guid: f4bda99f6a6fe9c4d9f342be7266aba4, type: 3}
       propertyPath: m_IsActive
       value: 0
