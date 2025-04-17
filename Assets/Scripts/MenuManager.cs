@@ -59,6 +59,7 @@ public class MenuManager : MonoBehaviour
             for (int i = 0; i < levelSelectButtons.Length; i++)
             {
                 levelSelectButtons[i].SetActive(i <= SaveAndLoad.instance.saveData.levelsBeat);
+                levelSelectButtons[i].transform.parent.gameObject.SetActive(i <= SaveAndLoad.instance.saveData.levelsBeat);
             }
             audioBank.PlaySFX(audioBank.selectSound);
             levelSelectCanvas.SetActive(true);
