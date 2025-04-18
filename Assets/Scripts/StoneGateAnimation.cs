@@ -7,6 +7,7 @@ public class StoneGateAnimation : MonoBehaviour
     [SerializeField] Animator gateAnimator;
     [SerializeField] ParticleSystem dust;
     [SerializeField] float animationLength;
+    [SerializeField] AudioSource sound;
 
     void Start()
     {
@@ -16,6 +17,8 @@ public class StoneGateAnimation : MonoBehaviour
     public void OpenGate()
     {
         dust.Play();
+        sound.Play();
+        sound.loop = true;
         StartCoroutine(PlayAndWaitForAnim());
     }
 
@@ -26,5 +29,7 @@ public class StoneGateAnimation : MonoBehaviour
         yield return new WaitForSeconds(animationLength);
 
         dust.Stop();
+        sound.Stop();
+        sound.loop = false;
     }
 }
