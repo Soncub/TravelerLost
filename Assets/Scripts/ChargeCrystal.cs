@@ -59,10 +59,10 @@ public class ChargeCrystal : ChargeSource
         {
             timer -= Time.deltaTime;
             //Change the beam based on remaining time
-            if (beamEffect != null)
-            {
-                beamEffect.SetFloat(1, timer / dieTime);
-            }
+            //if (beamEffect != null)
+            //{
+            //    beamEffect.SetFloat(1, timer / dieTime);
+            //}
             //When it runs out, kill the light and re-enable the dark
             if (timer <= 0)
             {
@@ -85,8 +85,8 @@ public class ChargeCrystal : ChargeSource
             timer = dieTime;
             isLit = true;
             LineRenderer line = beamObject.GetComponent<LineRenderer>();
-            if (beamEffect != null)
-                beamEffect.SetFloat(1, 1);
+            //if (beamEffect != null)
+            //    beamEffect.SetFloat(1, 1);
             beamObject.SetActive(true);
             if (darkObject != null)
                 darkObject.SetActive(false);

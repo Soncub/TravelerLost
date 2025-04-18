@@ -122,11 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!137 &3758732 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4119079060788619624, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 722459927}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4988243
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,11 +912,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 988d88797c70ebd4e89377a4da5411ff, type: 3}
---- !u!137 &34428528 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1686829450678595437, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 722459927}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &38443523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1097,8 +1087,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 41972626}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0002685223, y: 0.99955726, z: -0.009521339, w: -0.02818967}
-  m_LocalPosition: {x: 20.480467, y: 7.412145, z: -115.479996}
+  m_LocalRotation: {x: -0.000048850725, y: 0.99994725, z: -0.0057289563, w: -0.008526535}
+  m_LocalPosition: {x: 16.067688, y: 7.412145, z: -10.845543}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10942,6 +10932,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1707157634}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
+      propertyPath: creatureMats
+      value: 
+      objectReference: {fileID: 1922049168}
+    - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: onMat.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -10996,23 +10990,23 @@ PrefabInstance:
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[0]
       value: 
-      objectReference: {fileID: 3758732}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[1]
       value: 
-      objectReference: {fileID: 1669644697}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[2]
       value: 
-      objectReference: {fileID: 1890576876}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[3]
       value: 
-      objectReference: {fileID: 34428528}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[4]
       value: 
-      objectReference: {fileID: 1486317862}
+      objectReference: {fileID: 0}
     - target: {fileID: 3134660782867710460, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: m_Parameters.widthMultiplier
       value: 1
@@ -18537,6 +18531,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2127863074}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
+      propertyPath: creatureMats
+      value: 
+      objectReference: {fileID: 1922049168}
+    - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: onMat.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -18591,23 +18589,23 @@ PrefabInstance:
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[0]
       value: 
-      objectReference: {fileID: 3758732}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[1]
       value: 
-      objectReference: {fileID: 1669644697}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[2]
       value: 
-      objectReference: {fileID: 1890576876}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[3]
       value: 
-      objectReference: {fileID: 34428528}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[4]
       value: 
-      objectReference: {fileID: 1486317862}
+      objectReference: {fileID: 0}
     - target: {fileID: 3134660782867710460, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: m_Parameters.widthMultiplier
       value: 1
@@ -24489,6 +24487,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 561359870}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
+      propertyPath: creatureMats
+      value: 
+      objectReference: {fileID: 1922049168}
+    - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: onMat.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -24543,23 +24545,23 @@ PrefabInstance:
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[0]
       value: 
-      objectReference: {fileID: 3758732}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[1]
       value: 
-      objectReference: {fileID: 1669644697}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[2]
       value: 
-      objectReference: {fileID: 1890576876}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[3]
       value: 
-      objectReference: {fileID: 34428528}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[4]
       value: 
-      objectReference: {fileID: 1486317862}
+      objectReference: {fileID: 0}
     - target: {fileID: 4062178894097259775, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: m_Name
       value: CreatureChargeSpot
@@ -30641,11 +30643,6 @@ Transform:
   - {fileID: 99622681}
   m_Father: {fileID: 351214770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &1486317862 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8817948080729526369, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 722459927}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1494334190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30992,7 +30989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498160336}
   serializedVersion: 2
-  m_LocalRotation: {x: 9.340119e-10, y: 0.000000003722505, z: -1.5467091e-10, w: 1}
+  m_LocalRotation: {x: 0.0004448853, y: 0.0010859034, z: -0.000012926431, w: 0.99999934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31542,6 +31539,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2146629336}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
+      propertyPath: creatureMats
+      value: 
+      objectReference: {fileID: 1922049168}
+    - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: onMat.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -31596,23 +31597,23 @@ PrefabInstance:
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[0]
       value: 
-      objectReference: {fileID: 3758732}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[1]
       value: 
-      objectReference: {fileID: 1669644697}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[2]
       value: 
-      objectReference: {fileID: 1890576876}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[3]
       value: 
-      objectReference: {fileID: 34428528}
+      objectReference: {fileID: 0}
     - target: {fileID: 626387592040827646, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: creatureBack.Array.data[4]
       value: 
-      objectReference: {fileID: 1486317862}
+      objectReference: {fileID: 0}
     - target: {fileID: 3134660782867710460, guid: 0fd5ca84a4333a84ea428898186c14c5, type: 3}
       propertyPath: m_Parameters.widthMultiplier
       value: 1
@@ -34353,11 +34354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa2d01ec95386d4f9a8311cb9be32cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!137 &1669644697 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7628733759560939609, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 722459927}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1670981197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37505,7 +37501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840823542}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000061490454, y: -0.00000038349964, z: 0.0000000073606476, w: 1}
+  m_LocalRotation: {x: 9.312466e-10, y: 0.0000000037250352, z: -3.1590005e-11, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -38590,11 +38586,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 466391295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &1890576876 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6856912969480374210, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 722459927}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1899050668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39249,6 +39240,11 @@ MonoBehaviour:
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2836766562474344559, guid: fa6d9bd326830ad44aad87accba581e8, type: 3}
   m_PrefabInstance: {fileID: 1919628341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &1922049168 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1141869446782727877, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
+  m_PrefabInstance: {fileID: 722459927}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1922218045
 PrefabInstance:

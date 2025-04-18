@@ -15,7 +15,7 @@ public class CreatureChargeSpot : ChargeSource
     [SerializeField] bool startOn;
 
     [Tooltip("Crystals on creature's back to alter the material of")]
-    [SerializeField] SkinnedMeshRenderer[] creatureBack;
+    [SerializeField] SkinnedMeshRenderer creatureMats;
     [Tooltip("Material for the creature back when not charged")]
     [SerializeField] Material[] offMat;
     [Tooltip("Material for the creature back when charged")]
@@ -42,8 +42,8 @@ public class CreatureChargeSpot : ChargeSource
                 Debug.Log($"{name} is now lit up.");
                 if (nextSource != null)
                     nextSource.Charge();
-                for (int i = 0; i < creatureBack.Length; i++)
-                    creatureBack[i].material = onMat[i];
+                for (int i = 0; i < 5; i++)
+                    creatureMats.materials[i+2] = onMat[i];
             }
         }
     }
@@ -61,8 +61,8 @@ public class CreatureChargeSpot : ChargeSource
                 Debug.Log($"{name} is now unlit.");
                 if (nextSource != null)
                     nextSource.Uncharge();
-                for (int i = 0; i < creatureBack.Length; i++)
-                    creatureBack[i].material = offMat[i];
+                for (int i = 0; i < 5; i++)
+                    creatureMats.materials[i+2] = offMat[i];
             }
         }
     }
@@ -79,8 +79,8 @@ public class CreatureChargeSpot : ChargeSource
                     darkObject.SetActive(false);
                 Debug.Log($"{name} is now lit up.");
                 nextSource.Charge();
-                for (int i = 0; i < creatureBack.Length; i++)
-                    creatureBack[i].material = onMat[i];
+                for (int i = 0; i < 5; i++)
+                    creatureMats.materials[i+2] = onMat[i];
             }
         }
     }
@@ -97,8 +97,8 @@ public class CreatureChargeSpot : ChargeSource
                     darkObject.SetActive(true);
                 Debug.Log($"{name} is now unlit.");
                 nextSource.Uncharge();
-                for (int i = 0; i < creatureBack.Length; i++)
-                    creatureBack[i].material = offMat[i];
+                for (int i = 0; i < 5; i++)
+                    creatureMats.materials[i+2] = offMat[i];
             }
         }
     }

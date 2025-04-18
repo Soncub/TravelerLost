@@ -90,6 +90,7 @@ public class CrystalStatue : ChargeSource
         itemDivot.ReleaseItemEvent.AddListener(OnItemReleased);
 
         beamObject.SetActive(false);
+        if (darkObject != null)
         darkObject.SetActive(true);
 
         // Input Actions

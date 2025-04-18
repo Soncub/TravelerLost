@@ -35725,31 +35725,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
---- !u!137 &862609838 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4119079060788619624, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &862609839 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8817948080729526369, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &862609840 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1686829450678595437, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &862609841 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6856912969480374210, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &862609842 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7628733759560939609, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
-  m_PrefabInstance: {fileID: 862609837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &863576388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6423759010209265212, guid: 0fd3637ae195bf14689e390e16e0c1c2, type: 3}
@@ -38211,7 +38186,8 @@ MonoBehaviour:
   dropLocation: {fileID: 469413337}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 862609838}
+  creatureCrystalRenderer: {fileID: 1131445664}
+  crystalNumber: 1
   creatureCrystalOnMat: {fileID: 2100000, guid: 265c778b9a046f14e986127b8d320fb0, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -38220,6 +38196,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   divotNoise: {fileID: 946551517}
+  spin: 0
+  speed: 100
 --- !u!82 &946551517
 AudioSource:
   m_ObjectHideFlags: 0
@@ -46219,6 +46197,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18b4607c337fc7a418200b6283cfe6c9, type: 3}
+--- !u!137 &1131445664 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1141869446782727877, guid: 3dd667caf6bd8c145b9b21e9d56f744e, type: 3}
+  m_PrefabInstance: {fileID: 862609837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1136557179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7619980842852116892, guid: 888cafdcf64e2164bb52223c5a8d8d82, type: 3}
@@ -53605,6 +53588,7 @@ MonoBehaviour:
   canBePlaced: 1
   isKey: 1
   creatureCrystalRenderer: {fileID: 0}
+  crystalNumber: 0
   creatureCrystalOnMat: {fileID: 0}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -53613,6 +53597,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   divotNoise: {fileID: 1323943989}
+  spin: 0
+  speed: 100
 --- !u!82 &1323943989
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57681,6 +57667,7 @@ MonoBehaviour:
   canBePlaced: 1
   isKey: 0
   creatureCrystalRenderer: {fileID: 0}
+  crystalNumber: 0
   creatureCrystalOnMat: {fileID: 0}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -57689,6 +57676,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   divotNoise: {fileID: 1323943989}
+  spin: 0
+  speed: 100
 --- !u!82 &1411827861
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59397,7 +59386,8 @@ MonoBehaviour:
   dropLocation: {fileID: 1960161934}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 862609840}
+  creatureCrystalRenderer: {fileID: 1131445664}
+  crystalNumber: 4
   creatureCrystalOnMat: {fileID: 2100000, guid: f422b58f9e913924b9a1577ead8bb2dd, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -59406,6 +59396,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   divotNoise: {fileID: 946551517}
+  spin: 0
+  speed: 100
 --- !u!82 &1459546494
 AudioSource:
   m_ObjectHideFlags: 0
@@ -72436,7 +72428,8 @@ MonoBehaviour:
   dropLocation: {fileID: 1840040810}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 862609839}
+  creatureCrystalRenderer: {fileID: 1131445664}
+  crystalNumber: 5
   creatureCrystalOnMat: {fileID: 2100000, guid: f58b94cff0b8cb044bed874e1971c7f3, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -72445,6 +72438,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   divotNoise: {fileID: 946551517}
+  spin: 0
+  speed: 100
 --- !u!82 &1808749798
 AudioSource:
   m_ObjectHideFlags: 0
@@ -76691,13 +76686,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 946551517}
     - target: {fileID: 151596803730841364, guid: 0fd3637ae195bf14689e390e16e0c1c2, type: 3}
+      propertyPath: crystalNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 151596803730841364, guid: 0fd3637ae195bf14689e390e16e0c1c2, type: 3}
       propertyPath: creatureCrystalOnMat
       value: 
       objectReference: {fileID: 2100000, guid: 6be34327b2419794a98770bbf1442eb8, type: 2}
     - target: {fileID: 151596803730841364, guid: 0fd3637ae195bf14689e390e16e0c1c2, type: 3}
       propertyPath: creatureCrystalRenderer
       value: 
-      objectReference: {fileID: 862609842}
+      objectReference: {fileID: 1131445664}
     - target: {fileID: 6423759010209265212, guid: 0fd3637ae195bf14689e390e16e0c1c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.6
@@ -78264,7 +78263,8 @@ MonoBehaviour:
   dropLocation: {fileID: 2055329818}
   canBePlaced: 1
   isKey: 1
-  creatureCrystalRenderer: {fileID: 862609841}
+  creatureCrystalRenderer: {fileID: 1131445664}
+  crystalNumber: 3
   creatureCrystalOnMat: {fileID: 2100000, guid: ac141485d7483194f895cec08616b51c, type: 2}
   PlaceItemEvent:
     m_PersistentCalls:
@@ -78273,6 +78273,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   divotNoise: {fileID: 946551517}
+  spin: 0
+  speed: 100
 --- !u!136 &1941383080
 CapsuleCollider:
   m_ObjectHideFlags: 0

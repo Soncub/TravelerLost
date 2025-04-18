@@ -12,8 +12,10 @@ public class ItemDivot : MonoBehaviour
     [Tooltip("Is one of the Required placements.")]
     [SerializeField] public bool isKey;
 
-    [Tooltip("The creature crystal renderer associated with this divot")]
+    [Tooltip("The creature renderer")]
     [SerializeField] private SkinnedMeshRenderer creatureCrystalRenderer;
+    [Tooltip("0-4 value to determine which crystal on the creature is changed")]
+    [SerializeField] private int crystalNumber;
     [Tooltip("Material for the crystal renderer to change to when the divot activates")]
     [SerializeField] private Material creatureCrystalOnMat;
     private Material creatureCrystalOffMat;
@@ -32,7 +34,7 @@ public class ItemDivot : MonoBehaviour
     {
         //Set the default crystal material as the off material
         if(creatureCrystalRenderer != null)
-            creatureCrystalOffMat = creatureCrystalRenderer.material;
+            creatureCrystalOffMat = creatureCrystalRenderer.materials[2 + crystalNumber];
     }
 
     private void Update()
@@ -58,11 +60,9 @@ public class ItemDivot : MonoBehaviour
             item.transform.rotation = dropLocation.rotation;
             item.transform.SetParent(dropLocation); // Lock item to the location
             if (itemRigidbody != null)
-            {
                 itemRigidbody.isKinematic = true; // Set to kinematic when placed
-            }
             if (creatureCrystalRenderer != null)
-                creatureCrystalRenderer.material = creatureCrystalOnMat; //Set the creature crystal material to on
+                creatureCrystalRenderer.materials[2 + crystalNumber] = creatureCrystalOnMat; //Set the creature crystal material to on
             itemIsPlaced = true;
             Debug.Log("Item placed in divot.");
             PlaceItemEvent.Invoke(); // Trigger event when item is placed
@@ -80,7 +80,7 @@ public class ItemDivot : MonoBehaviour
                 itemRigidbody.isKinematic = false; // Set back to non-kinematic when released
             }
             if (creatureCrystalRenderer != null)
-                creatureCrystalRenderer.material = creatureCrystalOffMat; //Set the creature crystal material to off
+                creatureCrystalRenderer.materials[2 + crystalNumber] = creatureCrystalOffMat; //Set the creature crystal material to off
             itemIsPlaced = false;
             placedItem = null;
             Debug.Log("Item picked up from divot.");

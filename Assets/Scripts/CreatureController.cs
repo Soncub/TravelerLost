@@ -64,10 +64,7 @@ public class CreatureController : MonoBehaviour
                 idleTime += Time.deltaTime;
                 if (idleTime >= 10)
                 {   
-                    if(Random.value > .5)
-                        animator.SetTrigger("idle1");
-                    else
-                        animator.SetTrigger("idle2");
+                    animator.SetTrigger("idleRandom");
                     idleTime = 0;
                 }
             }
