@@ -86,11 +86,11 @@ public class WhistleSystem : MonoBehaviour
                 {
                     works = false;
                 }
-                MeshRenderer color = threeDWhistleMarker.GetComponent<MeshRenderer>();
+                Material color = threeDWhistleMarker.GetComponent<Renderer>().material;
                 if (color !=null)
                 {
-                    color.material.EnableKeyword("_EMISSION");
-                    color.material.SetColor("_EmissionColor", works ? Color.gray : Color.red);
+                    color.SetColor("_LightColor", works ? Color.white : Color.red);
+                    color.SetColor("_DarkColor", works ? Color.gray : Color.red);
                 }
             }
         }
