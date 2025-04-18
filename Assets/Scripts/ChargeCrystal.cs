@@ -26,6 +26,8 @@ public class ChargeCrystal : ChargeSource
     [Tooltip("VFX for the beam")]
     [SerializeField] VisualEffect beamEffect;
 
+    public AudioSource lightUp;
+
     private void Start()
     {
         //Set default state
@@ -82,6 +84,7 @@ public class ChargeCrystal : ChargeSource
     {
         if (!isLit)
         {
+            lightUp.Play();
             timer = dieTime;
             isLit = true;
             LineRenderer line = beamObject.GetComponent<LineRenderer>();
