@@ -10,8 +10,8 @@ public class EnemyFunctions : MonoBehaviour
     [SerializeField] private bool startAsleep;
     [Tooltip("How long to play the flee animation before destroying the game object")]
     [SerializeField] private float animationTime;
-    [Tooltip("How fast should it flee")]
-    [SerializeField] private float fleeSpeed = 15;
+    /*[Tooltip("How fast should it flee")]
+    [SerializeField] private float fleeSpeed = 15;*/
     private bool fleeing = false;
     private float attackCooldown;
     public AudioSource attack;
