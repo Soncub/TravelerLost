@@ -42,7 +42,7 @@ public class ItemInteraction : MonoBehaviour
         canvas = GameObject.Find("MessageCanvas");
         childObject = canvas.transform.Find("ItemMessage");
         popUp = childObject.GetComponent<TextMeshProUGUI>();
-        if (gameObject.tag == "Item")
+        if (gameObject.CompareTag("Item"))
         {
             childObject2 = canvas.transform.Find("FruitMessage");
             popUp2 = childObject2.GetComponent<TextMeshProUGUI>();
@@ -78,7 +78,7 @@ public class ItemInteraction : MonoBehaviour
             animator.SetTrigger("PickUp");
             animator.SetLayerWeight(anilayer, 0.8f);
             pickUpSound.Play();
-            if (gameObject.tag == "Item")
+            if (gameObject.CompareTag("Item"))
             {
                 UpdateControlScheme();
                 popUp2.gameObject.SetActive(true);
@@ -95,7 +95,7 @@ public class ItemInteraction : MonoBehaviour
             DropEvent.Invoke();
             animator.SetTrigger("Place");
             animator.SetLayerWeight(anilayer, 0f);
-            if (gameObject.tag == "Item")
+            if (gameObject.CompareTag("Item"))
             {
                 UpdateControlScheme();
                 popUp2.gameObject.SetActive(false);
@@ -167,7 +167,7 @@ public class ItemInteraction : MonoBehaviour
     {
         controlScheme = playerInput.currentControlScheme;
         popUp.text = controlScheme == "Keyboard and Mouse" ? "Press E to pick up the item" : "Press A to pick up the item";
-        if (gameObject.tag == "Item")
+        if (gameObject.CompareTag("Item"))
         {
             popUp2.text = controlScheme == "Keyboard and Mouse" ? "Press R to offer fruit" : "Press LT to offer fruit";
         }

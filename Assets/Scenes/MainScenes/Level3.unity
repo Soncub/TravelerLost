@@ -1032,9 +1032,10 @@ MonoBehaviour:
     invertVertical: 0
     invertHorizontal: 0
   cameraAngle:
-    min: -20
+    min: -10
     max: 20
   startCameraValue: 0
+  startCameraDistance: 18
 --- !u!20 &41972629
 Camera:
   m_ObjectHideFlags: 0
@@ -1066,7 +1067,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 1.5
   far clip plane: 5000
   field of view: 40
   orthographic: 0
@@ -38924,7 +38925,7 @@ MonoBehaviour:
   m_MinimumDistanceFromTarget: 0.1
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
-  m_MinimumOcclusionTime: 0
+  m_MinimumOcclusionTime: 0.05
   m_CameraRadius: 0.1
   m_Strategy: 1
   m_MaximumEffort: 4
@@ -38955,7 +38956,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
-    NearClipPlane: 0.1
+    NearClipPlane: 1.5
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0

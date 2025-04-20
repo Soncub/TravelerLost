@@ -27,10 +27,11 @@ public class CameraManager : MonoBehaviour
 
     private CameraRotation cameraRotation;
     public float startCameraValue;
+    public float startCameraDistance = 18f;
 
     private void Awake()
     {
-        transform.position = target.transform.position - new Vector3(0, 0, 15f);
+        transform.position = target.transform.position - new Vector3(0, 0, startCameraDistance);
         cameraRotation.Yaw += input.x + startCameraValue;
         distanceToPlayer = Vector3.Distance(transform.position, target.position);
         if (instance == null)

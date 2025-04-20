@@ -65,6 +65,8 @@ public class Fruit : MonoBehaviour
             time -= Time.deltaTime;
             if (time < 0)
             {
+                itemInteraction.popUp.gameObject.SetActive(false);
+                itemInteraction.popUp2.gameObject.SetActive(false);
                 playerMovement.EnablePlayerController();
                 animator.SetBool(isOfferingHash, false);
                 animator.SetLayerWeight(anilayer, 0f);
@@ -140,6 +142,8 @@ public class Fruit : MonoBehaviour
         // Re-enable player movement
         if (playerMovement != null)
         {
+            itemInteraction.popUp.gameObject.SetActive(false);
+            itemInteraction.popUp2.gameObject.SetActive(false);
             playerMovement.EnablePlayerController();
             animator.SetBool(isOfferingHash, false);
             animator.SetLayerWeight(anilayer, 0f);
