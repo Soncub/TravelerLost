@@ -8,6 +8,7 @@ public class CutsceneManager : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public GameObject loadingScreen;
+    public GameObject background;
     public Slider slider;
     public Text progressText;
     public int nextSceneIndex;
@@ -38,6 +39,7 @@ public class CutsceneManager : MonoBehaviour
         {
             hasSkipped = true;
             //EndCutsceneAndLoadLevel();
+            background.SetActive(true);
             StartCoroutine(LoadAsynchronously(nextSceneIndex));
         }
     }
@@ -47,6 +49,7 @@ public class CutsceneManager : MonoBehaviour
         hasSkipped = true;
         videoPlayer.Stop();
         //EndCutsceneAndLoadLevel();
+        background.SetActive(true);
         StartCoroutine(LoadAsynchronously(nextSceneIndex));
     }
 
