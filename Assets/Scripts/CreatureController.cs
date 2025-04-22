@@ -88,7 +88,6 @@ public class CreatureController : MonoBehaviour
         growl.Play();
         focusTimeLeft = targetFocusTime;
         agent.SetDestination(position);
-        animator.SetTrigger("whistle");
     }
 
     public void NewMovingTarget(Transform transform)
@@ -101,7 +100,6 @@ public class CreatureController : MonoBehaviour
         movingTarget = transform;
         focusTimeLeft = targetFocusTime;
         agent.SetDestination(movingTarget.position);
-        animator.SetTrigger("whistle");
     }
 
     public void NewInteractionTarget(CreatureInteractable interactable)
