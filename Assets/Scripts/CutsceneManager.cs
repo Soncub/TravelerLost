@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class CutsceneManager : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class CutsceneManager : MonoBehaviour
 
     private void Update()
     {
-        if (!hasSkipped && Input.GetKeyDown(KeyCode.Space))
+        if (!hasSkipped && Input.GetKeyDown(KeyCode.Space) || Gamepad.current.startButton.wasPressedThisFrame)
         {
             SkipVideo();
         }
