@@ -73,7 +73,7 @@ public class ChargeCrystal : ChargeSource
                     darkObject.SetActive(true);
                 if (nextSource != null)
                     nextSource.Uncharge();
-                Debug.Log($"{name} is now unlit.");
+                //Debug.Log($"{name} is now unlit.");
                 if (crystalMesh != null)
                     crystalMesh.material = offMat;
             }
@@ -93,7 +93,7 @@ public class ChargeCrystal : ChargeSource
             beamObject.SetActive(true);
             if (darkObject != null)
                 darkObject.SetActive(false);
-            Debug.Log($"{name} is now lit up.");
+            //Debug.Log($"{name} is now lit up.");
             if (nextSource != null)
                 nextSource.Charge();
             if (crystalMesh != null)
@@ -106,7 +106,7 @@ public class ChargeCrystal : ChargeSource
         if (isLit)
         {
             isLit = false;
-            Debug.Log($"{name} is dying.");
+            //Debug.Log($"{name} is dying.");
             timer = dieTime;
         }
     }

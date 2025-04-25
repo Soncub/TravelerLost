@@ -76,13 +76,13 @@ public class CrystalStatue : ChargeSource
         // Pillar Logic Setup
         if (itemDivot == null)
         {
-            Debug.Log("Item Divot reference is not set in CrystalStatue.");
+            //Debug.Log("Item Divot reference is not set in CrystalStatue.");
             return;
         }
 
         if (beamObject == null)
         {
-            Debug.Log("Beam Object reference is not set in CrystalStatue.");
+            //Debug.Log("Beam Object reference is not set in CrystalStatue.");
             return;
         }
 
@@ -249,7 +249,7 @@ public class CrystalStatue : ChargeSource
                 lightUp.Play();
                 if (darkObject != null)
                     darkObject.SetActive(false);
-                Debug.Log($"{name} is now lit up.");
+                //Debug.Log($"{name} is now lit up.");
             }
         } else
         {
@@ -258,7 +258,7 @@ public class CrystalStatue : ChargeSource
                 beamObject.SetActive(false);
                 if (darkObject != null)
                     darkObject.SetActive(true);
-                Debug.Log($"{name} is now unlit.");
+                //Debug.Log($"{name} is now unlit.");
                 foreach (var pillar in hitPillars)
                 {
                     pillar.Uncharge();

@@ -23,14 +23,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpPower;
     public AudioSource playerSounds;
     public Animator animator;
-    int isWalkingHash;
-    bool isWalking;
-    int isJumpingHash;
-    bool isJumping;
-    int isFallingHash;
-    bool isFalling;
-    int isLandingHash;
-    bool isLanding;
+    private int isWalkingHash;
+    private bool isWalking;
+    private int isJumpingHash;
+    private bool isJumping;
+    private int isFallingHash;
+    private bool isFalling;
+    private int isLandingHash;
+    private bool isLanding;
     public ParticleSystem jumpParticles;
     //public Transform respawnPoint;
 
@@ -50,15 +50,12 @@ public class PlayerController : MonoBehaviour
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
-        isWalking = animator.GetBool(isWalkingHash);
-        isJumping = animator.GetBool(isJumpingHash);
-        isFalling = animator.GetBool(isFallingHash);
-        isLanding = animator.GetBool(isLandingHash);
+        UpdateAnimatorState();
     }
 
     private void ApplyGravity()
     {
-        if (IsGrounded() && velocity < 0.0f)
+        if (IsGrounded() && velocity < 0)
         {
             animator.SetBool(isJumpingHash, false);
             animator.SetBool(isFallingHash, false);
@@ -82,6 +79,13 @@ public class PlayerController : MonoBehaviour
     private void ApplyMovement()
     {
         characterController.Move(direction * speed * Time.deltaTime);
+    }
+    private void UpdateAnimatorState()
+    {
+        isWalking = animator.GetBool(isWalkingHash);
+        isJumping = animator.GetBool(isJumpingHash);
+        isFalling = animator.GetBool(isFallingHash);
+        isLanding = animator.GetBool(isLandingHash);
     }
     public void Move(InputAction.CallbackContext context)
     {

@@ -112,7 +112,7 @@ public class MenuManager : MonoBehaviour
     public void Close()
     {
         audioBank.PlaySFX(audioBank.selectSound);
-        Debug.Log("Quit");
+        //Debug.Log("Quit");
         SaveAndLoad.instance.SaveGame();
         Application.Quit();
     }

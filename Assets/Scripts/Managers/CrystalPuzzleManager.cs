@@ -36,7 +36,7 @@ public class CrystalPuzzleManager : MonoBehaviour
 
         if (allCorrectItemsPlaced)
         {
-            Debug.Log("Puzzle Solved!");
+            //Debug.Log("Puzzle Solved!");
             onPuzzleSolved.Invoke();
         }
     }

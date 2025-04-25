@@ -145,7 +145,7 @@ public class PauseMenuManager : BookAnimation
     {
         audioBank.PlaySFX(audioBank.selectSound);
         Time.timeScale = 1f;
-        Debug.Log("Quit");
+        //Debug.Log("Quit");
         Application.Quit();
     }
 

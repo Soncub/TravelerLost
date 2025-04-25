@@ -64,7 +64,7 @@ public class ItemDivot : MonoBehaviour
             if (creatureCrystalRenderer != null)
                 creatureCrystalRenderer.materials[2 + crystalNumber] = creatureCrystalOnMat; //Set the creature crystal material to on
             itemIsPlaced = true;
-            Debug.Log("Item placed in divot.");
+            //Debug.Log("Item placed in divot.");
             PlaceItemEvent.Invoke(); // Trigger event when item is placed
         }
     }
@@ -83,7 +83,7 @@ public class ItemDivot : MonoBehaviour
                 creatureCrystalRenderer.materials[2 + crystalNumber] = creatureCrystalOffMat; //Set the creature crystal material to off
             itemIsPlaced = false;
             placedItem = null;
-            Debug.Log("Item picked up from divot.");
+            //Debug.Log("Item picked up from divot.");
             ReleaseItemEvent.Invoke(); // Trigger event when item is released
         }
     }
