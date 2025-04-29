@@ -10087,7 +10087,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7412706886097298686}
         m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
         m_MethodName: SetMasterVolume
         m_Mode: 1
@@ -13059,7 +13059,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7412706886097298686}
         m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -16299,6 +16299,7 @@ MonoBehaviour:
     min: 0
     max: 0
   startCameraValue: 0
+  startCameraDistance: 18
 --- !u!1 &1316109290
 GameObject:
   m_ObjectHideFlags: 0
@@ -22537,7 +22538,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7412706886097298686}
         m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 1
@@ -26596,7 +26597,11 @@ PrefabInstance:
     - target: {fileID: 7585893112631016948, guid: 38f54d92a8e36a94b9050b3fcfd690ff, type: 3}
       propertyPath: backgroundMusic
       value: 
-      objectReference: {fileID: 8300000, guid: 87da47a2b3d1e0d479826f4715dc2061, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585893112631016948, guid: 38f54d92a8e36a94b9050b3fcfd690ff, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28094,6 +28099,18 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8857455516455181380, guid: ab8b3020849289247856b4c8602c566c, type: 3}
+      propertyPath: sfxSlider
+      value: 
+      objectReference: {fileID: 1835466437}
+    - target: {fileID: 8857455516455181380, guid: ab8b3020849289247856b4c8602c566c, type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 1017317660}
+    - target: {fileID: 8857455516455181380, guid: ab8b3020849289247856b4c8602c566c, type: 3}
+      propertyPath: masterSlider
+      value: 
+      objectReference: {fileID: 765098347}
     - target: {fileID: 9022250606112991373, guid: ab8b3020849289247856b4c8602c566c, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -28257,6 +28274,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6316549866281139951, guid: ab8b3020849289247856b4c8602c566c, type: 3}
   m_PrefabInstance: {fileID: 7412706886097298677}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7412706886097298686 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8857455516455181380, guid: ab8b3020849289247856b4c8602c566c, type: 3}
+  m_PrefabInstance: {fileID: 7412706886097298677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3d02288861282459696ea63dc0ef09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
